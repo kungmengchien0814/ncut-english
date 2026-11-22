@@ -20,6 +20,10 @@
 | 未滿 720px（手機） | 單欄，功能按鈕 2 欄，週次晶片橫向捲動，左上「‹ 首頁」返回 |
 | 720–1079px（平板） | 內容加寬，功能按鈕 3 欄，選項 2×2，單字表雙欄，各週掌握度雙欄 |
 | 1080px 以上（電腦） | 左側固定選單（含錯題數），首頁右側放統計，門檻說明分兩欄 |
+| 1280px 以上 | 選擇題、拼字、錯題本、單字卡、模擬考多一欄側欄（這一輪進度、答錯的字、鍵盤快捷鍵），題目卡片拉高到接近一整個畫面 |
+| 1440／1680／1900／2400px 以上 | 整頁字級和寬度依序放大到 17／18／19.5／24px 為基準，大螢幕不會只佔中間一小塊 |
+
+樣式的大小都用 `rem`（邊框等細線除外），所以只要改 `html` 的字級就能整頁一起放大縮小；手機和平板維持 16px。
 
 外觀和語言開關：手機、平板放在首頁右上角；電腦版放在左側選單下方。
 
@@ -102,10 +106,10 @@ DATA.flatMap(d => d.s.replace(/[{}]/g, "").match(WORD_RE)).filter(w => !wordInfo
 
 GitHub Pages：repo `kungmengchien0814/ncut-english`（main 分支根目錄），網址 `https://kungmengchien.uk/ncut-english/`（由使用者站台的自訂網域自動帶出，經過 Cloudflare；**不要**在這個 repo 加 CNAME）。若改用別的網址，要一起改 `index.html` 的 `og:url`、`og:image` 和 `404.html` 的路徑。
 
-每次推送前把 `index.html` 兩個圖示連結的 `?v=` 換成新版本（例如 `20261122d`），推送成功後用它等部署完成：
+每次推送前把 `index.html` 兩個圖示連結的 `?v=` 換成新版本（例如 `20261122e`），推送成功後用它等部署完成：
 
 ```bash
-bash D:/Claude/Claude-work/scripts/wait-for-portfolio-deploy.sh 20261122d 300 https://kungmengchien.uk/ncut-english/
+bash D:/Claude/Claude-work/scripts/wait-for-portfolio-deploy.sh 20261122e 300 https://kungmengchien.uk/ncut-english/
 ```
 
 Cloudflare 會快取 HTML 約 10 分鐘、圖片和其他檔案約 4 小時，所以換了圖要換檔名或加新的 `?v=`。

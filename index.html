@@ -7,8 +7,8 @@
 <meta name="description" content="勤益科大語言中心 115-2 字彙測驗（英檢輔導A選課資格）練習：模擬考、選擇題、拼字、錯題本、單字卡。非官方網站。">
 <meta name="robots" content="noindex">
 <meta name="theme-color" content="#2f6fdb">
-<link rel="icon" href="favicon.svg?v=20261122d" type="image/svg+xml">
-<link rel="apple-touch-icon" href="apple-touch-icon.png?v=20261122d">
+<link rel="icon" href="favicon.svg?v=20261122e" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png?v=20261122e">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="zh_TW">
 <meta property="og:title" content="勤益 115-2 字彙測驗練習">
@@ -26,199 +26,266 @@
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--fg);font-family:-apple-system,BlinkMacSystemFont,"PingFang TC","Noto Sans TC","Microsoft JhengHei",sans-serif;line-height:1.5;-webkit-text-size-adjust:100%}
 button{font-family:inherit;cursor:pointer}
-.wrap{max-width:640px;margin:0 auto;padding:14px 16px 48px}
-h1{font-size:21px;margin:6px 0 2px}
-.sub{color:var(--mut);font-size:13px;margin:0 0 14px}
-header.top{display:flex;align-items:center;gap:10px;margin-bottom:12px;min-height:34px}
-.back{border:0;background:transparent;color:var(--acc);font-size:15px;padding:4px 0;font-weight:600}
-.ttl{font-weight:700;font-size:17px}
-.tr{margin-left:auto;font-size:14px;color:var(--mut);font-variant-numeric:tabular-nums}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.mode{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;text-align:left;color:var(--fg)}
-.mode .ic{font-size:22px;line-height:1}
-.mode .n{font-weight:700;font-size:16px;margin-top:6px}
-.mode .d{font-size:12.5px;color:var(--mut);margin-top:2px}
+.wrap{max-width:40rem;margin:0 auto;padding:.875rem 1rem 3rem}
+h1{font-size:1.3125rem;margin:.375rem 0 2px}
+.sub{color:var(--mut);font-size:.8125rem;margin:0 0 .875rem}
+header.top{display:flex;align-items:center;gap:.625rem;margin-bottom:.75rem;min-height:2.125rem}
+.back{border:0;background:transparent;color:var(--acc);font-size:.9375rem;padding:.25rem 0;font-weight:600}
+.ttl{font-weight:700;font-size:1.0625rem}
+.tr{margin-left:auto;font-size:.875rem;color:var(--mut);font-variant-numeric:tabular-nums}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:.625rem}
+.mode{background:var(--card);border:1px solid var(--line);border-radius:.875rem;padding:.875rem;text-align:left;color:var(--fg)}
+.mode .ic{font-size:1.375rem;line-height:1}
+.mode .n{font-weight:700;font-size:1rem;margin-top:.375rem}
+.mode .d{font-size:.7812rem;color:var(--mut);margin-top:2px}
 .mode.primary{grid-column:1/-1;background:var(--acc);border-color:var(--acc);color:#fff}
 .mode.primary .d{color:rgba(255,255,255,.85)}
 .mode.full{grid-column:1/-1}
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:14px 0 4px}
-.st{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 4px;text-align:center}
-.st b{display:block;font-size:18px;font-variant-numeric:tabular-nums}
-.st span{font-size:11.5px;color:var(--mut)}
-.sec{font-size:13px;color:var(--mut);font-weight:700;margin:16px 0 6px}
-.wkrow{display:flex;align-items:center;gap:10px;font-size:13px;margin:5px 0}
-.wkrow .l{width:62px;color:var(--mut)}
-.wkrow .b{flex:1;height:8px;background:var(--line);border-radius:6px;overflow:hidden}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:.5rem;margin:.875rem 0 .25rem}
+.st{background:var(--card);border:1px solid var(--line);border-radius:.75rem;padding:.625rem .25rem;text-align:center}
+.st b{display:block;font-size:1.125rem;font-variant-numeric:tabular-nums}
+.st span{font-size:.7188rem;color:var(--mut)}
+.sec{font-size:.8125rem;color:var(--mut);font-weight:700;margin:1rem 0 .375rem}
+.wkrow{display:flex;align-items:center;gap:.625rem;font-size:.8125rem;margin:.3125rem 0}
+.wkrow .l{width:3.875rem;color:var(--mut)}
+.wkrow .b{flex:1;height:.5rem;background:var(--line);border-radius:.375rem;overflow:hidden}
 .wkrow .b i{display:block;height:100%;background:var(--ok)}
-.wkrow .r{width:44px;text-align:right;color:var(--mut);font-variant-numeric:tabular-nums}
-.chips{display:flex;gap:6px;overflow-x:auto;padding-bottom:6px;margin-bottom:8px;scrollbar-width:none}
+.wkrow .r{width:2.75rem;text-align:right;color:var(--mut);font-variant-numeric:tabular-nums}
+.chips{display:flex;gap:.375rem;overflow-x:auto;padding-bottom:.375rem;margin-bottom:.5rem;scrollbar-width:none}
 .chips::-webkit-scrollbar{display:none}
-.chip{flex:none;border:1px solid var(--line);background:var(--card);color:var(--fg);border-radius:999px;padding:6px 12px;font-size:14px}
+.chip{flex:none;border:1px solid var(--line);background:var(--card);color:var(--fg);border-radius:62.4375rem;padding:.375rem .75rem;font-size:.875rem}
 .chip.on{background:var(--acc);border-color:var(--acc);color:#fff}
-.seg{display:flex;background:var(--line);padding:3px;border-radius:10px;gap:3px}
-.seg button{flex:1;border:0;background:transparent;color:var(--fg);padding:8px 10px;border-radius:8px;font-size:14px;font-weight:600}
+.seg{display:flex;background:var(--line);padding:.1875rem;border-radius:.625rem;gap:.1875rem}
+.seg button{flex:1;border:0;background:transparent;color:var(--fg);padding:.5rem .625rem;border-radius:.5rem;font-size:.875rem;font-weight:600}
 .seg button.on{background:var(--card);box-shadow:0 1px 2px rgba(0,0,0,.08)}
-.opts{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;font-size:14px;color:var(--mut);margin-bottom:12px}
-.opts .seg{min-width:180px}
-.opts label{display:flex;align-items:center;gap:6px}
-.opts input{width:18px;height:18px;accent-color:var(--acc)}
-.btn{border:1px solid var(--line);background:var(--card);color:var(--fg);border-radius:10px;padding:8px 14px;font-size:14px}
+.opts{display:flex;flex-wrap:wrap;gap:.5rem .875rem;align-items:center;font-size:.875rem;color:var(--mut);margin-bottom:.75rem}
+.opts .seg{min-width:11.25rem}
+.opts label{display:flex;align-items:center;gap:.375rem}
+.opts input{width:1.125rem;height:1.125rem;accent-color:var(--acc)}
+.btn{border:1px solid var(--line);background:var(--card);color:var(--fg);border-radius:.625rem;padding:.5rem .875rem;font-size:.875rem}
 .btn.pri{background:var(--acc);border-color:var(--acc);color:#fff;font-weight:600}
-.wide{display:block;width:100%;margin-top:12px;padding:12px;font-size:16px;font-weight:600;border-radius:12px}
-.btns{display:flex;gap:8px;justify-content:center;margin-top:16px;flex-wrap:wrap}
-.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;min-height:230px;display:flex;flex-direction:column}
+.wide{display:block;width:100%;margin-top:.75rem;padding:.75rem;font-size:1rem;font-weight:600;border-radius:.75rem}
+.btns{display:flex;gap:.5rem;justify-content:center;margin-top:1rem;flex-wrap:wrap}
+.card{background:var(--card);border:1px solid var(--line);border-radius:1rem;padding:1.125rem;min-height:14.375rem;display:flex;flex-direction:column}
 .card.center{text-align:center;min-height:0}
-.meta{display:flex;justify-content:space-between;font-size:13px;color:var(--mut);margin-bottom:10px}
-.sent{font-size:19px;line-height:1.65}
+.meta{display:flex;justify-content:space-between;font-size:.8125rem;color:var(--mut);margin-bottom:.625rem}
+.sent{font-size:1.1875rem;line-height:1.65}
 .blank{display:inline-block;min-width:4em;border-bottom:2px solid var(--acc);color:var(--acc);font-weight:700;letter-spacing:.08em;text-align:center;padding:0 2px}
-.hl{color:var(--acc);font-weight:700;background:var(--acc2);border-radius:4px;padding:0 3px}
-.hint{margin-top:12px;font-size:15px;color:var(--mut)}
+.hl{color:var(--acc);font-weight:700;background:var(--acc2);border-radius:.25rem;padding:0 .1875rem}
+.hint{margin-top:.75rem;font-size:.9375rem;color:var(--mut)}
 .hint b{color:var(--fg)}
-.ans{margin-top:8px;font-size:16px}
-.optlist{margin-top:8px}
-.opt{display:block;width:100%;text-align:left;border:1.5px solid var(--line);background:var(--card);color:var(--fg);border-radius:12px;padding:12px 14px;font-size:17px;margin-top:8px}
+.ans{margin-top:.5rem;font-size:1rem}
+.optlist{margin-top:.5rem}
+.opt{display:block;width:100%;text-align:left;border:1.5px solid var(--line);background:var(--card);color:var(--fg);border-radius:.75rem;padding:.75rem .875rem;font-size:1.0625rem;margin-top:.5rem}
 .opt:disabled{cursor:default;opacity:1}
 .opt.right{border-color:var(--ok);background:var(--okb);color:var(--ok);font-weight:700}
 .opt.wrong{border-color:var(--bad);background:var(--badb);color:var(--bad)}
-input.sp{width:100%;font-size:18px;padding:12px 14px;border:1.5px solid var(--line);border-radius:12px;background:var(--bg);color:var(--fg);margin-top:14px;font-family:inherit}
+input.sp{width:100%;font-size:1.125rem;padding:.75rem .875rem;border:1.5px solid var(--line);border-radius:.75rem;background:var(--bg);color:var(--fg);margin-top:.875rem;font-family:inherit}
 input.sp:focus{outline:none;border-color:var(--acc)}
-input.search{margin:0 0 6px;font-size:16px}
-.fb{margin-top:12px;padding:10px 12px;border-radius:10px;font-size:15px}
+input.search{margin:0 0 .375rem;font-size:1rem}
+.fb{margin-top:.75rem;padding:.625rem .75rem;border-radius:.625rem;font-size:.9375rem}
 .fb.ok{background:var(--okb);color:var(--ok);font-weight:600}
 .fb.no{background:var(--badb);color:var(--bad)}
-.alt{margin-top:8px;font-size:13px;color:var(--warn)}
-.tag{display:inline-block;font-size:11.5px;padding:1px 8px;border-radius:999px;background:var(--warnb);color:var(--warn);margin-left:6px;vertical-align:middle;font-weight:600}
-.mk{display:inline-block;font-size:11.5px;padding:1px 8px;border-radius:999px;margin-left:6px;vertical-align:middle;font-weight:600}
+.alt{margin-top:.5rem;font-size:.8125rem;color:var(--warn)}
+.tag{display:inline-block;font-size:.7188rem;padding:1px .5rem;border-radius:62.4375rem;background:var(--warnb);color:var(--warn);margin-left:.375rem;vertical-align:middle;font-weight:600}
+.mk{display:inline-block;font-size:.7188rem;padding:1px .5rem;border-radius:62.4375rem;margin-left:.375rem;vertical-align:middle;font-weight:600}
 .mk.ok{background:var(--okb);color:var(--ok)}
 .mk.no{background:var(--badb);color:var(--bad)}
-.row{display:flex;gap:10px;margin-top:16px}
-.row button{flex:1;padding:13px;border-radius:12px;font-size:16px;font-weight:600;border:0}
+.row{display:flex;gap:.625rem;margin-top:1rem}
+.row button{flex:1;padding:.8125rem;border-radius:.75rem;font-size:1rem;font-weight:600;border:0}
 .reveal{background:var(--acc);color:#fff}
 .again{background:var(--warnb);color:var(--warn)}
 .know{background:var(--okb);color:var(--ok)}
-.bar{height:6px;background:var(--line);border-radius:6px;overflow:hidden;margin:12px 0 6px}
+.bar{height:.375rem;background:var(--line);border-radius:.375rem;overflow:hidden;margin:.75rem 0 .375rem}
 .bar i{display:block;height:100%;background:var(--ok);width:0;transition:width .3s}
-.statrow{display:flex;justify-content:space-between;align-items:center;gap:8px}
-.stat{font-size:13px;color:var(--mut)}
-.linkbtn{border:0;background:transparent;color:var(--mut);font-size:13px;text-decoration:underline;padding:4px 0}
-.empty{text-align:center;color:var(--mut);padding:36px 0;margin:auto 0}
-.big{font-size:46px;font-weight:800;line-height:1.1;color:var(--fg)}
-.big small{font-size:18px;font-weight:600}
-.small{font-size:13px;color:var(--mut)}
-.newbest{display:inline-block;margin-top:8px;background:var(--okb);color:var(--ok);border-radius:999px;padding:2px 12px;font-size:13px;font-weight:700}
-.wk{margin:18px 0 6px;font-size:15px;font-weight:700}
-.item{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 12px;margin-bottom:6px}
-.item .w{font-weight:700;font-size:16px}
-.item .z{color:var(--mut);font-size:14px;margin-left:6px}
-.item .s{font-size:14px;margin-top:3px}
+.statrow{display:flex;justify-content:space-between;align-items:center;gap:.5rem}
+.stat{font-size:.8125rem;color:var(--mut)}
+.linkbtn{border:0;background:transparent;color:var(--mut);font-size:.8125rem;text-decoration:underline;padding:.25rem 0}
+.empty{text-align:center;color:var(--mut);padding:2.25rem 0;margin:auto 0}
+.big{font-size:2.875rem;font-weight:800;line-height:1.1;color:var(--fg)}
+.big small{font-size:1.125rem;font-weight:600}
+.small{font-size:.8125rem;color:var(--mut)}
+.newbest{display:inline-block;margin-top:.5rem;background:var(--okb);color:var(--ok);border-radius:62.4375rem;padding:2px .75rem;font-size:.8125rem;font-weight:700}
+.wk{margin:1.125rem 0 .375rem;font-size:.9375rem;font-weight:700}
+.item{background:var(--card);border:1px solid var(--line);border-radius:.75rem;padding:.625rem .75rem;margin-bottom:.375rem}
+.item .w{font-weight:700;font-size:1rem}
+.item .z{color:var(--mut);font-size:.875rem;margin-left:.375rem}
+.item .s{font-size:.875rem;margin-top:.1875rem}
 .item s{color:var(--bad)}
-.note{font-size:12.5px;color:var(--mut);margin-top:22px;line-height:1.65}
-.rule{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin-bottom:10px;font-size:15px}
-.rule h2{font-size:16px;margin:0 0 8px}
-.rule p{margin:6px 0}
-.rule ol,.rule ul{margin:6px 0;padding-left:1.3em}
-.rule li{margin:4px 0}
+.note{font-size:.7812rem;color:var(--mut);margin-top:1.375rem;line-height:1.65}
+.rule{background:var(--card);border:1px solid var(--line);border-radius:.875rem;padding:.875rem 1rem;margin-bottom:.625rem;font-size:.9375rem}
+.rule h2{font-size:1rem;margin:0 0 .5rem}
+.rule p{margin:.375rem 0}
+.rule ol,.rule ul{margin:.375rem 0;padding-left:1.3em}
+.rule li{margin:.25rem 0}
 .rule a{color:var(--acc)}
-.rule .mut{color:var(--mut);font-size:13px}
-.sess{width:100%;border-collapse:collapse;font-size:14px;margin:6px 0}
-.sess td{padding:7px 4px;border-top:1px solid var(--line);vertical-align:top}
+.rule .mut{color:var(--mut);font-size:.8125rem}
+.sess{width:100%;border-collapse:collapse;font-size:.875rem;margin:.375rem 0}
+.sess td{padding:.4375rem .25rem;border-top:1px solid var(--line);vertical-align:top}
 .sess td:first-child{white-space:nowrap;font-weight:700;font-variant-numeric:tabular-nums;width:6.2em}
 .sess tr.past td{color:var(--mut);font-weight:400}
 .sess tr.next td:first-child{color:var(--acc)}
-.pill{display:inline-block;font-size:11.5px;padding:1px 8px;border-radius:999px;font-weight:600;margin-left:4px}
+.pill{display:inline-block;font-size:.7188rem;padding:1px .5rem;border-radius:62.4375rem;font-weight:600;margin-left:.25rem}
 .pill.next{background:var(--acc2);color:var(--acc)}
 .pill.past{background:var(--line);color:var(--mut)}
-.callout{background:var(--warnb);color:var(--warn);border-radius:10px;padding:8px 10px;font-size:13.5px;margin-top:8px}
+.callout{background:var(--warnb);color:var(--warn);border-radius:.625rem;padding:.5rem .625rem;font-size:.8438rem;margin-top:.5rem}
 button:focus-visible,a:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
-.items{display:grid;gap:6px}
+.items{display:grid;gap:.375rem}
 .items .item{margin:0}
-.kbd{display:none;margin-top:10px;font-size:12.5px;color:var(--mut)}
-.kbd kbd{font-family:inherit;font-size:12px;border:1px solid var(--line);border-bottom-width:2px;border-radius:5px;padding:0 5px;background:var(--bg);color:var(--fg)}
+.kbd{display:none;margin-top:.625rem;font-size:.7812rem;color:var(--mut)}
+.kbd kbd{font-family:inherit;font-size:.75rem;border:1px solid var(--line);border-bottom-width:2px;border-radius:.3125rem;padding:0 .3125rem;background:var(--bg);color:var(--fg)}
 @media (hover:hover) and (pointer:fine){.kbd{display:block}}
 /* word help: tap a word in a sentence */
-.wd{cursor:pointer;border-radius:4px;-webkit-tap-highlight-color:transparent}
+.wd{cursor:pointer;border-radius:.25rem;-webkit-tap-highlight-color:transparent}
 @media (hover:hover){.wd:hover{background:var(--acc2)}}
 .wd.on{background:var(--acc2);color:var(--acc);box-shadow:0 0 0 2px var(--acc2)}
 .hl.wd.on{box-shadow:0 0 0 2px var(--acc)}
-.tip{margin-top:10px;font-size:13px;color:var(--mut)}
+.tip{margin-top:.625rem;font-size:.8125rem;color:var(--mut)}
 .pop-bg{position:fixed;inset:0;z-index:40;background:rgba(0,0,0,.32)}
-.pop{position:fixed;left:0;right:0;bottom:0;z-index:41;max-height:72vh;overflow-y:auto;overscroll-behavior:contain;background:var(--card);color:var(--fg);border-top:1px solid var(--line);border-radius:18px 18px 0 0;padding:8px 18px calc(20px + env(safe-area-inset-bottom));box-shadow:0 -8px 28px rgba(0,0,0,.2);animation:popUp .18s ease-out;outline:none}
-.pop::before{content:"";display:block;width:36px;height:4px;border-radius:4px;background:var(--line);margin:0 auto 10px}
-.pop-h{display:flex;align-items:center;gap:8px}
-.pop-w{font-size:25px;line-height:1.2;overflow-wrap:anywhere}
-.pop-say,.pop-x{flex:none;width:38px;height:38px;border:0;border-radius:50%;background:var(--bg);color:var(--fg);font-size:16px;line-height:1}
-.pop-x{margin-left:auto;font-size:18px;color:var(--mut)}
-.pop-zh{margin-top:8px;font-size:18px;font-weight:700}
-.pop-pos{display:inline-block;margin-right:8px;padding:1px 7px;border-radius:6px;background:var(--acc2);color:var(--acc);font-size:12px;font-weight:600;vertical-align:2px}
-.pop-n{margin:8px 0 0;font-size:15px;line-height:1.6}
-.pop-sec{margin-top:12px;padding-top:10px;border-top:1px solid var(--line);font-size:15px;line-height:1.6}
-.pop-lb{display:block;margin-bottom:2px;font-size:12px;font-weight:600;color:var(--mut)}
+.pop{position:fixed;left:0;right:0;bottom:0;z-index:41;max-height:72vh;overflow-y:auto;overscroll-behavior:contain;background:var(--card);color:var(--fg);border-top:1px solid var(--line);border-radius:1.125rem 1.125rem 0 0;padding:.5rem 1.125rem calc(1.25rem + env(safe-area-inset-bottom));box-shadow:0 -.5rem 1.75rem rgba(0,0,0,.2);animation:popUp .18s ease-out;outline:none}
+.pop::before{content:"";display:block;width:2.25rem;height:.25rem;border-radius:.25rem;background:var(--line);margin:0 auto .625rem}
+.pop-h{display:flex;align-items:center;gap:.5rem}
+.pop-w{font-size:1.5625rem;line-height:1.2;overflow-wrap:anywhere}
+.pop-say,.pop-x{flex:none;width:2.375rem;height:2.375rem;border:0;border-radius:50%;background:var(--bg);color:var(--fg);font-size:1rem;line-height:1}
+.pop-x{margin-left:auto;font-size:1.125rem;color:var(--mut)}
+.pop-zh{margin-top:.5rem;font-size:1.125rem;font-weight:700}
+.pop-pos{display:inline-block;margin-right:.5rem;padding:1px .4375rem;border-radius:.375rem;background:var(--acc2);color:var(--acc);font-size:.75rem;font-weight:600;vertical-align:2px}
+.pop-n{margin:.5rem 0 0;font-size:.9375rem;line-height:1.6}
+.pop-sec{margin-top:.75rem;padding-top:.625rem;border-top:1px solid var(--line);font-size:.9375rem;line-height:1.6}
+.pop-lb{display:block;margin-bottom:2px;font-size:.75rem;font-weight:600;color:var(--mut)}
 .pop-sec .hl{padding:0 2px}
-.pop-more{display:inline-block;margin-top:12px;font-size:13px;color:var(--acc)}
-@keyframes popUp{from{transform:translateY(24px);opacity:0}to{transform:none;opacity:1}}
-@keyframes popIn{from{transform:translateY(-4px);opacity:0}to{transform:none;opacity:1}}
+.pop-more{display:inline-block;margin-top:.75rem;font-size:.8125rem;color:var(--acc)}
+@keyframes popUp{from{transform:translateY(1.5rem);opacity:0}to{transform:none;opacity:1}}
+@keyframes popIn{from{transform:translateY(-.25rem);opacity:0}to{transform:none;opacity:1}}
 @media (prefers-reduced-motion:reduce){.bar i{transition:none}.pop{animation:none}}
 /* side menu: desktop only */
 .side{display:none}
-.brand{padding:2px 10px 18px}
-.brand b{display:block;font-size:18px}
-.brand span{font-size:13px;color:var(--mut)}
-.nav{display:flex;align-items:center;gap:10px;width:100%;border:0;background:transparent;color:var(--fg);text-align:left;padding:9px 10px;border-radius:10px;font-size:15px}
+.brand{padding:2px .625rem 1.125rem}
+.brand b{display:block;font-size:1.125rem}
+.brand span{font-size:.8125rem;color:var(--mut)}
+.nav{display:flex;align-items:center;gap:.625rem;width:100%;border:0;background:transparent;color:var(--fg);text-align:left;padding:.5625rem .625rem;border-radius:.625rem;font-size:.9375rem}
 .nav:hover{background:var(--bg)}
 .nav.on{background:var(--acc2);color:var(--acc);font-weight:700}
-.nav .ic{width:22px;text-align:center;flex:none}
-.nav .badge{margin-left:auto;font-size:12px;background:var(--badb);color:var(--bad);border-radius:999px;padding:0 8px;font-weight:700}
-.side-foot{margin-top:auto;padding:14px 10px 0;font-size:12px;color:var(--mut);line-height:1.6}
-.side-foot p{margin:12px 0 0}
+.nav .ic{width:1.375rem;text-align:center;flex:none}
+.nav .badge{margin-left:auto;font-size:.75rem;background:var(--badb);color:var(--bad);border-radius:62.4375rem;padding:0 .5rem;font-weight:700}
+.side-foot{margin-top:auto;padding:.875rem .625rem 0;font-size:.75rem;color:var(--mut);line-height:1.6}
+.side-foot p{margin:.75rem 0 0}
 /* theme and language switches */
-.seg.sm{display:inline-flex;padding:2px;gap:2px;border-radius:9px}
-.seg.sm button{flex:none;padding:5px 10px;font-size:13px;border-radius:7px}
-.prefs{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:8px;margin:0 0 6px}
-.pref{margin-top:10px}
-.pref-l{display:block;margin-bottom:4px;font-weight:600}
+.seg.sm{display:inline-flex;padding:2px;gap:2px;border-radius:.5625rem}
+.seg.sm button{flex:none;padding:.3125rem .625rem;font-size:.8125rem;border-radius:.4375rem}
+.prefs{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:.5rem;margin:0 0 .375rem}
+.pref{margin-top:.625rem}
+.pref-l{display:block;margin-bottom:.25rem;font-weight:600}
 .pref .seg.sm{display:flex}
 .pref .seg.sm button{flex:1}
+/* practice side column (shown from 1280px) */
+.play-side{display:none}
+.ps-box{background:var(--card);border:1px solid var(--line);border-radius:1rem;padding:1rem 1.125rem}
+.ps-lb{margin-bottom:.375rem;font-size:.8125rem;font-weight:700;color:var(--mut)}
+.ps-big{font-size:1.75rem;font-weight:800;line-height:1.15;font-variant-numeric:tabular-nums}
+.ps-big small{font-size:.9375rem;font-weight:600;color:var(--mut)}
+.ps-box .bar{margin:.625rem 0 .25rem}
+.ps-row{display:flex;justify-content:space-between;padding:.3125rem 0;font-size:.9375rem}
+.ps-row+.ps-row{border-top:1px solid var(--line)}
+.ps-row b{font-variant-numeric:tabular-nums}
+.ps-miss{display:flex;align-items:baseline;gap:.5rem;padding:.3125rem 0;font-size:.9375rem}
+.ps-miss+.ps-miss{border-top:1px solid var(--line)}
+.ps-miss .wd{font-weight:700}
+.ps-miss .z{color:var(--mut);font-size:.875rem}
+.ps-none{font-size:.875rem;color:var(--mut);line-height:1.6}
+.ps-box.kbd{margin:0;font-size:.875rem;color:var(--fg)}
+.ps-keys div{display:flex;justify-content:space-between;align-items:center;gap:.5rem;padding:.25rem 0}
+.ps-keys div span:first-child{color:var(--mut)}
 /* tablet: 720px and up */
 @media (min-width:720px){
-  .wrap{max-width:880px;padding:24px 32px 56px}
+  .wrap{max-width:55rem;padding:1.5rem 2rem 3.5rem}
   .note{max-width:46em}
-  .wrap.narrow,.wrap.v-rules{max-width:780px}
-  h1{font-size:26px}
-  .sub{font-size:14px}
-  .grid{grid-template-columns:repeat(3,1fr);gap:12px}
-  .mode{padding:16px}
-  .mode .n{font-size:17px}
-  .mode .d{font-size:13px}
-  .weeks{display:grid;grid-template-columns:1fr 1fr;column-gap:28px}
+  .wrap.narrow,.wrap.v-rules{max-width:48.75rem}
+  h1{font-size:1.625rem}
+  .sub{font-size:.875rem}
+  .grid{grid-template-columns:repeat(3,1fr);gap:.75rem}
+  .mode{padding:1rem}
+  .mode .n{font-size:1.0625rem}
+  .mode .d{font-size:.8125rem}
+  .weeks{display:grid;grid-template-columns:1fr 1fr;column-gap:1.75rem}
   .chips{flex-wrap:wrap;overflow-x:visible}
-  .card{padding:24px;min-height:260px}
-  .sent{font-size:21px}
-  .optlist{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
-  .opt{margin-top:0;font-size:18px}
-  .items{grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:8px}
+  .card{padding:1.5rem;min-height:16.25rem}
+  .sent{font-size:1.3125rem}
+  .optlist{display:grid;grid-template-columns:1fr 1fr;gap:.625rem;margin-top:.875rem}
+  .opt{margin-top:0;font-size:1.125rem}
+  .items{grid-template-columns:repeat(auto-fill,minmax(20rem,1fr));gap:.5rem}
   .pop-bg{display:none}
-  .pop{position:absolute;right:auto;bottom:auto;width:360px;max-height:none;overflow:visible;border:1px solid var(--line);border-radius:14px;padding:12px 16px 16px;box-shadow:0 12px 32px rgba(0,0,0,.18);animation-name:popIn}
+  .pop{position:absolute;right:auto;bottom:auto;width:22.5rem;max-height:none;overflow:visible;border:1px solid var(--line);border-radius:.875rem;padding:.75rem 1rem 1rem;box-shadow:0 .75rem 2rem rgba(0,0,0,.18);animation-name:popIn}
   .pop::before{display:none}
 }
 /* desktop: 1080px and up */
 @media (min-width:1080px){
-  .shell{display:grid;grid-template-columns:248px minmax(0,1fr);min-height:100vh}
-  .side{display:flex;flex-direction:column;gap:2px;position:sticky;top:0;height:100vh;overflow-y:auto;padding:24px 14px;background:var(--card);border-right:1px solid var(--line)}
-  .wrap{max-width:1080px;width:100%;padding:32px 44px 64px}
-  .wrap.narrow{max-width:820px}
-  .wrap.v-rules{max-width:1080px}
-  header.top{margin-bottom:18px}
+  .shell{display:grid;grid-template-columns:15.5rem minmax(0,1fr);min-height:100vh}
+  .side{display:flex;flex-direction:column;gap:2px;position:sticky;top:0;height:100vh;overflow-y:auto;padding:1.5rem .875rem;background:var(--card);border-right:1px solid var(--line)}
+  .wrap{max-width:84rem;width:100%;padding:2rem 2.75rem 4rem}
+  .wrap.narrow{max-width:51.25rem}
+  .wrap.v-rules{max-width:84rem}
+  h1{font-size:2rem}
+  .sub{font-size:.9375rem;margin-bottom:1.25rem}
+  .grid{gap:1rem}
+  .mode{padding:1.25rem 1.25rem 1.375rem;border-radius:1rem}
+  .mode .ic{font-size:1.75rem}
+  .mode .n{font-size:1.1875rem;margin-top:.625rem}
+  .mode .d{font-size:.875rem;margin-top:.25rem}
+  .mode.primary{padding:1.5rem 1.5rem 1.625rem}
+  .mode.primary .n{font-size:1.5rem}
+  .mode.primary .d{font-size:.9375rem}
+  .st{padding:.875rem .375rem}
+  .st b{font-size:1.5rem}
+  .st span{font-size:.8125rem}
+  .sec{font-size:.875rem}
+  .wkrow{font-size:.875rem;margin:.4375rem 0}
+  .note{font-size:.8125rem;max-width:56em}
+  .items{grid-template-columns:repeat(auto-fill,minmax(21rem,1fr))}
+  .item .w{font-size:1.0625rem}
+  .item .s{font-size:.9375rem}
+  .rule{font-size:1rem;padding:1.125rem 1.25rem}
+  .rule h2{font-size:1.125rem}
+  header.top{margin-bottom:1.125rem}
   header.top .back{display:none}
   .prefs{display:none}
-  .ttl{font-size:22px}
-  .home{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:32px;align-items:start}
-  .home-side{padding-top:8px}
+  .ttl{font-size:1.375rem}
+  .home{display:grid;grid-template-columns:minmax(0,1fr) 21rem;gap:2.5rem;align-items:start}
+  .home-side{padding-top:.5rem}
   .home-side .stats{grid-template-columns:1fr 1fr;margin-top:0}
   .home-side .weeks{display:block}
-  .sent{font-size:22px}
-  .rules{column-count:2;column-gap:16px}
-  .rules .rule{display:inline-block;width:100%;margin:0 0 14px}
+  .sent{font-size:1.375rem}
+  .rules{column-count:2;column-gap:1rem}
+  .rules .rule{display:inline-block;width:100%;margin:0 0 .875rem}
 }
+/* wide desktop: practice gets a second column with round progress, missed words and shortcuts */
+@media (min-width:1280px){
+  .wrap.v-mc,.wrap.v-spell,.wrap.v-wrong,.wrap.v-card,.wrap.v-exam{max-width:76rem;padding-bottom:2rem}
+  .play{display:grid;grid-template-columns:minmax(0,1fr) 18rem;gap:1.5rem;align-items:start}
+  .play-side{display:flex;flex-direction:column;gap:.75rem;position:sticky;top:1.5rem}
+  .play-main .kbd,.play-dup{display:none}
+  .play .card{min-height:max(25rem,min(42rem,calc(100vh - 14rem)));padding:2rem 2.25rem;border-radius:1.125rem}
+  .play .card .sent{margin-top:auto}
+  .play .card::after{content:"";margin-top:auto}
+  .play .meta{font-size:.875rem;margin-bottom:1rem}
+  .play .sent{font-size:2rem;line-height:1.55}
+  .play .tip{font-size:.875rem}
+  .play .hint{font-size:1.0625rem;margin-top:1rem}
+  .play .optlist{gap:1rem;margin-top:2rem}
+  .play .opt{font-size:1.375rem;padding:1.125rem 1.375rem;border-radius:.875rem}
+  .play input.sp{font-size:1.5rem;padding:1rem 1.25rem;margin-top:2rem}
+  .play .wide{font-size:1.125rem;padding:.875rem}
+  .play .fb{font-size:1.0625rem;padding:.875rem 1rem}
+  .play .alt{font-size:.9375rem}
+  .play .ans{font-size:1.25rem}
+  .play .row{margin-top:2rem}
+  .play .row button{font-size:1.125rem;padding:1rem}
+}
+/* bigger screens: scale everything up so the page fills the screen */
+@media (min-width:1440px){html{font-size:17px}}
+@media (min-width:1680px){html{font-size:18px}}
+@media (min-width:1900px){html{font-size:19.5px}}
+@media (min-width:2400px){html{font-size:24px}}
 </style>
 </head>
 <body>
@@ -1703,7 +1770,7 @@ function wordInfo(tok) {
   const x = DICTM.get(k);
   return x ? { k, poss, ...x, tgt: TGT.get(x.h) || null } : { k, poss, h: k, pos: "", zh: "", ft: "", n: "", tgt: null };
 }
-function popHTML(tok, sid) {
+function popHTML(tok, sid, own) {   // own: the tapped word's sentence is on screen
   const e = wordInfo(tok), noLink = ["name", "typo", "abbr"].includes(e.pos);
   let h = `<div class="pop-h"><b class="pop-w" lang="en">${esc(tok)}</b>`;
   if (canSay && !noLink) h += `<button class="pop-say" id="popSay" aria-label="${L("念出", "Say")} ${esc(tok)}" title="${L("發音", "Pronounce")}">🔊</button>`;
@@ -1729,7 +1796,7 @@ function popHTML(tok, sid) {
   if (e.tgt) {
     const t = e.tgt;
     h += `<div class="pop-sec pop-tgt"><span class="pop-lb">${L("題庫考點・Week", "Test word, Week")} ${t.wk}</span>`;
-    h += t.id === sid ? L("這個字就是這一題的答案。", "This word is the answer to this question.") : `<div lang="en">${sentHTML(t, "show", false, false)}</div>`;
+    h += t.id === sid && own ? L("這一句考的就是這個字。", "This is the word tested in this sentence.") : `<div lang="en">${sentHTML(t, "show", false, false)}</div>`;
     if (t.alt) h += `<div class="alt">⚠ ${L("推測題：", "Guessed answer: ")}${esc(altText(t.alt))}</div>`;
     h += `</div>`;
   }
@@ -1753,8 +1820,9 @@ function openPop(w) {
   popBg = document.createElement("div"); popBg.className = "pop-bg";
   popEl = document.createElement("div"); popEl.className = "pop"; popEl.tabIndex = -1;
   popEl.setAttribute("role", "dialog"); popEl.setAttribute("aria-label", L(tok + " 的意思", "Meaning of " + tok));
-  popEl.innerHTML = popHTML(tok, sid);
-  if (sid != null && holder.querySelector(".blank")) hideAnswer(popEl, DATA[sid]);
+  popEl.innerHTML = popHTML(tok, sid, !!holder && !!holder.querySelector(".hl, .blank"));
+  const open = app.querySelector(".sent .blank"), oh = open && open.closest("[data-d]");   // a question on screen that is not answered yet
+  if (oh) hideAnswer(popEl, DATA[+oh.dataset.d]);
   document.body.append(popBg, popEl);
   if (matchMedia("(min-width:720px)").matches) {   // tablet/desktop: float next to the word
     const r = w.getBoundingClientRect(), pw = popEl.offsetWidth, ph = popEl.offsetHeight;
@@ -1876,7 +1944,23 @@ function vHome() {
 /* ---------- practice (mc / spell / wrong) ---------- */
 function startPractice(type, source) {
   const pool = source === "wrong" ? wrongList() : DATA.filter(d => !S.week || d.wk === S.week);
-  P = { type, source, deck: shuffle(pool.slice()), i: 0, ans: null, right: 0, done: 0, opts: null };
+  P = { type, source, deck: shuffle(pool.slice()), i: 0, ans: null, right: 0, done: 0, opts: null, miss: [] };
+}
+// Side column for wide screens (CSS shows it from 1280px; on smaller screens it is hidden).
+function keysBox(rows) {
+  return `<div class="ps-box kbd ps-keys"><div class="ps-lb">${L("鍵盤快捷鍵", "Keyboard shortcuts")}</div>` +
+    [...rows, ["Esc", L("關閉單字說明", "Close word notes")]].map(([k, t]) => `<div><span>${t}</span><span>${k.split(" ").map(x => `<kbd>${x}</kbd>`).join(" ")}</span></div>`).join("") + `</div>`;
+}
+function practiceSide() {
+  const n = P.deck.length, pct = P.done ? Math.round(P.right / P.done * 100) + "%" : "—";
+  let h = `<aside class="play-side"><div class="ps-box"><div class="ps-lb">${L("這一輪", "This round")}</div>
+    <div class="ps-big">${P.done} <small>/ ${n} ${L("題", "done")}</small></div><div class="bar"><i style="width:${P.done / n * 100}%"></i></div>
+    <div class="ps-row"><span>${L("答對", "Correct")}</span><b>${P.right}</b></div><div class="ps-row"><span>${L("答錯", "Wrong")}</span><b>${P.done - P.right}</b></div>
+    <div class="ps-row"><span>${L("正確率", "Accuracy")}</span><b>${pct}</b></div></div>`;
+  h += `<div class="ps-box"><div class="ps-lb">${L("這一輪答錯的字", "Missed this round")}</div>` + (P.miss.length
+    ? P.miss.slice(-8).reverse().map(id => { const d = DATA[id]; return `<div class="ps-miss" data-d="${id}"><span class="wd" lang="en">${esc(d.w)}</span><span class="z">${esc(d.zh)}</span></div>`; }).join("")
+    : `<div class="ps-none">${L("還沒有答錯的字。答錯的字會列在這裡，點一下可以看說明。", "Nothing missed yet. Missed words show up here; tap one to see its notes.")}</div>`) + `</div>`;
+  return h + keysBox(P.type === "mc" ? [["A–D 1–4", L("作答", "Answer")], ["Enter", L("下一題", "Next")]] : [["Enter", L("送出／下一題", "Check / next")]]) + `</aside>`;
 }
 function vPractice() {
   const isW = P.source === "wrong";
@@ -1896,7 +1980,7 @@ function vPractice() {
   } else {
     const d = P.deck[P.i];
     if (P.type === "mc" && !P.opts) P.opts = makeOpts(d);
-    h += qCard(d, P.type, P.opts, P.ans, `${P.i + 1} / ${P.deck.length}`, true);
+    h += `<div class="play"><div class="play-main">` + qCard(d, P.type, P.opts, P.ans, `${P.i + 1} / ${P.deck.length}`, true) + `</div>${practiceSide()}</div>`;
   }
   app.innerHTML = h; bindGo();
   bindChips(w => { S.week = w; startPractice(P.type, "all"); render(); });
@@ -1907,7 +1991,7 @@ function vPractice() {
   if (P.deck.length && P.i < P.deck.length) {
     const d = P.deck[P.i];
     bindQ(d, P.type, P.opts,
-      (g, ok, note) => { P.ans = { given: g, ok, note }; P.done++; if (ok) P.right++; record(d.id, ok); render(); },
+      (g, ok, note) => { P.ans = { given: g, ok, note }; P.done++; if (ok) P.right++; else if (!P.miss.includes(d.id)) P.miss.push(d.id); record(d.id, ok); render(); },
       () => { P.i++; P.ans = null; P.opts = null; render(); });
   }
 }
@@ -1920,7 +2004,7 @@ function vExamSetup() {
   h += `<div class="sec">${L("範圍", "Range")}</div>` + chipsHTML(EX.week);
   h += `<div class="sec">${L("題數", "Questions")}</div><div class="seg">` + [20, 50, 100, 200].map(c => `<button class="${EX.count === c ? "on" : ""}" data-n="${c}">${c === 200 ? L("全部", "All") : L(c + " 題", c)}</button>`).join("") + `</div>`;
   h += `<div class="sec">${L("題型", "Type")}</div><div class="seg">` + [["mc", L("選擇題", "Multiple choice")], ["spell", L("拼字", "Spelling")], ["mix", L("混合", "Mixed")]].map(([k, t]) => `<button class="${EX.type === k ? "on" : ""}" data-ty="${k}">${t}</button>`).join("") + `</div>`;
-  if (EX.type !== "mc") h += `<div class="opts" style="margin-top:12px"><label><input type="checkbox" id="hint"${hintFirst ? " checked" : ""}>${L("拼字題提示字首和字數", "Show first letter and length in spelling questions")}</label></div>`;
+  if (EX.type !== "mc") h += `<div class="opts" style="margin-top:.75rem"><label><input type="checkbox" id="hint"${hintFirst ? " checked" : ""}>${L("拼字題提示字首和字數", "Show first letter and length in spelling questions")}</label></div>`;
   h += `<button class="btn pri wide" id="start">${L(`開始考試（${n} 題）`, `Start test (${n} questions)`)}</button>`;
   h += `<p class="note">${L("交卷前不會顯示對錯，答錯的題目會自動收進錯題本。20 題以上的模擬考會記錄最佳成績。正式考試一場 60 分鐘（1/19 那場 2 小時）、每天最多考 2 次；正式題型與及格標準以語言中心為準。",
     "You won't see right or wrong until you hand in, and missed questions go to your mistakes list. Mock tests of 20 questions or more record your best score. The real test is 60 minutes (2 hours for the Jan 19 session), at most twice a day. The Language Center sets the official format and passing score.")}</p>`;
@@ -1940,14 +2024,18 @@ function startExam() {
   E = { qs, i: 0, ans: [], start: Date.now(), end: null };
   armed = null; S.view = "exam"; render(); window.scrollTo(0, 0);
   if (timerId) clearInterval(timerId);
-  timerId = setInterval(() => { const el = $("timer"); if (el) el.textContent = "⏱ " + fmt(Date.now() - E.start); }, 1000);
+  timerId = setInterval(() => { document.querySelectorAll("#timer,[data-timer]").forEach(el => el.textContent = "⏱ " + fmt(Date.now() - E.start)); }, 1000);
 }
 function vExam() {
   const q = E.qs[E.i];
   let h = topbar(L("模擬考", "Mock test"), `<span id="timer">⏱ ${fmt(Date.now() - E.start)}</span>`);
-  h += `<div class="bar"><i style="width:${E.i / E.qs.length * 100}%"></i></div>`;
-  h += qCard(q.d, q.t, q.opts, null, L(`第 ${E.i + 1} / ${E.qs.length} 題`, `Question ${E.i + 1} / ${E.qs.length}`), false);
-  h += `<div class="statrow" style="margin-top:8px"><span class="stat">${q.t === "mc" ? L("選擇題", "Multiple choice") : L("拼字題", "Spelling")}${L(`｜已作答 ${E.i}`, ` | ${E.i} answered`)}</span><button class="linkbtn" id="submitAll">${L("提早交卷", "Hand in now")}</button></div>`;
+  h += `<div class="bar play-dup"><i style="width:${E.i / E.qs.length * 100}%"></i></div>`;
+  const side = `<aside class="play-side"><div class="ps-box"><div class="ps-lb">${L("用時", "Time")}</div><div class="ps-big" data-timer>⏱ ${fmt(Date.now() - E.start)}</div></div>
+    <div class="ps-box"><div class="ps-lb">${L("進度", "Progress")}</div><div class="ps-big">${E.i} <small>/ ${E.qs.length} ${L("已作答", "answered")}</small></div>
+    <div class="bar"><i style="width:${E.i / E.qs.length * 100}%"></i></div><div class="ps-none">${L("交卷前不會顯示對錯，提早交卷時沒作答的題目算錯。", "You'll see right or wrong after you hand in. If you hand in early, unanswered questions count as wrong.")}</div></div>
+    ${keysBox(q.t === "mc" ? [["A–D 1–4", L("作答", "Answer")]] : [["Enter", L("送出", "Check")]])}</aside>`;
+  h += `<div class="play"><div class="play-main">` + qCard(q.d, q.t, q.opts, null, L(`第 ${E.i + 1} / ${E.qs.length} 題`, `Question ${E.i + 1} / ${E.qs.length}`), false) + `</div>${side}</div>`;
+  h += `<div class="statrow" style="margin-top:.5rem"><span class="stat">${q.t === "mc" ? L("選擇題", "Multiple choice") : L("拼字題", "Spelling")}${L(`｜已作答 ${E.i}`, ` | ${E.i} answered`)}</span><button class="linkbtn" id="submitAll">${L("提早交卷", "Hand in now")}</button></div>`;
   app.innerHTML = h; bindGo();
   bindQ(q.d, q.t, q.opts, (g, ok, note) => {
     E.ans[E.i] = { given: g, ok, note }; E.i++;
@@ -1972,12 +2060,12 @@ function vResult() {
   let h = topbar(L("考試結果", "Test result"));
   h += `<div class="card center"><div class="big">${E.score}<small>${L(" 分", " points")}</small></div>
     <div>${L(`答對 ${E.right} / ${E.qs.length}｜用時 ${fmt(E.end - E.start)}`, `${E.right} / ${E.qs.length} correct | time ${fmt(E.end - E.start)}`)}</div>
-    ${E.newBest ? `<div><span class="newbest">🎉 ${L("新的最佳成績", "New best score")}</span></div>` : (best ? `<div class="small" style="margin-top:6px">${L(`最佳成績 ${best.score} 分`, `Best score: ${best.score}`)}</div>` : "")}
+    ${E.newBest ? `<div><span class="newbest">🎉 ${L("新的最佳成績", "New best score")}</span></div>` : (best ? `<div class="small" style="margin-top:.375rem">${L(`最佳成績 ${best.score} 分`, `Best score: ${best.score}`)}</div>` : "")}
     <div class="btns"><button class="btn pri" data-go="examSetup">${L("再考一次", "Take another test")}</button>${wrongList().length ? `<button class="btn" data-go="wrong" data-arg="mc">${L("去錯題本", "Go to mistakes")}</button>` : ""}<button class="btn" data-go="home">${L("回首頁", "Back to home")}</button></div></div>`;
   if (wrong.length) {
     h += `<div class="sec">${L(`這次答錯的題目（${wrong.length}）`, `Missed this time (${wrong.length})`)}</div>` + wrong.map(({ q, a }) =>
       `<div class="item"><div class="s">${sentHTML(q.d, "show")}</div>
-       <div class="small" style="margin-top:4px">${L("正確：", "Answer: ")}<b>${esc(q.d.w)}</b>${L("｜你的答案：", " | Yours: ")}${a ? `<s>${esc(a.given)}</s>` : L("未作答", "not answered")}${L("｜", " | ")}${esc(q.d.zh)}</div>
+       <div class="small" style="margin-top:.25rem">${L("正確：", "Answer: ")}<b>${esc(q.d.w)}</b>${L("｜你的答案：", " | Yours: ")}${a ? `<s>${esc(a.given)}</s>` : L("未作答", "not answered")}${L("｜", " | ")}${esc(q.d.zh)}</div>
        ${a && a.note ? `<div class="small">${esc(a.note)}</div>` : ""}
        ${q.d.alt ? `<div class="alt">⚠ ${L("推測題：", "Guessed answer: ")}${esc(altText(q.d.alt))}</div>` : ""}</div>`).join("");
   } else {
@@ -1996,15 +2084,21 @@ function vCard() {
   else if (C.pos >= C.deck.length) h += `<div class="card"><div class="empty">${L("這一輪看完了！", "Round finished!")}<div class="btns"><button class="btn pri" id="again">${L("再來一輪", "Another round")}</button></div></div></div>`;
   else {
     const d = C.deck[C.pos];
-    h += `<div class="card"><div class="meta"><span>Week ${d.wk}</span><span>${C.pos + 1} / ${C.deck.length}</span></div>
+    h += `<div class="play"><div class="play-main"><div class="card"><div class="meta"><span>Week ${d.wk}</span><span>${C.pos + 1} / ${C.deck.length}</span></div>
       <div class="sent">${sentHTML(d, C.rev ? "show" : "blank", true)}</div>${tipHTML()}
       <div class="hint">${L("中文：", "Chinese: ")}<b>${esc(d.zh)}</b></div>
       ${C.rev ? `<div class="ans">${L("答案：", "Answer: ")}<span class="hl">${esc(d.w)}</span></div>${d.alt ? `<div class="alt">⚠ ${L("推測題：", "Guessed answer: ")}${esc(altText(d.alt))}</div>` : ""}` : ""}
       <div class="row">${C.rev ? `<button class="again" id="bA">${L("還不熟", "Not yet")}</button><button class="know" id="bK">${L("會了", "Got it")}</button>` : `<button class="reveal" id="bR">${L("看答案", "Show answer")}</button>`}</div>
-      <div class="kbd">${C.rev ? L("鍵盤：<kbd>←</kbd> 還不熟、<kbd>→</kbd> 會了", "Keyboard: <kbd>←</kbd> not yet, <kbd>→</kbd> got it") : L("鍵盤：按 <kbd>空白鍵</kbd> 看答案", "Keyboard: press <kbd>Space</kbd> to show the answer")}</div></div>`;
+      <div class="kbd">${C.rev ? L("鍵盤：<kbd>←</kbd> 還不熟、<kbd>→</kbd> 會了", "Keyboard: <kbd>←</kbd> not yet, <kbd>→</kbd> got it") : L("鍵盤：按 <kbd>空白鍵</kbd> 看答案", "Keyboard: press <kbd>Space</kbd> to show the answer")}</div></div></div>`;
   }
   const scope = DATA.filter(d => !S.week || d.wk === S.week), k = scope.filter(d => known.has(d.id)).length;
-  h += `<div class="bar"><i style="width:${k / scope.length * 100}%"></i></div><div class="stat">${L("已熟", "Known")} ${k} / ${scope.length}</div>`;
+  const playing = C.deck.length && C.pos < C.deck.length;
+  if (playing) h += `<aside class="play-side"><div class="ps-box"><div class="ps-lb">${L("這一輪", "This round")}</div>
+      <div class="ps-big">${C.pos} <small>/ ${C.deck.length} ${L("張", "cards")}</small></div><div class="bar"><i style="width:${C.pos / C.deck.length * 100}%"></i></div>
+      <div class="ps-none">${L("按「還不熟」的卡會排到這一輪最後再出現一次。", "Cards marked “not yet” come back at the end of this round.")}</div></div>
+    <div class="ps-box"><div class="ps-lb">${L("已熟（目前範圍）", "Known (current range)")}</div><div class="ps-big">${k} <small>/ ${scope.length}</small></div><div class="bar"><i style="width:${k / scope.length * 100}%"></i></div></div>
+    ${keysBox([[L("空白鍵", "Space"), L("看答案", "Show answer")], ["←", L("還不熟", "Not yet")], ["→", L("會了", "Got it")]])}</aside></div>`;
+  h += `<div class="${playing ? "play-dup" : ""}"><div class="bar"><i style="width:${k / scope.length * 100}%"></i></div><div class="stat">${L("已熟", "Known")} ${k} / ${scope.length}</div></div>`;
   app.innerHTML = h; bindGo();
   bindChips(w => { S.week = w; startCard(); render(); });
   $("onlyNew").onchange = e => { onlyNew = e.target.checked; startCard(); render(); };
