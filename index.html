@@ -7,8 +7,8 @@
 <meta name="description" content="勤益科大語言中心 115-2 字彙測驗（英檢輔導A選課資格）練習：模擬考、選擇題、拼字、錯題本、單字卡。非官方網站。">
 <meta name="robots" content="noindex">
 <meta name="theme-color" content="#2f6fdb">
-<link rel="icon" href="favicon.svg?v=20261122b" type="image/svg+xml">
-<link rel="apple-touch-icon" href="apple-touch-icon.png?v=20261122b">
+<link rel="icon" href="favicon.svg?v=20261122c" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png?v=20261122c">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="zh_TW">
 <meta property="og:title" content="勤益 115-2 字彙測驗練習">
@@ -133,7 +133,29 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--acc);outline-offset
 .kbd{display:none;margin-top:10px;font-size:12.5px;color:var(--mut)}
 .kbd kbd{font-family:inherit;font-size:12px;border:1px solid var(--line);border-bottom-width:2px;border-radius:5px;padding:0 5px;background:var(--bg);color:var(--fg)}
 @media (hover:hover) and (pointer:fine){.kbd{display:block}}
-@media (prefers-reduced-motion:reduce){.bar i{transition:none}}
+/* word help: tap a word in a sentence */
+.wd{cursor:pointer;border-radius:4px;-webkit-tap-highlight-color:transparent}
+@media (hover:hover){.wd:hover{background:var(--acc2)}}
+.wd.on{background:var(--acc2);color:var(--acc);box-shadow:0 0 0 2px var(--acc2)}
+.hl.wd.on{box-shadow:0 0 0 2px var(--acc)}
+.tip{margin-top:10px;font-size:13px;color:var(--mut)}
+.pop-bg{position:fixed;inset:0;z-index:40;background:rgba(0,0,0,.32)}
+.pop{position:fixed;left:0;right:0;bottom:0;z-index:41;max-height:72vh;overflow-y:auto;overscroll-behavior:contain;background:var(--card);color:var(--fg);border-top:1px solid var(--line);border-radius:18px 18px 0 0;padding:8px 18px calc(20px + env(safe-area-inset-bottom));box-shadow:0 -8px 28px rgba(0,0,0,.2);animation:popUp .18s ease-out;outline:none}
+.pop::before{content:"";display:block;width:36px;height:4px;border-radius:4px;background:var(--line);margin:0 auto 10px}
+.pop-h{display:flex;align-items:center;gap:8px}
+.pop-w{font-size:25px;line-height:1.2;overflow-wrap:anywhere}
+.pop-say,.pop-x{flex:none;width:38px;height:38px;border:0;border-radius:50%;background:var(--bg);color:var(--fg);font-size:16px;line-height:1}
+.pop-x{margin-left:auto;font-size:18px;color:var(--mut)}
+.pop-zh{margin-top:8px;font-size:18px;font-weight:700}
+.pop-pos{display:inline-block;margin-right:8px;padding:1px 7px;border-radius:6px;background:var(--acc2);color:var(--acc);font-size:12px;font-weight:600;vertical-align:2px}
+.pop-n{margin:8px 0 0;font-size:15px;line-height:1.6}
+.pop-sec{margin-top:12px;padding-top:10px;border-top:1px solid var(--line);font-size:15px;line-height:1.6}
+.pop-lb{display:block;margin-bottom:2px;font-size:12px;font-weight:600;color:var(--mut)}
+.pop-sec .hl{padding:0 2px}
+.pop-more{display:inline-block;margin-top:12px;font-size:13px;color:var(--acc)}
+@keyframes popUp{from{transform:translateY(24px);opacity:0}to{transform:none;opacity:1}}
+@keyframes popIn{from{transform:translateY(-4px);opacity:0}to{transform:none;opacity:1}}
+@media (prefers-reduced-motion:reduce){.bar i{transition:none}.pop{animation:none}}
 /* side menu: desktop only */
 .side{display:none}
 .brand{padding:2px 10px 18px}
@@ -163,6 +185,9 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--acc);outline-offset
   .optlist{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
   .opt{margin-top:0;font-size:18px}
   .items{grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:8px}
+  .pop-bg{display:none}
+  .pop{position:absolute;right:auto;bottom:auto;width:360px;max-height:none;overflow:visible;border:1px solid var(--line);border-radius:14px;padding:12px 16px 16px;box-shadow:0 12px 32px rgba(0,0,0,.18);animation-name:popIn}
+  .pop::before{display:none}
 }
 /* desktop: 1080px and up */
 @media (min-width:1080px){
@@ -392,6 +417,1105 @@ const RAW = `6|Alan was badly {hurt} when he was hit by a car as he crossed the 
 20|For me, the red sofa is much {preferable} to the blue one.|較好的、更合意的
 20|Professor Roberts is a {mathematical} genius.|數學的`;
 
+// Word help: tap a word in a sentence to see its meaning. Formats:
+//   NOTE  target|詞性|說明            (one line per exam word; its 中文 comes from RAW)
+//   DICT  字|原形|詞性|中文|詞形|說明  (every other word in the sentences, lowercase; 原形 blank = same word)
+//   PHR   片語|中文                   (shown when the phrase is in the sentence the word was tapped in)
+// 詞性: n v adj adv prep conj pron art aux num name place prop abbr typo
+const NOTE = `hurt|v|三態同形 hurt–hurt–hurt。be badly hurt 傷得很重，也常說 get hurt（受傷）。
+pollution|n|動詞是 pollute（污染）。air pollution 空氣污染、water pollution 水污染；不可數，不加 s。
+lottery|n|win the lottery 中樂透；lottery ticket 彩券。
+pattern|n|圖案、花樣；也有「模式、規律」的意思。
+shore|n|海邊、湖邊的岸。on the shore 在岸上；along the shore 沿著岸邊。
+photo|n|photograph 的簡稱。take a photo 拍照。原句少了 a，完整是 That's a great photo。
+value|n|價值。形容詞 valuable（貴重的）。the value of… 某物的價值。
+notice|v|注意到。notice that… 注意到…；也可當名詞「通知、公告」。
+clap|v|拍手。clap one's hands 拍手；過去式 clapped（p 要重複）。
+choose|v|三態 choose–chose–chosen；名詞 choice（選擇）。choose to + 原形動詞：選擇去做…
+knocked|v|knock 的過去式。knock on the door 敲門。
+gesture|n|手勢、姿勢；也可指表達心意的舉動。make a gesture 比手勢。
+blame|v|責怪。blame A for B 因為 B 責怪 A。
+population|n|人口。The population of… is…（主詞是 population，動詞用 is）；人口多少用 large / small。
+speed|n|速度。speed limit 速限；也可當動詞「超速、加速」。
+title|n|書、電影、歌曲的名稱；也有「頭銜」的意思。
+reasons|n|reason 的複數。reason for… …的理由；the reason why… 之所以…的原因。
+energy|n|精力、能量。have the energy to… 有力氣做…；形容詞 energetic（精力充沛的）。
+invitation|n|邀請（函）。動詞 invite（邀請）。accept an invitation 接受邀請。
+subject|n|科目；也有「主題」「主詞」的意思。favorite subject 最喜歡的科目。
+perfect|adj|perfect score 滿分；副詞 perfectly（完美地）。
+fashionable|adj|時髦的、流行的。名詞 fashion（時尚）。
+therefore|adv|因此、所以。常放在分號或句號後面：…; therefore, …
+indicate|v|表示、顯示、指出。名詞 indication。
+available|adj|（人）有空的；（東西）買得到的、可以用的。
+especially|adv|尤其、特別是。拼字注意 -ally 有兩個 l。
+discuss|v|討論。後面直接接要討論的事，不加 about（discuss the test）；名詞 discussion。
+abroad|adv|在國外、到國外。go abroad 出國、study abroad 留學；前面不加 to。
+afraid|adj|害怕的。be afraid of + 名詞或 V-ing；be afraid to + 原形動詞。
+agree|v|同意。agree with + 人或意見；名詞 agreement。
+assume|v|以為、假定（沒有證據就先這樣認為）。assume (that)… 以為…
+convenient|adj|方便的。名詞 convenience；convenience store 便利商店。
+kissed|v|kiss 的過去式。kiss 也可當名詞「吻」。
+traditional|adj|傳統的。名詞 tradition（傳統）。It's traditional to… 習俗上會…
+emphasize|v|強調。名詞 emphasis。emphasize the importance of… 強調…的重要。
+negative|adj|負面的、消極的。反義 positive（正面的）。
+paste|v|黏貼；電腦上的「貼上」也是 paste（copy and paste 複製貼上）。
+theater|n|戲院、劇院。movie theater 電影院；英式拼法 theatre。
+sudden|adj|突然的。副詞 suddenly；all of a sudden 突然間。
+beside|prep|在…旁邊。besides 多一個 s，意思是「除了…之外還有」。
+burglar|n|闖空門的竊賊。比較：robber 搶匪、thief 小偷。
+boyfriend|n|男朋友；girlfriend 女朋友。break up with… 跟…分手。
+dignity|n|尊嚴。keep one's dignity 保持尊嚴。
+hijacker|n|劫機者。動詞 hijack（劫持飛機、車輛）。
+operator|n|操作員；電話接線生。動詞 operate（操作）。
+athletic|adj|擅長運動的、體格強健的。名詞 athlete（運動員）。
+colleague|n|同事（= co-worker）。拼字 c-o-l-l-e-a-g-u-e。
+charming|adj|迷人的、有魅力的。名詞 charm（魅力）。
+philosopher|n|哲學家。philosophy 哲學。
+champion|n|冠軍。championship 錦標賽、冠軍賽。
+astonished|adj|非常驚訝的，比 surprised 更強。be astonished to learn… 得知…非常驚訝。
+depression|n|憂鬱症；也有「經濟蕭條」的意思。形容詞 depressed（沮喪的）。
+attitude|n|態度。a good / bad attitude 好／壞的態度；attitude toward… 對…的態度。
+rival|n|對手、競爭者。main rival 主要對手。原句 rival n the 的 n 應為 in。
+hostage|n|人質。take… hostage 挾持…當人質。
+storyteller|n|會說故事的人。story（故事）+ teller（講述的人）。
+idol|n|pop idol 流行偶像。和 idle（懶散的）念法一樣，別拼錯。
+vegetarian|n|素食者；也可當形容詞「素食的」。
+founder|n|創辦人。動詞 found（創立，三態 found–founded–founded），別和 find 的過去式 found 搞混。
+spokesman|n|發言人。不分性別的說法是 spokesperson。
+enthusiastic|adj|熱衷的、熱情的。be enthusiastic about… 對…很熱衷；名詞 enthusiasm。
+loneliness|n|寂寞。形容詞 lonely（寂寞的）；alone 是「獨自」，不一定寂寞。
+stepmother|n|繼母；stepfather 繼父。
+temper|n|脾氣。have a bad temper 脾氣不好；lose one's temper 發脾氣。
+disease|n|疾病，通常指會傳染或比較嚴重的病。heart disease 心臟病。
+bandage|n|繃帶。put a bandage on… 在…綁上繃帶。
+sneeze|v|打噴嚏；也可當名詞。咳嗽是 cough。
+fatal|adj|致命的。fatal accident 死亡事故。
+sensitive|adj|敏感的、很在意的。be sensitive about… 對…很敏感。
+nickname|n|綽號、暱稱。call someone by a nickname 用綽號叫某人。
+nerves|n|nerve 的複數，神經。get on one's nerves 讓人心煩。
+germs|n|germ 的複數，細菌、病菌。
+sympathetic|adj|同情的。be sympathetic towards… 同情…；名詞 sympathy。
+virus|n|病毒；電腦病毒也叫 virus。
+symptom|n|症狀。a symptom of… …的症狀。
+habit|n|習慣。have a habit of + V-ing 有…的習慣；bad habit 壞習慣。
+strength|n|力氣、力量。形容詞 strong。use all one's strength 用盡全力。
+aspirin|n|阿斯匹靈（止痛退燒藥）。take an aspirin 吃一顆阿斯匹靈。
+physical|adj|身體的；說運動時指肢體碰撞多的。physical education 體育課（PE）。
+infant|n|嬰兒，通常指還不會走路的小寶寶。
+breath|n|呼吸；口氣。bad breath 口臭。動詞是 breathe，多一個 e。
+decade|n|十年。for decades 幾十年來。
+appetite|n|胃口、食慾。have a big / small appetite 食量大／小。
+recipe|n|食譜。follow the recipe 照著食譜做。注意 receipt（收據）長得很像。
+emergency|n|緊急情況。in an emergency 緊急時；emergency room 急診室。
+deposit|v|存（錢）。deposit money in a bank account 把錢存進帳戶；當名詞是「存款、押金」。
+allowance|n|零用錢。weekly allowance 每週零用錢。
+yolks|n|yolk 的複數，蛋黃；蛋白是 egg white。
+feast|n|cook a feast 煮一桌大餐；也可指節慶的宴會。
+unable|adj|不能的。be unable to + 原形動詞 = cannot；反義 able。
+digestion|n|消化。動詞 digest（消化）。
+inflation|n|通貨膨脹，也就是物價一直上漲。
+cherish|v|cherish every moment 珍惜每一刻。
+expense|n|花費、費用。at great expense 花了很多錢；形容詞 expensive。
+invest|v|投資。invest in… 投資…；名詞 investment。
+juicy|adj|多汁的。名詞 juice（果汁）。
+spinach|n|菠菜，不可數。
+discount|n|折扣。get a discount 拿到折扣。
+appointment|n|預約、約會（看醫生、見客戶等）。make an appointment 預約；情侶約會用 date。
+edible|adj|edible plants 可以吃的植物；反義 inedible（不能吃的）。
+funeral|n|葬禮。hold a funeral 舉行葬禮。
+horizon|n|on the horizon 在地平線上，也比喻「快要發生」。
+handwriting|n|筆跡、字跡。hand（手）+ writing（寫字）。
+legend|n|也可指傳奇人物；形容詞 legendary（傳奇的）。
+insurance|n|保險。car insurance 汽車保險。
+minimum|n|最低限度。a minimum of… 至少…；反義 maximum（最大限度）。
+opposition|n|反對。face opposition 遭到反對；動詞 oppose。
+negotiation|n|協商、談判。動詞 negotiate。
+portrait|n|self-portrait 自畫像。
+receipt|n|收據。p 不發音。注意 recipe（食譜）長得很像。
+radar|n|radar 正著拼、倒著拼都一樣。
+origin|n|起源、由來。形容詞 original（原本的）；副詞 originally（起初）。
+permission|n|許可。get permission from… 得到…的同意；動詞 permit。
+passion|n|熱情、熱愛。have a passion for… 熱愛…
+motivation|n|動機、動力。動詞 motivate。
+mystery|n|謎、解不開的事。形容詞 mysterious（神祕的）。
+microscope|n|顯微鏡。telescope 是望遠鏡。
+logic|n|邏輯。形容詞 logical。
+independence|n|獨立。形容詞 independent。
+impression|n|印象。be under the impression that… 原本以為…；first impression 第一印象。
+requirement|n|必要條件、要求。動詞 require。
+salary|n|薪水（月薪、年薪）。get a raise 加薪。
+victim|n|受害者。robbery victim 搶案受害者。
+starvation|n|飢餓、餓死。die of starvation 餓死；動詞 starve。
+translation|n|翻譯。動詞 translate；translator 譯者。
+sympathy|n|同情。have sympathy for… 同情…；形容詞 sympathetic。
+advertise|v|打廣告、宣傳。名詞 advertisement，簡稱 ad。
+breeds|v|breed 的第三人稱單數，繁殖、飼養。過去式 bred；當名詞是「品種」。
+attach|v|附上、別上、貼上。attach A to B 把 A 附在 B 上；email 附件是 attachment。
+congratulate|v|恭喜。congratulate someone on / for… 為…恭喜某人；Congratulations! 恭喜！
+tendency|n|傾向。have a tendency to + 原形動詞：常常會…；動詞片語 tend to。
+consume|v|消耗；吃、喝。名詞 consumption；consumer 消費者。
+shame|n|羞恥；可惜。There is no shame in… …並不丟臉；What a shame! 真可惜！
+sin|n|宗教或道德上的罪；法律上的罪是 crime。
+confessing|v|confess 的 -ing 形，坦承、招供。名詞 confession。
+reputation|n|名聲、聲譽。have a good / bad reputation 名聲好／壞。
+confront|v|面對、正視（難題）；當面對質。
+response|n|反應、回應。動詞 respond。
+violence|n|暴力。形容詞 violent（暴力的）。
+capture|v|捕捉、抓住；也可指拍下畫面。
+crawl|v|爬行。嬰兒、蟲子的爬用 crawl；往上爬是 climb。
+dismiss|v|讓…離開、解散；也有「解雇」「不理會」的意思。dismiss the class 下課。
+delete|v|電腦上刪除檔案、文字都用 delete，鍵盤上的 Delete 鍵就是它。
+faint|v|昏倒；當形容詞是「微弱的」。
+panic|v|恐慌、驚慌失措；也可當名詞。過去式 panicked，要多加 k。
+refuse|v|拒絕。refuse to + 原形動詞：拒絕做…；名詞 refusal。
+protest|v|抗議。重音：動詞 pro-TEST、名詞 PRO-test。
+locate|v|找出位置；be located in… 位於…。名詞 location。
+gamble|v|賭博；冒險。名詞 gambling。
+intrude|v|打擾、闖入。intrude on… 打擾…；名詞 intruder（入侵者）。
+reduce|v|減少。名詞 reduction。環保口號 reduce, reuse, recycle。
+prevent|v|預防、阻止。prevent A from + V-ing 阻止 A 做…；名詞 prevention。
+neglect|v|忽略、疏忽。neglect one's studies 荒廢學業。
+melt|v|固體變成液體，例如 ice melts（冰融化）；反義 freeze（結冰）。
+liberate|v|解放。名詞 liberation；liberty 是自由。
+freeze|v|冷凍、結冰。三態 freeze–froze–frozen；frozen food 冷凍食品。
+insult|v|侮辱。重音：動詞 in-SULT、名詞 IN-sult。
+explode|v|爆炸。名詞 explosion。
+exchange|v|交換。exchange A with B 和 B 交換 A；exchange student 交換學生。
+disapprove|v|不贊成。disapprove of… 不贊成…；反義 approve。
+relieved|adj|鬆了一口氣的、放心的。be relieved to… 因為…而放心；名詞 relief。
+shrugged|v|shrug 的過去式，聳肩。g 要重複。
+resemble|v|長得像。後面直接接人，不加 to 或 like：You resemble him.
+summarize|v|摘要、總結。名詞 summary。
+sparkle|v|常用來形容鑽石、星星、水面；當名詞也是 sparkle。
+warn|v|警告。warn someone that… 警告某人…；名詞 warning。
+twist|v|轉、扭。twist the cap off 把瓶蓋轉開。
+accidental|adj|意外的、不是故意的。名詞 accident；副詞 accidentally。
+consistent|adj|一致的、前後統一的。be consistent with… 和…一致。
+fluent|adj|流利的。be fluent in + 語言；副詞 fluently。
+desperate|adj|極度渴望的；絕望的。be desperate to… 非常想要…
+fertile|adj|（土地）肥沃的；能生育的。
+illegal|adj|違法的。反義 legal（合法的）。
+distant|adj|遙遠的。名詞 distance（距離）。
+complex|adj|複雜的（= complicated）。
+alert|adj|警覺的。be alert to… 對…保持警覺。
+stir|v|攪拌。過去式 stirred，r 要重複。
+casual|adj|casual clothes 便服；反義 formal（正式的）。
+tossed|v|toss 的過去式，隨手扔、拋。
+yawning|v|yawn 的 -ing 形，打哈欠。
+loose|adj|鬆的。反義 tight（緊的）；別和 lose（失去）搞混。
+movable|adj|可移動的。move + able（可以…的）。
+luxurious|adj|豪華的、奢侈的。名詞 luxury。
+qualified|adj|有資格的、能勝任的。be qualified for… 有資格做…
+religious|adj|宗教的；虔誠的。名詞 religion（宗教）。
+superior|adj|較好的、較優秀的。be superior to… 比…好，用 to 不用 than。
+valuable|adj|貴重的、有價值的。名詞 value（價值）。
+easily|adv|容易地、輕鬆地。形容詞 easy。
+satisfactorily|adv|令人滿意地。形容詞 satisfactory；動詞 satisfy。
+political|adj|政治的。political party 政黨；名詞 politics（政治）。
+protective|adj|保護的。protective suit 防護衣；動詞 protect。
+obvious|adj|明顯的。It's obvious (that)… 很明顯…；副詞 obviously。
+suspicious|adj|懷疑的；可疑的。be suspicious of… 懷疑…
+practical|adj|practical advice 實用的建議；反義 impractical（不實用的）。
+long-term|adj|長期的。反義 short-term（短期的）。
+sufficient|adj|足夠的，和 enough 意思一樣但比較正式。
+memorable|adj|memory（記憶）的形容詞。a memorable trip 難忘的旅行。
+ridiculous|adj|That's ridiculous! 太扯了！
+preferable|adj|較好的、更合意的。be preferable to… 比…好，用 to 不用 than。
+mathematical|adj|數學的。名詞 mathematics，簡稱 math。`;
+const DICT = `a||art|一（個）||子音開頭的字前面用 a，母音開頭用 an。
+abby||name|人名（女生）
+about||prep|關於；大約||about 20 minutes 大約 20 分鐘。
+accident||n|意外；事故||car accident 車禍。
+account||n|帳戶||bank account 銀行帳戶。
+across||prep|橫越；從一邊到另一邊
+activity||n|活動；舉動
+actor||n|演員
+advice||n|建議；忠告||不可數，不能加 s。
+after||prep|在…之後
+afternoon||n|下午
+age||n|年齡||age group 年齡組。
+agreed|agree|v|同意|過去式
+ahead||adv|在前方
+aid||v|幫助；有助於
+air||n|空氣
+alan||name|人名（男生）
+all||adj|全部的；所有的
+alone||adj|單獨的；獨自的||be left alone 不被打擾。
+along||prep|沿著
+already||adv|已經
+always||adv|總是
+ambulance||n|救護車
+amount||n|數量；量
+an||art|一（個）||用在母音開頭的字前面，例如 an aspirin、an infant。
+and||conj|和；而且
+andrew||name|人名（男生）
+angry||adj|生氣的
+animals|animal|n|動物|複數
+another||adj|另一個
+any||adj|任何的；（否定句）一點也（不）
+anyone||pron|任何人
+anything||pron|任何事物
+are|be|v|是；在|現在式|主詞是 you、we、they 或複數時用 are。
+area||n|地區；區域
+arm||n|手臂
+around||adv|到處；在周圍||get around 四處走動。
+as||conj|當…的時候；因為
+asked|ask|v|問；要求|過去式
+at||prep|在（某地點、時間）
+average||adj|平均的；一般的
+away||adv|離開||right away 馬上。
+baby||n|嬰兒
+bad||adj|壞的；不好的
+badly||adv|嚴重地；很差地||badly hurt 傷得很重。
+banana||n|香蕉
+bank||n|銀行
+barely||adv|幾乎不；勉強||could barely read 幾乎看不懂。
+barry||name|人名（男生）
+baseball||n|棒球
+bathrobe||n|浴袍
+be||v|是；成為
+bears|bear|n|熊|複數
+became|become|v|變得；成為|過去式
+because||conj|因為
+been|be|v|是；在|過去分詞|have been 用在完成式。
+before||prep|在…之前
+began|begin|v|開始|過去式
+belt||n|皮帶；腰帶
+best|good|adj|最好的|最高級|try one's best 盡全力；best friend 最好的朋友。
+bicycle||n|腳踏車
+big||adj|大的
+bit|bite|v|咬|過去式|bite into 咬下去。
+bleeding|bleed|v|流血|-ing 形
+blood||n|血
+blue||adj|藍色的
+boats|boat|n|船|複數
+bomb||n|炸彈
+book||n|書
+books|book|n|書|複數
+boss||n|老闆；上司
+both||adj|兩個都
+bottle||n|瓶子
+bought|buy|v|買|過去式
+boy||n|男孩
+bread||n|麵包||banana bread 香蕉蛋糕（香蕉麵包）。
+broke|break|v|打破|過去式|break up with… 跟…分手。
+building||n|建築物；大樓
+burning|burn|v|燃燒|-ing 形
+businessmen|businessman|n|商人|複數|man 的複數是 men。
+but||conj|但是
+buy||v|買
+by||prep|被（被動句）；藉由（某方法）；由（某人）寫的
+cake||n|蛋糕
+call||v|打電話；呼叫
+called|call|v|打電話|過去式
+calling|call|v|打電話|-ing 形|call someone up 打電話給某人。
+calls|call|v|稱呼；叫|第三人稱單數
+came|come|v|來|過去式
+can||aux|能；可以
+can't|can|aux|不能||cannot 的縮寫。
+candles|candle|n|蠟燭|複數
+cap||n|瓶蓋；帽子||這句是瓶蓋。
+car||n|汽車
+care||v|在乎||didn't really care 不太在乎。
+careful||adj|小心的
+case||n|情況||just in case 以防萬一。
+cat||n|貓
+catch||v|感染（疾病）；接住；抓到
+caught|catch|v|抓到|過去分詞|get caught 被抓到。
+caused|cause|v|導致；造成|過去式
+chair||n|椅子
+changed|change|v|改變；換（衣服）|過去分詞|get changed 換衣服。
+changes|change|n|改變；變化|複數
+cheap||adj|便宜的
+chicken||n|雞肉；雞
+children|child|n|小孩|複數|不規則變化。
+chinese||adj|中國的；華人的||Chinese New Year 農曆新年。
+choking|choke|v|噎住；窒息|-ing 形
+chosen|choose|v|選擇|過去分詞|三態 choose–chose–chosen。
+christmas||prop|聖誕節
+church||n|教堂
+citizens|citizen|n|公民；市民|複數
+city||n|城市
+class||n|課；班級
+cleaned|clean|v|清理|過去分詞|clean off 清乾淨。
+clear||adj|晴朗的；清楚的
+cloth||n|布
+clothes||n|衣服||一律用複數形，沒有 a clothe。
+clothing||n|衣服（總稱）||不可數。
+clouds|cloud|n|雲|複數
+coach||n|教練
+coins|coin|n|硬幣|複數
+come||v|來||come up with 想出（辦法）。
+coming|come|v|來|-ing 形
+common||adj|常見的；普遍的
+company||n|公司
+competition||n|比賽；競賽
+computer||n|電腦
+cones|cone|n|甜筒；圓錐體|複數|ice cream cone 冰淇淋甜筒。
+continue||v|繼續
+cook||v|煮；烹飪
+cooks|cook|v|煮；做（菜）|第三人稱單數
+cost||v|花費（多少錢）|過去式|三態同形 cost–cost–cost。
+could|can|aux|能；可以|過去式|Could you…? 是禮貌的請求：可以請你…嗎？
+country||n|國家
+court||n|球場||tennis court 網球場；court 也有「法院」的意思。
+cover||v|遮住；蓋住||cover up 蓋住、遮起來。
+cream||n|奶油||ice cream 冰淇淋。
+creature||n|生物；怪物
+crime||n|罪行；犯罪
+criminal||n|罪犯
+crops|crop|n|農作物|複數
+crossed|cross|v|穿越；越過|過去式|cross the street 過馬路。
+crossing|cross|v|穿越；越過|-ing 形
+cruel||adj|殘忍的
+cut||n|傷口||當動詞是「切、割」，三態同形 cut–cut–cut。
+cute||adj|可愛的
+dark||n|黑暗；（顏色）深的||afraid of the dark 怕黑；dark green 深綠色。
+day||n|天；日子
+days|day|n|天|複數
+debbie||name|人名（女生）
+decision||n|決定||動詞 decide。
+decorated|decorate|v|裝飾；布置|過去分詞
+demands|demand|n|要求|複數
+desert||n|沙漠||dessert（甜點）多一個 s，別搞混。
+desks|desk|n|書桌|複數
+despite||prep|儘管||後面直接接名詞，不加 of。
+diamond||n|鑽石
+did|do|v|做；（疑問句助動詞）|過去式
+didn't|do|aux|沒有（做）||did not 的縮寫。
+die||v|死||die of… 因…而死。
+died|die|v|死|過去式
+different||adj|不同的
+difficult||adj|困難的
+dinner||n|晚餐
+dish||n|一道菜；盤子
+display||n|展示；表演||firework display 煙火秀。
+do||v|做
+does|do|aux|做；（疑問句助動詞）|第三人稱單數
+doesn't|do|aux|不（做）||does not 的縮寫。
+dog||n|狗
+doing|do|v|做|-ing 形
+dollars|dollar|n|元（美元）|複數
+don't|do|aux|不（做）；（祈使句）不要…||do not 的縮寫。
+done|do|v|做|過去分詞|do well 表現好、考得好。
+door||n|門
+doris||name|人名（女生）
+down||adv|向下；降低；沿著（街道）
+drink||v|喝
+driving|drive|v|開車|-ing 形
+during||prep|在…期間
+each||adj|每一（個）
+easy||adj|容易的
+eat||v|吃||三態 eat–ate–eaten。
+eating|eat|v|吃|-ing 形
+eats|eat|v|吃|第三人稱單數
+eggs|egg|n|蛋|複數|fried eggs 煎蛋。
+either||conj|兩者之一||either A or B：A 或 B 其中一個。
+elections|election|n|選舉|複數
+electricity||n|電；電力
+employees|employee|n|員工|複數|employer 是雇主。
+empty||adj|空的
+end||v|結束||end up 最後落得…
+enemy||n|敵人||enemy soldiers 敵軍。
+english||n|英文；英國的
+enjoys|enjoy|v|享受；喜歡|第三人稱單數
+enough||adv|足夠地||放在形容詞後面：hot enough、smart enough。
+envelopes|envelope|n|信封|複數|red envelope 紅包。
+europe||place|歐洲
+even||adv|甚至||even though 即使。
+ever||adv|曾經||Have you ever…? 你曾經…嗎？
+every||adj|每一
+everybody||pron|每個人
+everyone||pron|每個人
+evil||adj|邪惡的
+exam||n|考試
+excellent||adj|優秀的；極好的
+experience||n|經驗
+eyes|eye|n|眼睛|複數
+face||n|臉；（當動詞）面對||face his main rival 面對主要對手。
+faced|face|v|面對；遭遇|過去式
+factory||n|工廠
+failed|fail|v|失敗|過去式
+family||n|家人；家庭
+famous||adj|有名的
+farms|farm|n|農場|複數
+fast||adj|快的
+father||n|爸爸
+favorite||adj|最喜歡的
+feel||v|感覺；覺得||feel free 儘管、別客氣。
+feeling|feel|v|摸；感覺|-ing 形|by feeling it 用手摸。
+felicia||name|人名（女生）
+few||adj|少數幾個的||a few days 幾天；the next few weeks 接下來幾週。
+fight||v|對抗；打架
+file||n|檔案
+fin||n|魚鰭||shark fin 魚翅。
+final||adj|最後的；決賽的||final match 決賽。
+find||v|找到；發現||find out 得知、查出。
+fine||adj|很好的；（當名詞）罰款||do fine 表現不錯；pay a fine 付罰款。
+fingers|finger|n|手指|複數
+finish||v|完成
+finishing|finish|v|結束|-ing 形|finishing line 終點線（也說 finish line）。
+fire||n|火災；火
+fires|fire|n|火災|複數
+firework||n|煙火||firework display 煙火秀。
+first||adj|第一的；最初的
+fish||n|魚
+flavor||n|味道；口味
+floor||n|地板
+flu||n|流行性感冒||通常說 the flu。
+fly||v|飛；駕駛（飛機）
+flying|fly|v|飛行|-ing 形
+follow||v|照著做；跟隨
+food||n|食物
+foot||n|腳||on foot 步行。
+for||prep|為了；給；（時間）長達；（當連接詞）因為
+forced|force|v|強迫|過去式
+forever||adv|永遠
+forgets|forget|v|忘記|第三人稱單數
+four||num|四
+fred||name|人名（男生）
+free||adj|自由的；免費的||feel free 儘管、別客氣。
+french||n|法文；法國的
+fried|fry|adj|油煎的；油炸的|過去分詞|fried eggs 煎蛋。
+friend||n|朋友
+friends|friend|n|朋友|複數
+from||prep|從；來自
+full||adj|滿的；完整的||full moon 滿月。
+garage||n|車庫
+garlic||n|大蒜
+gave|give|v|給|過去式
+genius||n|天才
+get||v|得到；到達；變得||get to 到達；get along with 和…處得來。
+gets|get|v|變得；使陷入|第三人稱單數
+gifts|gift|n|禮物|複數
+give||v|給
+gives|give|v|給|第三人稱單數
+glass||n|一杯；玻璃||a glass of milk 一杯牛奶。
+glasses||n|眼鏡||眼鏡一律用複數；safety glasses 護目鏡。
+glue||n|膠水
+go||v|去
+god||prop|上帝；神
+going|go|v|去|-ing 形|be going to 將要…
+gold||n|黃金||gold coins 金幣。
+good||adj|好的
+got|get|v|得到；變得|過去式|got told off 被罵了一頓。
+government||n|政府
+grade||n|成績；分數
+grades|grade|n|成績|複數
+great||adj|很棒的；很大的||at great expense 花了很多錢。
+green||adj|綠色的
+group||n|團體；組
+groups|group|n|團體；社團|複數
+growing|grow|v|增長；種植|-ing 形
+gun||n|槍
+had|have|v|有；（had + 過去分詞）已經|過去式|had to 必須。
+haircut||n|髮型；剪頭髮
+hands|hand|n|手|複數
+happier|happy|adj|更快樂的|比較級
+hard||adv|努力地||work hard 努力。
+harry||name|人名（男生）
+has|have|v|有；（has + 過去分詞）已經|第三人稱單數
+have||v|有；（have + 過去分詞）已經||have to 必須。
+haven't|have|aux|還沒有||have not 的縮寫。
+he||pron|他
+headache||n|頭痛
+health||n|健康
+heavy||adj|重的
+held|hold|v|舉行；拿著|過去式|hold a funeral 舉行葬禮。
+help||v|幫助
+helps|help|v|有幫助|第三人稱單數
+henry||name|人名（男生）
+her||pron|她的；她（受詞）
+here||adv|這裡
+high||adj|高的||high school 高中。
+hikers|hiker|n|登山客；健行者|複數
+him||pron|他（受詞）
+his||pron|他的
+hit||v|撞；打|過去式、過去分詞|三態同形 hit–hit–hit。
+hockey||n|曲棍球||ice hockey 冰上曲棍球。
+holding|hold|v|握著|-ing 形
+home||n|家
+homework||n|功課；作業||不可數。
+hopes|hope|v|希望|第三人稱單數
+horses|horse|n|馬|複數
+hot||adj|熱的
+hours|hour|n|小時|複數|at all hours of the night 半夜什麼時間都有。
+house||n|房子
+household||n|家庭；一戶
+houses|house|n|房子|複數
+how||adv|怎麼；多少||how much 多少。
+i||pron|我
+i'm|i|pron|我是||I am 的縮寫。
+i've|i|pron|我已經||I have 的縮寫。
+ice||n|冰||ice cream 冰淇淋；ice hockey 冰上曲棍球。
+ideas|idea|n|想法；觀點|複數
+if||conj|如果；是否
+important||adj|重要的
+in||prep|在…裡面；在（某時間、地方）
+information||n|資訊；消息||不可數。
+installed|install|v|安裝|過去分詞|had… installed 請人安裝了…
+interests|interest|n|興趣|複數
+internet||n|網路||通常寫 the Internet。
+into||prep|進入；到…裡
+invading|invade|v|入侵|-ing 形
+is|be|v|是；在|現在式|主詞是 he、she、it 或單數時用 is。
+island||n|島
+isn't|be|v|不是||is not 的縮寫。
+issues|issue|n|問題；議題|複數
+it||pron|它
+it's|it|pron|它是||it is（或 it has）的縮寫；和 its（它的）不一樣。
+its||pron|它的
+jacket||n|夾克；外套
+jacob||name|人名（男生）
+jail||n|監獄||sent to jail 被關進監獄。
+james||name|人名（男生）
+jerry||name|人名（男生）
+jim||name|人名（男生）
+job||n|工作
+jobs|job|n|工作|複數
+join||v|加入
+junk||n|垃圾；廢物||a piece of junk 一個破爛東西。
+just||adv|只是；剛剛；就
+katie||name|人名（女生）
+keep||v|保持；保存||keep doing 一直做…
+kelly||name|人名（女生）
+kept|keep|v|保持；保住|過去式
+kevin||name|人名（男生）
+knew|know|v|知道|過去式
+know||v|知道
+land||n|土地
+landing|land|v|得到（工作、職位）|-ing 形|land 本來是「降落」，口語也用來說順利拿到工作。
+languages|language|n|語言|複數
+large||adj|大的
+larry||name|人名（男生）
+last||adj|上一個的||last week 上週。
+late||adj|遲到的；晚的
+lately||adv|最近||和 late（晚的）意思不同。
+later||adv|之後；稍後
+laugh||v|笑
+laura||name|人名（女生）
+law||n|法律
+leafy||adj|多葉的||leafy vegetables 葉菜類。
+learn||v|學習；得知
+learning|learn|v|學習|-ing 形
+leave||v|離開；讓…保持（某狀態）
+left|leave|v|離開；被留下|過去式、過去分詞|leave for… 出發去…；be left alone 不被打擾。
+lenny||name|人名（男生）
+leonard||name|人名（男生）
+let||v|讓||let… go 放走…
+let's|let|v|我們…吧||let us 的縮寫。
+life||n|生命；生活
+lift||v|舉起
+light||n|燈；光
+like||v|喜歡；（當介系詞）像、例如||vegetables like spinach 像菠菜這樣的蔬菜。
+likes|like|v|喜歡|第三人稱單數
+line||n|線||finishing line 終點線。
+lisa||name|人名（女生）
+listened|listen|v|聽；聽從|過去式|listen to… 聽…
+little||adj|小的
+live||v|活；居住
+lived|live|v|住|過去分詞
+lives|live|v|住|第三人稱單數
+look||v|看；看起來||look at 看。
+looked|look|v|看起來|過去式
+looks|look|v|看起來|第三人稱單數
+losing|lose|v|輸；失去|-ing 形
+lost|lose|v|失去；輸；迷路|過去式、過去分詞|三態 lose–lost–lost；be lost 迷路。
+lot||n|很多||a lot of 很多。
+lots||n|很多||lots of 很多。
+love||v|愛；非常喜歡
+loves|love|v|很喜歡|第三人稱單數
+lunch||n|午餐
+machine||n|機器
+main||adj|主要的
+make||v|做；使||make sure 確認、務必。
+makes|make|v|使|第三人稱單數
+making|make|v|做|-ing 形
+man||n|男人
+manners|manner|n|禮貌|複數|「禮貌」要用複數 manners。
+many||adj|很多的||後面接可數名詞。
+maria||name|人名（女生）
+mary||name|人名（女生）
+match||n|比賽
+math||n|數學
+me||pron|我（受詞）
+means|mean|v|意思是；表示|第三人稱單數
+meat||n|肉
+medicine||n|藥
+meet||v|見面；碰面
+meeting||n|會議
+members|member|n|成員|複數
+men|man|n|男人|複數|不規則變化。
+mess||n|一團亂
+met|meet|v|見面；會面|過去式
+might||aux|可能
+mike||name|人名（男生）
+milk||n|牛奶
+millions|million|n|數百萬|複數|millions of dollars 好幾百萬元。
+minutes|minute|n|分鐘|複數
+molly||name|人名（女生）
+moment||n|時刻；片刻
+money||n|錢||不可數。
+month||n|月||a month 每個月。
+moon||n|月亮||full moon 滿月。
+more||adv|更多
+most||adj|大多數的
+mother||n|媽媽
+mountain||n|山
+mouth||n|嘴巴
+moved|move|v|搬家；移動|過去式|move out 搬出去。
+movie||n|電影||movie theater 電影院。
+much||adv|很多；非常||how much 多少；much better 好得多。
+must||aux|必須
+my||pron|我的
+n||typo|原檔的錯字或寫法||rival n the 的 n 應為 in（在）；a(n) 表示 a 或 an 都可以。
+name||n|名字
+nancy||name|人名（女生）
+nasty||adj|惡劣的；令人討厭的
+near||prep|靠近
+neck||n|脖子
+need||v|需要
+needs|need|v|需要|第三人稱單數
+never||adv|從不；絕不
+new||adj|新的
+news||n|消息；新聞||看起來像複數，但動詞用單數。
+next||adj|下一個的
+nice||adj|好的；親切的
+night||n|晚上
+no||adj|沒有||There is no… 沒有…
+nod||v|點頭||nod off 打瞌睡。
+nose||n|鼻子||runny nose 流鼻水。
+not||adv|不
+note||n|便條；字條
+notebook||n|筆記本
+noticed|notice|v|注意到|過去分詞
+now||adv|現在||now that 既然。
+nt||abbr|新台幣||NT$ 是新台幣，NT$100 就是 100 元。
+ocean||n|海洋
+of||prep|…的
+off||adv|離開；（關）掉||turn off 關掉；nod off 打瞌睡。
+often||adv|常常
+oil||n|油||olive oil 橄欖油；oil spill 漏油。
+ok||adj|可以；沒問題
+old||adj|老的；舊的
+olive||n|橄欖||olive oil 橄欖油。
+oliver||name|人名（男生）
+on||prep|在…上面；在（某天）
+one||pron|一；一個||the blue one 藍色那一個。
+only||adv|只；才
+onto||prep|到…上面
+or||conj|或者；還是
+order||v|點（餐）
+originally||adv|起初；原本
+others||pron|其他人
+our||pron|我們的
+out||adv|出去；在外面||find out 得知；out sick 請病假。
+oven||n|烤箱
+owns|own|v|擁有|第三人稱單數
+painted|paint|v|畫|過去分詞|have something painted 請人畫…
+painter||n|畫家
+pants||n|褲子||一律用複數。
+parents|parent|n|父母|複數
+park||v|停車
+part||n|部分
+parties|party|n|政黨|複數|political party 政黨；party 也有「派對」的意思。
+party||n|派對
+pass||v|通過（考試）
+patty||name|人名（女生）
+pay||v|付（錢）
+peach||n|桃子
+penny||name|人名（女生）
+people||n|人；人們||person 的複數。
+person||n|人
+peter||name|人名（男生）
+phone||n|電話||on the phone 用電話。
+piano||n|鋼琴
+picture||n|照片；圖片
+pictures|picture|n|圖片|複數
+piece||n|一個；一片||a piece of… 一個…
+pilot||n|飛行員；機長
+pin||n|別針
+place||n|地方
+plan||n|計畫
+plane||n|飛機
+plants|plant|n|植物|複數
+player||n|選手；球員
+playing|play|v|彈（樂器）；玩|-ing 形|play the piano 彈鋼琴。
+plays|play|v|參加（比賽）；玩|第三人稱單數
+please||adv|請
+plenty||pron|大量；充足||plenty of 很多、充足的。
+pm||abbr|下午、晚上（時間）||9 pm 是晚上 9 點；上午用 am。
+police||n|警察||集合名詞，動詞用複數：Police were…
+porch||n|門廊；前廊
+position||n|職位
+practices|practice|v|練習|第三人稱單數
+praying|pray|v|祈禱|-ing 形
+president||n|總統；（公司的）總裁
+pretty||adv|相當；（當形容詞）漂亮的||pretty cheap 相當便宜。
+prices|price|n|價格|複數
+pricing||n|定價
+printed|print|v|印|過去分詞
+prison||n|監獄
+probably||adv|大概；可能
+problem||n|問題
+produce||v|製造；產生||當名詞「農產品」時重音在前面。
+products|product|n|產品|複數
+professor||n|教授
+project||n|專案；計畫
+put||v|放；穿||三態同形 put–put–put；put on 穿上。
+quickly||adv|快速地
+quite||adv|相當；十分
+raccoon||n|浣熊
+race||n|賽跑；比賽
+racing|race|n|賽跑；賽馬|-ing 形
+raise||n|加薪||get a raise 加薪；當動詞是「舉起、提高」。
+ranch||n|大農場；牧場
+read||v|讀||三態同形 read–read–read，但過去式念成 red。
+real||adj|真正的
+really||adv|真的；非常
+received|receive|v|收到|過去式
+recent||adj|最近的
+recycle||v|回收
+red||adj|紅色的||red envelope 紅包。
+region||n|地區
+relies|rely|v|依賴|第三人稱單數|rely on… 依賴…
+remember||v|記得
+replace||v|取代；替換
+report||n|報告||book report 讀書報告。
+rescuers|rescuer|n|救援人員|複數
+restaurant||n|餐廳
+return||v|退（貨）；歸還
+rich||adj|有錢的
+riding|ride|v|騎|-ing 形
+right||adv|正好；立刻||right away 馬上。
+river||n|河
+robbed|rob|v|搶劫；洗劫|過去式|rob 後面接被搶的人或地方。
+robber||n|搶匪||bank robber 銀行搶匪。
+robbery||n|搶劫（案）
+roberts||name|人名（姓氏）
+room||n|房間
+rude||adj|沒禮貌的
+ruler||n|統治者||也有「尺」的意思。
+rules|rule|n|規則|複數
+runner||n|跑者
+runny||adj|流鼻水的||runny nose 流鼻水。
+sad||adj|難過的
+safe||adj|安全的
+safety||n|安全||safety glasses 護目鏡。
+said|say|v|說|過去式
+sailing|sail|v|航行|-ing 形
+sales||n|銷售；業務||work in sales 做業務。
+same||adj|相同的||the same 一樣。
+say||v|說
+saying|say|v|說|-ing 形
+says|say|v|說|第三人稱單數
+school||n|學校
+score||n|分數
+screwed|screw|v|用螺絲鎖住|過去分詞
+security||n|安全；保全||security system 保全系統。
+see||v|看見
+seem||v|似乎；看起來||seem to + 原形動詞：似乎…
+sees|see|v|看見|第三人稱單數
+sell||v|賣
+sent|send|v|送；寄|過去分詞|三態 send–sent–sent。
+serve||v|供應（餐點）
+shark||n|鯊魚||shark fin soup 魚翅湯。
+sharks|shark|n|鯊魚|複數
+she||pron|她
+ship||n|船
+shopping||n|購物||go shopping 去逛街買東西。
+should||aux|應該
+show||n|表演；節目||talk show 脫口秀。
+shows|show|v|出現|第三人稱單數|show up 出現。
+sick||adj|生病的||out sick 請病假。
+similar||adj|相似的
+since||conj|因為；自從（從那之後）
+sit||v|坐
+slowly||adv|緩慢地
+small||adj|小的；少量的
+smart||adj|聰明的
+smiled|smile|v|微笑|過去式
+so||adv|所以；這麼
+soccer||n|足球
+society||n|社會
+sofa||n|沙發
+soldiers|soldier|n|士兵|複數
+solution||n|解決辦法
+solve||v|解決；解答
+some||adj|一些
+someone||pron|某人
+something||pron|某事；某物
+sometimes||adv|有時候
+son||n|兒子
+soon||adv|很快；不久
+soup||n|湯
+source||n|來源||a source of water 水源。
+sparky||name|綽號 Sparky
+spend||v|花（時間、錢）
+spill||n|溢出；漏出||oil spill 漏油事件。
+spoke|speak|v|說話；談話|過去式|speak with… 和…談話。
+sport||n|運動
+sports||n|運動||sports team 運動校隊。
+spotted|spot|v|看見；發現|過去分詞
+spread||v|擴散；蔓延||三態同形 spread–spread–spread。
+star||n|明星；主角
+started|start|v|開始；創辦|過去式
+starting|start|v|開始|-ing 形
+starts|start|v|開始|第三人稱單數
+station||n|車站||subway station 捷運站。
+stayed|stay|v|保持；停留|過去分詞|stay the same 保持不變。
+steaks|steak|n|牛排|複數
+still||adv|仍然；還是
+stop||v|停止；阻止||stop A from V-ing 阻止 A 做…
+store||n|商店
+story||n|故事
+strange||adj|奇怪的
+street||n|街道
+strong||adj|強烈的；強壯的
+students|student|n|學生|複數
+studies|study|n|學業|複數
+study||v|讀書；學習
+subway||n|地鐵；捷運
+such||adj|如此的；這麼||such a clear day 這麼晴朗的一天。
+suffer||v|受苦；患（病）||suffer from… 受…所苦、患有…
+suggests|suggest|v|建議|第三人稱單數
+suit||n|（一套）衣服||protective suit 防護衣。
+sunlight||n|陽光
+supported|support|v|支持|過去式
+sure||adj|確定的||make sure 確認、務必。
+system||n|系統
+tables|table|n|桌子|複數
+tag||n|標籤||name tag 名牌。
+take||v|拿；吃（藥）；花（時間）||take time off 請假。
+taken|take|v|帶走|過去分詞|三態 take–took–taken。
+talk||n|談話||talk show 脫口秀。
+taste||v|嚐起來
+taught|teach|v|教|過去分詞|三態 teach–taught–taught。
+tax||n|稅||tax law 稅法。
+teacher||n|老師
+teams|team|n|隊伍|複數
+tell||v|告訴；分辨||can tell 分辨得出來。
+ten||num|十
+tennis||n|網球
+test||n|考試；測驗
+thankfully||adv|幸好；好在
+that||pron|那個；（連接子句）…這件事
+that's|that|pron|那是||that is 的縮寫。
+the||art|這個；那個（特定的）
+their||pron|他們的
+them||pron|他們；它們（受詞）
+there||adv|那裡||there is / there are 有…
+these||adj|這些
+they||pron|他們
+things|thing|n|事情；東西|複數
+think||v|想；認為||think of A as B 把 A 看作 B。
+this||adj|這個
+those||adj|那些
+though||conj|雖然||even though 即使。
+three||num|三
+through||prep|穿過；通過
+time||n|時間
+to||prep|到；（to + 原形動詞）為了…、去做…
+today||adv|今天
+told|tell|v|告訴|過去式、過去分詞|tell off 責罵；got told off 被罵。
+tom||name|人名（男生）
+tommy||name|人名（男生）
+tomorrow||adv|明天
+tonight||adv|今晚
+too||adv|太…；也
+towards||prep|對於；朝向
+town||n|城鎮
+treated|treat|v|對待|過去分詞
+tried|try|v|嘗試；努力|過去式|try one's best 盡全力。
+tries|try|v|努力；嘗試|第三人稱單數
+trip||n|旅行||class trip 班級旅行、校外教學。
+trouble||n|麻煩||get… into trouble 讓…惹上麻煩。
+try||v|試著；努力
+trying|try|v|試著|-ing 形
+turns|turn|v|轉；變|第三人稱單數|turn off 關掉、熄滅。
+tv||n|電視
+twin||n|雙胞胎（其中一個）
+two||num|二
+under||prep|在…之下||be under the impression that… 原本以為…
+up||adv|向上；完全||come up with 想出；show up 出現。
+use||v|使用
+used|use|v|使用|過去式、過去分詞
+vegetables|vegetable|n|蔬菜|複數
+very||adv|很；非常
+village||n|村莊
+walk||v|走路；遛（狗）||walk the dog 遛狗。
+walking|walk|v|走路|-ing 形
+want||v|想要
+wanted|want|v|想要|過去式
+wants|want|v|想要|第三人稱單數
+was|be|v|是；在|過去式|主詞是 I、he、she、it 或單數時用 was。
+wash||v|洗
+washed|wash|v|（被浪）沖；洗|過去式
+waste||n|廢棄物；浪費
+wat|want|v|想要||原檔把 want 打成 wat，原句是 which I don't want to catch。
+watched|watch|v|看著|過去式
+water||n|水
+way||n|方式；方法；路||all the way to 一路到…
+we||pron|我們
+wear||v|穿；戴
+week||n|週；星期
+weekend||n|週末
+weekends|weekend|n|週末|複數|on weekends 每逢週末。
+weeks|week|n|週|複數
+weight||n|重物；重量
+well||adv|好地||do well 表現好；get along well 處得很好。
+went|go|v|去|過去式|三態 go–went–gone。
+were|be|v|是；在|過去式|主詞是 you、we、they 或複數時用 were。
+what||pron|什麼；…的東西
+when||conj|當…的時候；什麼時候
+whenever||conj|每當
+where||adv|在那裡（接在地點後面補充說明）
+which||pron|哪個；（關係代名詞）那個…
+white||adj|白色的
+who||pron|誰；（關係代名詞）…的人
+whole||adj|整個的；全部的
+why||adv|為什麼||that's why 所以、這就是為什麼。
+will||aux|將會
+wilma||name|人名（女生）
+win||v|贏得；贏||三態 win–won–won。
+wipe||v|擦
+wish||v|希望||I wish I could… 要是我能…就好了。
+with||prep|和；用
+within||prep|在…之內
+without||prep|沒有
+won|win|v|贏|過去式
+won't|will|aux|將不會||will not 的縮寫。
+wonderful||adj|很棒的
+wooden||adj|木製的
+work||n|工作
+worked|work|v|工作|過去分詞
+working|work|v|工作|-ing 形
+works|work|v|工作|第三人稱單數
+worried||adj|擔心的||be worried that… 擔心…
+would|will|aux|會；將會|過去式|would like 想要。
+written|write|v|寫|過去分詞|三態 write–wrote–written。
+wrote|write|v|寫|過去式
+year||n|年
+years|year|n|年|複數
+yesterday||n|昨天
+yet||adv|（否定句）還（沒）
+you||pron|你；你們
+you're|you|pron|你是||you are 的縮寫。
+young||adj|年輕的；年幼的
+your||pron|你的`;
+const PHR = `crossed the street|過馬路
+walk their dog|遛狗
+knocked on the door|敲門
+told off|被罵（tell off 責罵）
+turns off|關掉、熄滅
+get around|四處走動
+go shopping|去逛街買東西
+on weekends|每逢週末
+left for school|出門去上學（leave for… 出發去…）
+chinese new year|農曆新年
+red envelopes|紅包
+good manners|禮貌、禮節
+that's why|所以、這就是為什麼
+broke up with|跟…分手
+even though|即使、雖然
+finishing line|終點線
+safety glasses|護目鏡
+out sick|請病假
+a lot of|很多
+lots of|很多
+sports teams|運動校隊
+age group|年齡組
+high school|高中
+suffer from|患有（疾病）、受…所苦
+do fine|表現不錯
+work hard|努力
+bank robber|銀行搶匪
+let a hostage go|放走一名人質（let… go 放走）
+makes people laugh|逗大家笑
+next few weeks|接下來幾週
+get along very well with|和…處得很好（get along with 和…相處）
+car accident|車禍
+runny nose|流鼻水
+calling me up|打電話給我（call up 打電話）
+at all hours of the night|半夜什麼時間都打來
+ice hockey|冰上曲棍球
+plenty of|很多、充足的
+right away|馬上、立刻
+bank account|銀行帳戶
+fried eggs|煎蛋
+a glass of milk|一杯牛奶
+stayed the same|保持不變
+at great expense|花了很多錢
+bit into|咬下去
+leafy vegetables|葉菜類
+pretty cheap|相當便宜
+all the way to|一路到…
+full moon|滿月
+shows up|出現
+had her portrait painted|請人畫了她的肖像（have + 東西 + 過去分詞：請人做…）
+just in case|以防萬一
+relies on|依賴
+class trip|班級旅行、校外教學
+under the impression|原本以為
+take time off|請假
+moved out of|搬出
+look at|看
+get a raise|加薪
+now that|既然、因為現在
+die of|因…而死
+lost their jobs|失業了
+lost their house|失去了房子
+name tag|名牌
+landing a new position|得到新職位（land 在這裡是「得到、獲得」）
+nod off|打瞌睡
+gets him into trouble|讓他惹上麻煩
+tried your best|盡了全力
+think of as|把…看作
+cleaned off|清乾淨
+cover up|遮起來、蓋住
+shark fin soup|魚翅湯
+tax law|稅法
+end up|最後落得…
+left alone|不被打擾、讓人靜一靜
+ice cream|冰淇淋
+come up with|想出（辦法、點子）
+feel free|儘管、別客氣
+find out|得知、查出
+done pretty well|考得相當不錯
+go out to eat|出去吃飯
+book report|讀書報告
+oil spill|漏油（事件）
+pay a big fine|付一大筆罰款
+on foot|步行、走路
+olive oil|橄欖油
+get changed|換衣服
+a piece of junk|一個破爛東西
+put on|穿上
+talk show|脫口秀、談話節目
+make sure|確認、務必
+subway station|捷運站、地鐵站
+political parties|政黨
+firework display|煙火秀
+security system|保全系統
+had a security system installed|請人裝了保全系統
+on the phone|用電話
+get to|到達
+sent to jail|被關進監獄
+taken to prison|被送進監獄
+work colleague|職場同事
+movie theater|電影院
+ice cream cones|冰淇淋甜筒
+dark green|深綠色
+star of the show|節目的主角
+afraid of the dark|怕黑
+used for racing|用來比賽（賽馬用）
+either chicken or fish|雞肉或魚肉選一個
+stop the cut from bleeding|讓傷口止血（stop… from… 阻止…）
+take an aspirin|吃一顆阿斯匹靈
+the way that i look|我的長相、外表
+did his homework|寫功課`;
+
+
 /* ---------- data ---------- */
 const DATA = RAW.trim().split("\n").map((line, i) => {
   const [wk, s, zh, alt] = line.split("|");
@@ -401,7 +1525,7 @@ const DATA = RAW.trim().split("\n").map((line, i) => {
 });
 const WEEKS = [6, 7, 8, 9, 10, 16, 17, 18, 19, 20];
 const K_KNOWN = "ncut-1152-vocab-known", K_STATS = "ncut-1152-vocab-stats",
-      K_BEST = "ncut-1152-vocab-best", K_HINT = "ncut-1152-vocab-hint";
+      K_BEST = "ncut-1152-vocab-best", K_HINT = "ncut-1152-vocab-hint", K_TIP = "ncut-1152-vocab-tip";
 
 /* ---------- storage ---------- */
 function load(k, def) { try { const v = localStorage.getItem(k); return v ? JSON.parse(v) : def; } catch (e) { return def; } }
@@ -423,9 +1547,18 @@ function esc(t) { return String(t).replace(/&/g, "&amp;").replace(/</g, "&lt;").
 function shuffle(a) { for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
 function fmt(ms) { const s = Math.max(0, Math.floor(ms / 1000)); return Math.floor(s / 60) + ":" + String(s % 60).padStart(2, "0"); }
 function blank(w, h) { return h ? w.split("").map((c, i) => i === 0 ? c : (c === "-" ? "-" : "_")).join(" ") : "＿＿＿＿＿"; }
-function sentHTML(d, mode, h) {
-  return esc(d.s).replace(/\{([^}]+)\}/, (m, w) =>
-    mode === "show" ? `<span class="hl">${esc(w)}</span>` : `<span class="blank">${esc(blank(w, h))}</span>`);
+const WORD_RE = /[A-Za-z]+(?:['’][A-Za-z]+)*(?:-[A-Za-z]+)*/g;
+function tapWords(t) {   // escape text and wrap each English word so it can be tapped
+  let out = "", last = 0;
+  t.replace(WORD_RE, (m, at) => { out += esc(t.slice(last, at)) + `<span class="wd">${esc(m)}</span>`; last = at + m.length; return m; });
+  return out + esc(t.slice(last));
+}
+function sentHTML(d, mode, h, tap = true) {
+  const i = d.s.indexOf("{"), j = d.s.indexOf("}"), f = tap ? tapWords : esc;
+  const w = d.s.slice(i + 1, j);
+  const mid = mode === "show" ? `<span class="hl${tap ? " wd" : ""}">${esc(w)}</span>` : `<span class="blank">${esc(blank(w, h))}</span>`;
+  const html = f(d.s.slice(0, i)) + mid + f(d.s.slice(j + 1));
+  return tap ? `<span data-d="${d.id}">${html}</span>` : html;
 }
 function makeOpts(d) {
   const others = shuffle(DATA.filter(x => x.wk === d.wk && x.w !== d.w).map(x => x.w));
@@ -458,7 +1591,8 @@ function bindGo() { app.querySelectorAll("[data-go]").forEach(b => b.onclick = (
 function qCard(d, type, opts, ans, progress, feedback) {
   const show = !!ans && feedback;
   let h = `<div class="card"><div class="meta"><span>Week ${d.wk}</span><span>${progress}</span></div>`;
-  h += `<div class="sent">${sentHTML(d, show ? "show" : "blank", type === "spell" && hintFirst)}</div>`;
+  h += `<div class="sent">${sentHTML(d, show ? "show" : "blank", type === "spell" && hintFirst, feedback)}</div>`;
+  if (feedback) h += tipHTML();
   if (type === "spell" || show) h += `<div class="hint">中文：<b>${esc(d.zh)}</b></div>`;
   if (type === "mc") {
     h += `<div class="optlist">` + opts.map((o, k) => {
@@ -492,6 +1626,109 @@ function bindQ(d, type, opts, onAnswer, onNext) {
   const n = $("next"); if (n && onNext) { n.onclick = onNext; setTimeout(() => { try { n.focus({ preventScroll: true }); } catch (e) {} }, 30); }
 }
 
+/* ---------- word help (tap a word) ---------- */
+const POS_ZH = { n: "名詞", v: "動詞", adj: "形容詞", adv: "副詞", prep: "介系詞", conj: "連接詞", pron: "代名詞", art: "冠詞",
+  aux: "助動詞", num: "數字", name: "人名", place: "地名", prop: "專有名詞", abbr: "縮寫", typo: "原檔錯字" };
+const TGT = new Map(DATA.map(d => [d.w.toLowerCase(), d]));
+const NOTES = new Map(NOTE.trim().split("\n").map(l => { const [w, pos, n] = l.split("|"); return [w, { pos, n }]; }));
+const DICTM = new Map(DICT.trim().split("\n").map(l => {
+  const [f, h, pos, zh, ft, n] = l.split("|"); return [f, { h: h || f, pos, zh, ft: ft || "", n: n || "" }];
+}));
+const PHRS = PHR.trim().split("\n").map(l => {
+  const [p, zh] = l.split("|");
+  return { p, zh, ws: new Set(p.split(" ")), re: new RegExp("(^|[^a-z'])" + p.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + "(?![a-z])") };
+});
+const canSay = typeof speechSynthesis !== "undefined" && typeof SpeechSynthesisUtterance !== "undefined";
+let tipSeen = load(K_TIP, false), popEl = null, popBg = null, popWord = null, popPrev = null, popVW = 0;
+function tipHTML() { return tipSeen ? "" : `<div class="tip">👆 句子裡不懂的字，點一下就有中文和說明</div>`; }
+function say(t) {
+  try { speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(t); u.lang = "en-US"; u.rate = 0.9; speechSynthesis.speak(u); } catch (e) {}
+}
+function wordInfo(tok) {
+  let k = tok.toLowerCase().replace(/’/g, "'"), poss = false;
+  if (!TGT.has(k) && !DICTM.has(k) && k.endsWith("'s")) { k = k.slice(0, -2); poss = true; }
+  const t = TGT.get(k);
+  if (t) { const nt = NOTES.get(k) || {}; return { k, poss, h: t.base, pos: nt.pos || "", zh: t.zh, ft: "", n: nt.n || "", tgt: t }; }
+  const x = DICTM.get(k);
+  return x ? { k, poss, ...x, tgt: TGT.get(x.h) || null } : { k, poss, h: k, pos: "", zh: "", ft: "", n: "", tgt: null };
+}
+function popHTML(tok, sid) {
+  const e = wordInfo(tok), noLink = ["name", "typo", "abbr"].includes(e.pos);
+  let h = `<div class="pop-h"><b class="pop-w" lang="en">${esc(tok)}</b>`;
+  if (canSay && !noLink) h += `<button class="pop-say" id="popSay" aria-label="念出 ${esc(tok)}" title="發音">🔊</button>`;
+  h += `<button class="pop-x" id="popX" aria-label="關閉">✕</button></div>`;
+  if (!e.zh) return h + `<p class="pop-n">這個字還沒有收錄說明。</p>`;
+  h += `<div class="pop-zh">${e.pos && e.pos !== "name" ? `<span class="pop-pos">${POS_ZH[e.pos] || esc(e.pos)}</span>` : ""}${esc(e.zh)}</div>`;
+  if (e.ft) h += `<p class="pop-n">${e.h !== e.k ? `<span lang="en">${esc(e.k)}</span> 是 <b lang="en">${esc(e.h)}</b> 的` : "這裡是"}${e.ft[0] === "-" ? " " : ""}${esc(e.ft)}。</p>`;
+  if (e.poss) h += `<p class="pop-n">字尾的 's 表示所有格，意思是「…的」。</p>`;
+  if (e.n) h += `<p class="pop-n">${esc(e.n)}</p>`;
+  const d = sid == null ? null : DATA[sid];
+  if (d) {   // phrases in the sentence this word was tapped in
+    const plain = d.s.replace(/[{}]/g, "").replace(/’/g, "'"), low = plain.toLowerCase();
+    const hits = PHRS.filter(p => p.ws.has(e.k) && p.re.test(low) && !e.n.toLowerCase().includes(p.p)).map(p => {
+      const m = p.re.exec(low); return `<div><b lang="en">${esc(plain.substr(m.index + m[1].length, p.p.length))}</b>　${esc(p.zh)}</div>`;
+    });
+    if (hits.length) h += `<div class="pop-sec pop-phr"><span class="pop-lb">這句裡的片語</span>${hits.join("")}</div>`;
+  }
+  if (e.tgt) {
+    const t = e.tgt;
+    h += `<div class="pop-sec pop-tgt"><span class="pop-lb">題庫考點・Week ${t.wk}</span>`;
+    h += t.id === sid ? `這個字就是這一題的答案。` : `<div lang="en">${sentHTML(t, "show", false, false)}</div>`;
+    if (t.alt) h += `<div class="alt">⚠ 推測題：${esc(t.alt)}</div>`;
+    h += `</div>`;
+  }
+  if (!noLink) h += `<a class="pop-more" href="https://tw.dictionary.search.yahoo.com/search?p=${encodeURIComponent(e.h)}" target="_blank" rel="noopener">到 Yahoo 字典查 ${esc(e.h)} 的音標和更多例句（另開分頁）</a>`;
+  return h;
+}
+// Before a question is answered, drop any line of the popup that would give its answer away.
+function hideAnswer(el, d) {
+  const forms = [...new Set([d.w, d.base])].map(x => x.replace(/-/g, "\\-"));
+  const re = new RegExp("(^|[^a-z])(" + forms.join("|") + ")(?![a-z])", "i");
+  el.querySelectorAll(".pop-n, .pop-more, .pop-tgt, .pop-phr > div").forEach(x => { if (re.test(x.textContent)) x.remove(); });
+  el.querySelectorAll(".pop-phr").forEach(x => { if (!x.querySelector("div")) x.remove(); });
+}
+function openPop(w) {
+  closePop(true);
+  const holder = w.closest("[data-d]"), sid = holder ? +holder.dataset.d : null, tok = w.textContent;
+  // A click on a word blurs the spelling box first, so hand focus back to it when the popup closes.
+  const sp = $("spi");
+  popPrev = document.activeElement !== document.body ? document.activeElement : (sp && !sp.disabled ? sp : null);
+  popWord = w; w.classList.add("on");
+  popBg = document.createElement("div"); popBg.className = "pop-bg";
+  popEl = document.createElement("div"); popEl.className = "pop"; popEl.tabIndex = -1;
+  popEl.setAttribute("role", "dialog"); popEl.setAttribute("aria-label", tok + " 的意思");
+  popEl.innerHTML = popHTML(tok, sid);
+  if (sid != null && holder.querySelector(".blank")) hideAnswer(popEl, DATA[sid]);
+  document.body.append(popBg, popEl);
+  if (matchMedia("(min-width:720px)").matches) {   // tablet/desktop: float next to the word
+    const r = w.getBoundingClientRect(), pw = popEl.offsetWidth, ph = popEl.offsetHeight;
+    const left = Math.max(12, Math.min(r.left + r.width / 2 - pw / 2, innerWidth - pw - 12));
+    let top = r.bottom + 8; if (top + ph > innerHeight - 12 && r.top - ph - 8 > 12) top = r.top - ph - 8;
+    popEl.style.left = left + scrollX + "px"; popEl.style.top = top + scrollY + "px";
+  }
+  popVW = innerWidth;
+  popBg.onclick = () => closePop();
+  $("popX").onclick = () => closePop();
+  const s = $("popSay"); if (s) s.onclick = () => say(tok);
+  try { popEl.focus({ preventScroll: true }); } catch (e) {}
+  if (!tipSeen) { tipSeen = true; store(K_TIP, true); document.querySelectorAll(".tip").forEach(x => x.remove()); }
+}
+function closePop(silent) {
+  if (!popEl) return;
+  popEl.remove(); popBg.remove(); popEl = popBg = null;
+  if (popWord) popWord.classList.remove("on");
+  popWord = null;
+  if (canSay) try { speechSynthesis.cancel(); } catch (e) {}
+  const prev = popPrev; popPrev = null;
+  if (!silent && prev && prev !== document.body && document.contains(prev)) try { prev.focus({ preventScroll: true }); } catch (e) {}
+}
+document.addEventListener("click", e => {
+  const w = e.target.closest && e.target.closest(".wd");
+  if (w && !w.closest(".pop")) { openPop(w); return; }
+  if (popEl && !e.target.closest(".pop")) closePop(true);
+});
+addEventListener("resize", () => { if (popEl && innerWidth !== popVW) closePop(true); });
+
 /* ---------- navigation ---------- */
 const S = { view: "home", week: 0 };
 let P = null, E = null, C = null, timerId = null, onlyNew = false, listQ = "", armed = null;
@@ -522,6 +1759,7 @@ function renderSide() {
   const n = wrongList().length, bd = $("navWrong"); bd.textContent = n; bd.hidden = !n;
 }
 function render() {
+  closePop(true);
   app.className = "wrap v-" + S.view + (NARROW.has(S.view) ? " narrow" : "");
   renderView(); renderSide();
 }
@@ -695,7 +1933,7 @@ function vCard() {
   else {
     const d = C.deck[C.pos];
     h += `<div class="card"><div class="meta"><span>Week ${d.wk}</span><span>${C.pos + 1} / ${C.deck.length}</span></div>
-      <div class="sent">${sentHTML(d, C.rev ? "show" : "blank", true)}</div>
+      <div class="sent">${sentHTML(d, C.rev ? "show" : "blank", true)}</div>${tipHTML()}
       <div class="hint">中文：<b>${esc(d.zh)}</b></div>
       ${C.rev ? `<div class="ans">答案：<span class="hl">${esc(d.w)}</span></div>${d.alt ? `<div class="alt">⚠ 推測題：${esc(d.alt)}</div>` : ""}` : ""}
       <div class="row">${C.rev ? `<button class="again" id="bA">還不熟</button><button class="know" id="bK">會了</button>` : `<button class="reveal" id="bR">看答案</button>`}</div>
@@ -717,10 +1955,10 @@ function vCard() {
 /* ---------- word list ---------- */
 function vList() {
   app.innerHTML = topbar("單字表") + chipsHTML(S.week) +
-    `<input class="sp search" id="q" type="search" placeholder="搜尋英文或中文" value="${esc(listQ)}" autocapitalize="off" autocorrect="off" spellcheck="false"><div id="items"></div>`;
+    `<input class="sp search" id="q" type="search" placeholder="搜尋英文或中文" value="${esc(listQ)}" autocapitalize="off" autocorrect="off" spellcheck="false">${tipHTML()}<div id="items"></div>`;
   bindGo();
   bindChips(w => { S.week = w; render(); });
-  const q = $("q"); q.oninput = () => { listQ = q.value; drawItems(); };
+  const q = $("q"); q.oninput = () => { listQ = q.value; closePop(true); drawItems(); };
   drawItems();
 }
 function drawItems() {
@@ -732,7 +1970,7 @@ function drawItems() {
     return `<div class="wk">Week ${wk}</div><div class="items">` + items.map(d => {
       const st = stats[d.id];
       const mk = st ? (st.last === 1 ? `<span class="mk ok">✓</span>` : `<span class="mk no">錯題</span>`) : "";
-      return `<div class="item"><div><span class="w">${esc(d.w)}</span><span class="z">${esc(d.zh)}</span>${mk}${d.alt ? `<span class="tag">推測</span>` : ""}</div>
+      return `<div class="item" data-d="${d.id}"><div><span class="w wd">${esc(d.w)}</span><span class="z">${esc(d.zh)}</span>${mk}${d.alt ? `<span class="tag">推測</span>` : ""}</div>
         <div class="s">${sentHTML(d, "show")}</div>${d.alt ? `<div class="alt">${esc(d.alt)}</div>` : ""}</div>`;
     }).join("") + `</div>`;
   }).join("");
@@ -842,6 +2080,7 @@ function vRules() {
 
 /* ---------- keyboard (desktop) ---------- */
 document.addEventListener("keydown", e => {
+  if (e.key === "Escape" && popEl) { e.preventDefault(); closePop(); return; }
   if (e.ctrlKey || e.metaKey || e.altKey || e.isComposing) return;
   const t = e.target;
   if (t && (t.tagName === "INPUT" || t.tagName === "TEXTAREA" || t.tagName === "SELECT" || t.isContentEditable)) return;
