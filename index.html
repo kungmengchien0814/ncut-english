@@ -4,15 +4,15 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>勤益 115-2 字彙測驗練習</title>
-<meta name="description" content="勤益科大語言中心 115-2 字彙測驗（英檢輔導A選課資格）練習：模擬考、選擇題、拼字、錯題本、單字卡。非官方網站。">
+<meta name="description" content="勤益科大語言中心 115-2 字彙測驗（英檢輔導A選課資格）練習：今日複習、模擬考、選擇題、拼字、錯題本、單字卡、配對遊戲。非官方網站。">
 <meta name="robots" content="noindex">
 <meta name="theme-color" content="#2f6fdb">
-<link rel="icon" href="favicon.svg?v=20261122e" type="image/svg+xml">
-<link rel="apple-touch-icon" href="apple-touch-icon.png?v=20261122e">
+<link rel="icon" href="favicon.svg?v=20261123a" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png?v=20261123a">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="zh_TW">
 <meta property="og:title" content="勤益 115-2 字彙測驗練習">
-<meta property="og:description" content="英檢輔導A選課資格「字彙測驗」練習：模擬考、選擇題、拼字、錯題本、單字卡，還有畢業門檻說明。同學自製，非官方。">
+<meta property="og:description" content="英檢輔導A選課資格「字彙測驗」練習：今日複習、模擬考、選擇題、拼字、錯題本、單字卡、配對遊戲，還有畢業門檻說明。同學自製，非官方。">
 <meta property="og:url" content="https://kungmengchien.uk/ncut-english/">
 <meta property="og:image" content="https://kungmengchien.uk/ncut-english/og.png">
 <meta property="og:image:width" content="1200">
@@ -157,7 +157,7 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--acc);outline-offset
 .pop-more{display:inline-block;margin-top:.75rem;font-size:.8125rem;color:var(--acc)}
 @keyframes popUp{from{transform:translateY(1.5rem);opacity:0}to{transform:none;opacity:1}}
 @keyframes popIn{from{transform:translateY(-.25rem);opacity:0}to{transform:none;opacity:1}}
-@media (prefers-reduced-motion:reduce){.bar i{transition:none}.pop{animation:none}}
+@media (prefers-reduced-motion:reduce){.bar i{transition:none}.pop{animation:none}.tile{transition:none}.tile.bad{animation:none}}
 /* side menu: desktop only */
 .side{display:none}
 .brand{padding:2px .625rem 1.125rem}
@@ -196,6 +196,48 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--acc);outline-offset
 .ps-box.kbd{margin:0;font-size:.875rem;color:var(--fg)}
 .ps-keys div{display:flex;justify-content:space-between;align-items:center;gap:.5rem;padding:.25rem 0}
 .ps-keys div span:first-child{color:var(--mut)}
+/* today: streak and daily goal */
+.today{background:var(--card);border:1px solid var(--line);border-radius:.875rem;padding:.875rem 1rem;margin:.875rem 0 0}
+.td-h{display:flex;align-items:baseline;justify-content:space-between;gap:.5rem;flex-wrap:wrap}
+.td-streak{font-size:.875rem;color:var(--mut)}
+.td-streak b{font-size:1.75rem;line-height:1;color:var(--fg)}
+.td-goal{font-size:.875rem;color:var(--mut)}
+.td-goal b{color:var(--fg)}
+.meter{height:.5rem;background:var(--okb);border-radius:.375rem;overflow:hidden;margin:.625rem 0 .75rem}
+.meter i{display:block;height:100%;background:var(--ok);border-radius:.375rem}
+.td-week{display:grid;grid-template-columns:repeat(7,1fr);gap:.25rem;text-align:center;font-size:.6875rem;color:var(--mut)}
+.td-week i{display:block;width:.875rem;height:.875rem;margin:.25rem auto 0;border-radius:50%;border:2px solid var(--line)}
+.td-week .p i{border-color:var(--ok)}
+.td-week .g i{background:var(--ok);border-color:var(--ok)}
+.td-week .t{color:var(--fg);font-weight:700}
+.td-msg{margin:.625rem 0 0;font-size:.8125rem;color:var(--mut)}
+/* daily review */
+.rtag{display:inline-block;font-size:.75rem;font-weight:700;padding:0 .5rem;border-radius:62.4375rem;background:var(--acc2);color:var(--acc);margin-right:.375rem}
+.rtag.again{background:var(--warnb);color:var(--warn)}
+.rtag.new{background:var(--okb);color:var(--ok)}
+.lv .wkrow .l{width:6.25rem}
+.nav .badge.due{background:var(--acc2);color:var(--acc)}
+/* listening */
+.say-s{align-self:flex-start;display:inline-flex;align-items:center;gap:.375rem;margin-top:.75rem;border:1px solid var(--line);background:var(--bg);color:var(--fg);border-radius:62.4375rem;padding:.375rem .875rem;font-size:.875rem}
+/* matching game */
+.mtop{display:flex;align-items:center;justify-content:space-between;gap:.75rem;margin:0 0 .625rem;font-size:.8125rem;color:var(--mut)}
+.mclock{flex:none;font-size:1.5rem;font-weight:800;color:var(--fg);font-variant-numeric:tabular-nums}
+.mpen{display:inline-block;margin-left:.375rem;font-size:.875rem;color:var(--bad);font-weight:700}
+.mpen[hidden]{display:none}
+.mgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:.5rem}
+.tile{min-height:4.75rem;border:1.5px solid var(--line);background:var(--card);color:var(--fg);border-radius:.75rem;padding:.5rem .375rem;font-size:.9375rem;line-height:1.35;transition:opacity .2s,transform .2s}
+.tile[lang="en"]{font-weight:700;font-size:1.0625rem;hyphens:auto;overflow-wrap:anywhere}
+.tile[lang="en"].long{font-size:.8125rem}
+.tile.sel{border-color:var(--acc);background:var(--acc2);color:var(--acc)}
+.tile.bad{border-color:var(--bad);background:var(--badb);color:var(--bad);animation:shake .3s}
+.tile.gone{opacity:0;transform:scale(.92);pointer-events:none}
+@media (max-width:359px){.mgrid{grid-template-columns:1fr 1fr}.tile{min-height:3.75rem}}
+@keyframes shake{25%{transform:translateX(-.25rem)}75%{transform:translateX(.25rem)}}
+/* backup */
+.bk{display:flex;gap:1rem}
+.notice{background:var(--acc2);border-radius:.75rem;padding:.75rem .875rem;margin-top:1rem;font-size:.875rem}
+.notice .btns{justify-content:flex-start;margin-top:.625rem}
+.notice.err{background:var(--badb);color:var(--bad)}
 /* tablet: 720px and up */
 @media (min-width:720px){
   .wrap{max-width:55rem;padding:1.5rem 2rem 3.5rem}
@@ -217,6 +259,11 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--acc);outline-offset
   .pop-bg{display:none}
   .pop{position:absolute;right:auto;bottom:auto;width:22.5rem;max-height:none;overflow:visible;border:1px solid var(--line);border-radius:.875rem;padding:.75rem 1rem 1rem;box-shadow:0 .75rem 2rem rgba(0,0,0,.18);animation-name:popIn}
   .pop::before{display:none}
+  .mode.last3{grid-column:span 2}
+  .mgrid{grid-template-columns:repeat(4,1fr);gap:.75rem}
+  .tile{min-height:6.5rem;font-size:1.0625rem}
+  .tile[lang="en"]{font-size:1.25rem}
+  .tile[lang="en"].long{font-size:1rem}
 }
 /* desktop: 1080px and up */
 @media (min-width:1080px){
@@ -252,7 +299,8 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--acc);outline-offset
   .ttl{font-size:1.375rem}
   .home{display:grid;grid-template-columns:minmax(0,1fr) 21rem;gap:2.5rem;align-items:start}
   .home-side{padding-top:.5rem}
-  .home-side .stats{grid-template-columns:1fr 1fr;margin-top:0}
+  .home-side .stats{grid-template-columns:1fr 1fr;margin-top:.75rem}
+  .home-side .today{margin-top:0}
   .home-side .weeks{display:block}
   .sent{font-size:1.375rem}
   .rules{column-count:2;column-gap:1rem}
@@ -260,7 +308,11 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--acc);outline-offset
 }
 /* wide desktop: practice gets a second column with round progress, missed words and shortcuts */
 @media (min-width:1280px){
-  .wrap.v-mc,.wrap.v-spell,.wrap.v-wrong,.wrap.v-card,.wrap.v-exam{max-width:76rem;padding-bottom:2rem}
+  .wrap.v-mc,.wrap.v-spell,.wrap.v-wrong,.wrap.v-card,.wrap.v-exam,.wrap.v-review,.wrap.v-match{max-width:76rem;padding-bottom:2rem}
+  .tile{min-height:max(7rem,calc((100vh - 18rem) / 3));font-size:1.25rem;border-radius:1rem}
+  .tile[lang="en"]{font-size:1.625rem}
+  .tile[lang="en"].long{font-size:1.25rem}
+  .mclock{font-size:2rem}
   .play{display:grid;grid-template-columns:minmax(0,1fr) 18rem;gap:1.5rem;align-items:start}
   .play-side{display:flex;flex-direction:column;gap:.75rem;position:sticky;top:1.5rem}
   .play-main .kbd,.play-dup{display:none}
@@ -1613,15 +1665,34 @@ let known = new Set(load(K_KNOWN, []));
 let stats = load(K_STATS, {});          // id -> {r, w, last}
 let best = load(K_BEST, null);          // {score, n, date}
 let hintFirst = load(K_HINT, true);
+/* ---------- spaced repetition (Leitner boxes) and daily activity ---------- */
+// Each word sits in box 0–5. A miss sends it to box 0, due again today. A right answer moves it up one box,
+// due again after INT[box] days, but only when it was due: answering early (cramming) does not skip the wait.
+const INT = [0, 1, 2, 4, 7, 14];
+function dayStr(dt = new Date()) { return dt.getFullYear() + "-" + String(dt.getMonth() + 1).padStart(2, "0") + "-" + String(dt.getDate()).padStart(2, "0"); }
+function addDays(s, n) { const [y, m, d] = s.split("-").map(Number); return dayStr(new Date(y, m - 1, d + n)); }
+const md = s => { const [, m, d] = s.split("-"); return +m + "/" + +d; };
+const K_DAYS = "ncut-vocab-days", GOAL = 20;   // answers per day; about the person, not one question bank, so no 1152
+let days = load(K_DAYS, {});
+if (!days || typeof days !== "object") days = {};
+{ const cut = addDays(dayStr(), -60); for (const k of Object.keys(days)) if (k < cut) delete days[k]; }
+function bumpDay(n) { const t = dayStr(); days[t] = (days[t] || 0) + n; store(K_DAYS, days); }
+function streak() { let d = dayStr(), n = 0; if (!days[d]) d = addDays(d, -1); while (days[d]) { n++; d = addDays(d, -1); } return n; }
 function record(id, ok) {
-  const s = stats[id] || { r: 0, w: 0, last: null };
-  ok ? s.r++ : s.w++; s.last = ok ? 1 : 0; stats[id] = s; store(K_STATS, stats);
+  const t = dayStr(), s = stats[id] || { r: 0, w: 0, last: null };
+  ok ? s.r++ : s.w++; s.last = ok ? 1 : 0;
+  if (!ok) { s.b = 0; s.due = t; }
+  else if (s.b == null || !s.due || s.due <= t) { s.b = Math.min(5, (s.b || 0) + 1); s.due = addDays(t, INT[s.b]); }
+  stats[id] = s; store(K_STATS, stats); bumpDay(1);
 }
 const wrongList = () => DATA.filter(d => stats[d.id] && stats[d.id].last === 0);
+const isDue = (s, t) => !!s && (s.b == null || !s.due || s.due <= t);   // records from before boxes existed count as due
+const dueList = () => { const t = dayStr(); return DATA.filter(d => isDue(stats[d.id], t)); };
+const newList = () => DATA.filter(d => !stats[d.id]);
 
 /* ---------- theme and language ---------- */
 // Site settings, not tied to one semester's question bank, so their keys have no 1152.
-const K_THEME = "ncut-vocab-theme", K_LANG = "ncut-vocab-lang";
+const K_THEME = "ncut-vocab-theme", K_LANG = "ncut-vocab-lang", K_LISTEN = "ncut-vocab-listen";
 let theme = load(K_THEME, "auto"), lang = load(K_LANG, "zh");
 if (!["auto", "light", "dark"].includes(theme)) theme = "auto";
 if (lang !== "en") lang = "zh";
@@ -1716,6 +1787,7 @@ function qCard(d, type, opts, ans, progress, feedback) {
     }).join("") + `</div>`;
     if (!show) h += `<div class="kbd">${L("鍵盤：按 <kbd>A</kbd>–<kbd>D</kbd> 或 <kbd>1</kbd>–<kbd>4</kbd> 作答", "Keyboard: press <kbd>A</kbd>–<kbd>D</kbd> or <kbd>1</kbd>–<kbd>4</kbd> to answer")}</div>`;
   } else {
+    if (feedback && listen && !show) h += sayBtn(d, L("再聽一次", "Play again"));
     h += `<form id="spf" autocomplete="off"><input class="sp" id="spi" type="text" autocapitalize="off" autocorrect="off" spellcheck="false" enterkeyhint="done" placeholder="${L("輸入英文單字", "Type the English word")}"${show ? ` disabled value="${esc(ans.given)}"` : ""}>${show ? "" : `<button class="btn pri wide" type="submit">${L("送出", "Check")}</button>`}</form>`;
     if (!show) h += `<div class="kbd">${L("按 <kbd>Enter</kbd> 送出", "Press <kbd>Enter</kbd> to check")}</div>`;
   }
@@ -1723,6 +1795,7 @@ function qCard(d, type, opts, ans, progress, feedback) {
     h += ans.ok ? `<div class="fb ok">✓ ${L("答對了", "Correct")}</div>`
       : `<div class="fb no">✗ ${L("正確答案：", "Answer: ")}<b>${esc(d.w)}</b>${ans.note ? `<br><span>${esc(ans.note)}</span>` : ""}</div>`;
     if (d.alt) h += `<div class="alt">⚠ ${L("推測題：", "Guessed answer: ")}${esc(altText(d.alt))}</div>`;
+    h += sayBtn(d);
     h += `<button class="btn pri wide" id="next">${L("下一題", "Next")}</button><div class="kbd">${L("按 <kbd>Enter</kbd> 下一題", "Press <kbd>Enter</kbd> for the next one")}</div>`;
   }
   return h + `</div>`;
@@ -1853,28 +1926,38 @@ document.addEventListener("click", e => {
 });
 addEventListener("resize", () => { if (popEl && innerWidth !== popVW) closePop(true); });
 
+/* ---------- listening ---------- */
+const plainS = d => d.s.replace(/[{}]/g, "");
+let listen = load(K_LISTEN, false) === true;   // spelling: read the whole sentence aloud first (dictation)
+function sayBtn(d, label) { return canSay ? `<button type="button" class="say-s" data-say="${d.id}">🔊 ${label || L("聽整句", "Hear the sentence")}</button>` : ""; }
+// Registered after the word-help listener, which closes any open popup (and stops speech) before this one speaks.
+document.addEventListener("click", e => { const b = e.target.closest && e.target.closest("[data-say]"); if (b) say(plainS(DATA[+b.dataset.say])); });
+
 /* ---------- navigation ---------- */
 const S = { view: "home", week: 0 };
-let P = null, E = null, C = null, timerId = null, onlyNew = false, listQ = "", armed = null;
+let P = null, E = null, C = null, R = null, M = null, timerId = null, onlyNew = false, listQ = "", armed = null;
 const EX = { week: 0, count: 50, type: "mc" };
 
 function go(v, arg) {
   if (timerId) { clearInterval(timerId); timerId = null; }
-  armed = null; S.view = v;
+  armed = null; S.view = v; pendingImport = null; importErr = false;
   if (v === "mc" || v === "spell") startPractice(v, "all");
   if (v === "wrong") startPractice(arg || "mc", "wrong");
   if (v === "card") startCard();
+  if (v === "review") startReview();
+  if (v === "match") startMatch();
   render(); window.scrollTo(0, 0);
 }
-const NARROW = new Set(["mc", "spell", "wrong", "card", "examSetup", "exam", "result"]);
-const NAV = () => [["home", "🏠", L("首頁", "Home")], ["examSetup", "📝", L("模擬考", "Mock test")], ["mc", "🔘", L("選擇題練習", "Multiple choice")],
-  ["spell", "⌨️", L("拼字練習", "Spelling")], ["wrong", "❗", L("錯題本", "Mistakes")], ["card", "🃏", L("單字卡", "Flashcards")],
+const NARROW = new Set(["mc", "spell", "wrong", "card", "examSetup", "exam", "result", "review", "match"]);
+const NAV = () => [["home", "🏠", L("首頁", "Home")], ["review", "🔁", L("今日複習", "Daily review")], ["examSetup", "📝", L("模擬考", "Mock test")],
+  ["mc", "🔘", L("選擇題練習", "Multiple choice")], ["spell", "⌨️", L("拼字練習", "Spelling")], ["wrong", "❗", L("錯題本", "Mistakes")],
+  ["card", "🃏", L("單字卡", "Flashcards")], ["match", "🧩", L("配對遊戲", "Matching game")],
   ["list", "📖", L("單字表", "Word list")], ["rules", "🎓", L("畢業門檻說明", "Graduation requirement")]];
 const side = $("side");
 function buildSide() {
   side.setAttribute("aria-label", L("功能選單", "Menu"));
   side.innerHTML = `<div class="brand"><b>${L("勤益 115-2", "NCUT 115-2")}</b><span>${L("字彙測驗練習", "Vocabulary test practice")}</span></div>` +
-    NAV().map(([v, ic, t]) => `<button class="nav" data-go="${v}"${v === "wrong" ? ' data-arg="mc"' : ""}><span class="ic">${ic}</span>${t}${v === "wrong" ? '<span class="badge" id="navWrong" hidden></span>' : ""}</button>`).join("") +
+    NAV().map(([v, ic, t]) => `<button class="nav" data-go="${v}"${v === "wrong" ? ' data-arg="mc"' : ""}><span class="ic">${ic}</span>${t}${v === "wrong" ? '<span class="badge" id="navWrong" hidden></span>' : ""}${v === "review" ? '<span class="badge due" id="navDue" hidden></span>' : ""}</button>`).join("") +
     `<div class="side-foot">${prefsHTML(true)}<p>${L("同學自製的非官方練習網站。練習紀錄只存在這台裝置。", "Unofficial practice site made by a student. Your records stay on this device.")}</p></div>`;
   side.querySelectorAll("[data-go]").forEach(b => b.onclick = () => go(b.dataset.go, b.dataset.arg));
 }
@@ -1886,6 +1969,8 @@ function renderSide() {
     if (on) b.setAttribute("aria-current", "page"); else b.removeAttribute("aria-current");
   });
   const n = wrongList().length, bd = $("navWrong"); bd.textContent = n; bd.hidden = !n;
+  const dn = dueList().length, dd = $("navDue"); dd.textContent = dn; dd.hidden = !dn;
+  dd.title = L(`${dn} 個字到期`, `${dn} words due`);
 }
 function render() {
   closePop(true);
@@ -1893,7 +1978,7 @@ function render() {
   renderView(); renderSide();
 }
 function renderView() {
-  ({ home: vHome, mc: vPractice, spell: vPractice, wrong: vPractice, card: vCard, list: vList,
+  ({ home: vHome, mc: vPractice, spell: vPractice, wrong: vPractice, card: vCard, list: vList, review: vReview, match: vMatch,
      examSetup: vExamSetup, exam: vExam, result: vResult, rules: vRules })[S.view]();
 }
 function twoTap(id, label, confirmLabel, action) {
@@ -1909,18 +1994,22 @@ function vHome() {
   const tried = DATA.filter(d => stats[d.id]).length;
   let r = 0, w = 0; Object.values(stats).forEach(s => { r += s.r; w += s.w; });
   const acc = r + w ? Math.round(r / (r + w) * 100) + "%" : "—";
-  const wl = wrongList().length;
+  const wl = wrongList().length, dueN = dueList().length, newN = newList().length, td = days[dayStr()] || 0, st = streak();
+  const rv = dueN ? L(`${dueN} 個字到期該複習了`, `${dueN} words are due`)
+    : newN ? L(`沒有到期的字，來學 ${Math.min(R_SIZE, newN)} 個新字`, `Nothing due. Learn ${Math.min(R_SIZE, newN)} new words`) : L("今天的複習都做完了", "All caught up for today");
   let h = prefsHTML(false) + `<div class="home"><div class="home-main"><h1>${L("勤益 115-2 字彙測驗練習", "NCUT 115-2 Vocabulary Test Practice")}</h1><p class="sub">${L("語言中心題庫｜Week 6–10、16–20｜共 200 句", "Language Center question bank | Weeks 6–10, 16–20 | 200 sentences")}</p>
   <div class="grid">
-    <button class="mode primary" data-go="examSetup"><div class="ic">📝</div><div class="n">${L("模擬考", "Mock test")}</div><div class="d">${L("隨機出題、計時，交卷後看分數和錯題", "Random questions, timed. See your score and mistakes when you hand in.")}</div></button>
+    <button class="mode primary" data-go="review"><div class="ic">🔁</div><div class="n">${L("今日複習", "Daily review")}</div><div class="d">${rv}<br>${L(`今天 ${td}/${GOAL} 題`, `Today ${td}/${GOAL}`)}${st ? L(`｜連續 ${st} 天`, ` | ${st}-day streak`) : ""}</div></button>
+    <button class="mode" data-go="examSetup"><div class="ic">📝</div><div class="n">${L("模擬考", "Mock test")}</div><div class="d">${L("隨機出題、計時，交卷後看分數和錯題", "Random questions, timed. See your score and mistakes when you hand in.")}</div></button>
     <button class="mode" data-go="mc"><div class="ic">🔘</div><div class="n">${L("選擇題練習", "Multiple choice")}</div><div class="d">${L("4 選 1，馬上對答案", "Pick 1 of 4 and check right away")}</div></button>
     <button class="mode" data-go="spell"><div class="ic">⌨️</div><div class="n">${L("拼字練習", "Spelling")}</div><div class="d">${L("看句子和中文，打出單字", "Read the sentence and the Chinese, type the word")}</div></button>
     <button class="mode" data-go="wrong" data-arg="mc"><div class="ic">❗</div><div class="n">${L("錯題本", "Mistakes")}</div><div class="d">${L(`目前 ${wl} 題，答對就移出`, `${wl} now. Answer one right to clear it.`)}</div></button>
     <button class="mode" data-go="card"><div class="ic">🃏</div><div class="n">${L("單字卡", "Flashcards")}</div><div class="d">${L("翻卡記憶", "Flip and memorize")}</div></button>
+    <button class="mode" data-go="match"><div class="ic">🧩</div><div class="n">${L("配對遊戲", "Matching game")}</div><div class="d">${L("6 組英文配中文，看誰最快", "Match 6 words to their meanings against the clock")}</div></button>
     <button class="mode" data-go="list"><div class="ic">📖</div><div class="n">${L("單字表", "Word list")}</div><div class="d">${L("200 個字＋例句，可搜尋", "200 words with examples, searchable")}</div></button>
-    <button class="mode" data-go="rules"><div class="ic">🎓</div><div class="n">${L("畢業門檻說明", "Graduation requirement")}</div><div class="d">${L("要不要考字彙測驗、場次、申請流程", "Do you need the test, dates, how to apply")}</div></button>
+    <button class="mode last3" data-go="rules"><div class="ic">🎓</div><div class="n">${L("畢業門檻說明", "Graduation requirement")}</div><div class="d">${L("要不要考字彙測驗、場次、申請流程", "Do you need the test, dates, how to apply")}</div></button>
   </div></div>
-  <aside class="home-side"><div class="stats">
+  <aside class="home-side">${todayHTML()}<div class="stats">
     <div class="st"><b>${tried}</b><span>${L("已練過 /200", "done /200")}</span></div>
     <div class="st"><b>${acc}</b><span>${L("正確率", "accuracy")}</span></div>
     <div class="st"><b>${wl}</b><span>${L("錯題", "mistakes")}</span></div>
@@ -1934,11 +2023,73 @@ function vHome() {
   const notice = `<a href="https://lgc.ncut.edu.tw/p/405-1029-95793,c82.php?Lang=zh-tw" style="color:inherit">${L("官方公告", "official notice, in Chinese")}</a>`;
   h += `</div></aside></div><p class="note">${L(`本站為同學自製的非官方練習網站。題目來源：勤益語言中心〈115-2字彙測驗題庫.pdf〉（${notice}）。原檔只有少數重點字是粗體，其餘考點依句意判斷；標「推測」的題目可能考句中另一個字，兩個都記最保險。句子照原檔保留（含原有錯字）。正式題型與及格標準以語言中心公告為準。練習紀錄只存在這台裝置的瀏覽器。`,
     `An unofficial practice site made by a student. The questions come from the NCUT Language Center file 115-2字彙測驗題庫.pdf (${notice}). Only a few key words are bold in that file, so the other answers were worked out from each sentence. Questions marked “guess” may test a different word in the sentence; learn both to be safe. Sentences are kept exactly as in the original, typos included. The official test format and passing score are whatever the Language Center announces. Your practice records stay in this browser only.`)}</p>
-  <div class="statrow"><span></span><button class="linkbtn" id="resetAll">${L("清除所有練習紀錄", "Clear all practice records")}</button></div>`;
+  <div class="statrow"><span class="bk"><button class="linkbtn" id="exp">${L("匯出紀錄", "Export records")}</button><button class="linkbtn" id="imp">${L("匯入紀錄", "Import records")}</button></span><button class="linkbtn" id="resetAll">${L("清除所有練習紀錄", "Clear all practice records")}</button></div>
+  <input type="file" id="impf" accept=".json,application/json" hidden>
+  <p class="small">${L("換手機或電腦時，先在原本的裝置按「匯出紀錄」存成檔案，再到新裝置按「匯入紀錄」選那個檔案。", "Switching devices? Export your records to a file on the old one, then import that file on the new one.")}</p>`;
+  if (pendingImport) {
+    let n = 0; try { n = Object.keys(JSON.parse(pendingImport.data["ncut-1152-vocab-stats"] || "{}")).length; } catch (e) {}
+    const dt = esc(String(pendingImport.date || "?"));
+    h += `<div class="notice" id="impBox">${L(`這份紀錄檔是 ${dt} 匯出的，裡面有 ${n} 題的作答紀錄。匯入後會取代這台裝置目前的紀錄。`, `This backup is from ${dt} and has records for ${n} questions. Importing replaces the records on this device.`)}
+      <div class="btns"><button class="btn pri" id="impYes">${L("匯入", "Import")}</button><button class="btn" id="impNo">${L("取消", "Cancel")}</button></div></div>`;
+  } else if (importErr) h += `<div class="notice err" id="impBox">${L("這不是本站匯出的紀錄檔，沒有匯入任何東西。", "That file is not a backup from this site. Nothing was imported.")}</div>`;
   app.innerHTML = h; bindGo();
   twoTap("resetAll", L("清除所有練習紀錄", "Clear all practice records"), L("再按一次確認清除", "Tap again to clear everything"), () => {
-    stats = {}; best = null; known = new Set(); store(K_STATS, stats); store(K_BEST, null); store(K_KNOWN, []); render();
+    stats = {}; best = null; known = new Set(); days = {}; matchBest = {};
+    store(K_STATS, stats); store(K_BEST, null); store(K_KNOWN, []); store(K_DAYS, days); store(K_MATCH, matchBest); render();
   });
+  $("exp").onclick = exportData;
+  $("imp").onclick = () => $("impf").click();
+  $("impf").onchange = e => { const f = e.target.files && e.target.files[0]; if (f) readImport(f); };
+  const y = $("impYes"); if (y) y.onclick = applyImport;
+  const no = $("impNo"); if (no) no.onclick = () => { pendingImport = null; render(); };
+  const ib = $("impBox"); if (ib) ib.scrollIntoView({ block: "nearest" });
+}
+function todayHTML() {
+  const t = dayStr(), n = days[t] || 0, st = streak(), cells = [];
+  for (let k = 6; k >= 0; k--) {
+    const d = addDays(t, -k), c = days[d] || 0, [y, m, dd] = d.split("-").map(Number), wd = new Date(y, m - 1, dd).getDay();
+    const nm = lang === "en" ? ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"][wd] : "日一二三四五六"[wd];
+    cells.push(`<span class="${c >= GOAL ? "g" : c ? "p" : ""}${k ? "" : " t"}" title="${L(`${md(d)}：${c} 題`, `${md(d)}: ${c} answered`)}">${nm}<i></i></span>`);
+  }
+  const msg = n >= GOAL ? L("今天的目標達成了 👍", "Today's goal is done 👍")
+    : n ? L(`再 ${GOAL - n} 題就達成今天的目標`, `${GOAL - n} more to reach today's goal`)
+    : st ? L(`今天還沒練習，答 1 題就能延續 ${st} 天的紀錄`, `No practice yet today. Answer 1 question to keep your ${st}-day streak.`)
+    : L("每天答 1 題就能累積連續天數", "Answer at least 1 question a day to build a streak");
+  return `<div class="today"><div class="td-h"><span class="td-streak">🔥 ${L("連續", "Streak")} <b>${st}</b> ${L("天", st === 1 ? "day" : "days")}</span>
+    <span class="td-goal">${L("今天", "Today")} <b>${n}</b> / ${GOAL} ${L("題", "")}</span></div>
+    <div class="meter" role="progressbar" aria-valuemin="0" aria-valuemax="${GOAL}" aria-valuenow="${Math.min(n, GOAL)}" aria-label="${L("今天的目標", "Today's goal")}"><i style="width:${Math.min(100, n / GOAL * 100)}%"></i></div>
+    <div class="td-week" role="img" aria-label="${L("最近 7 天有沒有練習", "Practice in the last 7 days")}">${cells.join("")}</div><p class="td-msg">${msg}</p></div>`;
+}
+
+/* ---------- backup: move records to another device ---------- */
+let pendingImport = null, importErr = false;
+function ncutKeys() { const ks = []; try { for (let i = 0; i < localStorage.length; i++) { const k = localStorage.key(i); if (k && k.startsWith("ncut-")) ks.push(k); } } catch (e) {} return ks; }
+function exportData() {
+  const data = {};
+  ncutKeys().forEach(k => { try { data[k] = localStorage.getItem(k); } catch (e) {} });
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(new Blob([JSON.stringify({ app: "ncut-english", v: 1, date: dayStr(), data })], { type: "application/json" }));
+  a.download = `ncut-vocab-backup-${dayStr()}.json`;
+  document.body.append(a); a.click(); a.remove();
+  setTimeout(() => URL.revokeObjectURL(a.href), 4000);
+}
+function readImport(file) {
+  const fr = new FileReader();
+  fr.onload = () => {
+    let j = null; try { j = JSON.parse(fr.result); } catch (e) {}
+    const ok = !!j && j.app === "ncut-english" && !!j.data && typeof j.data === "object" &&
+      Object.entries(j.data).every(([k, v]) => k.startsWith("ncut-") && typeof v === "string");
+    pendingImport = ok ? j : null; importErr = !ok; render();
+  };
+  fr.onerror = () => { pendingImport = null; importErr = true; render(); };
+  fr.readAsText(file);
+}
+function applyImport() {
+  try {
+    ncutKeys().forEach(k => localStorage.removeItem(k));
+    Object.entries(pendingImport.data).forEach(([k, v]) => localStorage.setItem(k, v));
+  } catch (e) {}
+  location.reload();
 }
 
 /* ---------- practice (mc / spell / wrong) ---------- */
@@ -1970,6 +2121,7 @@ function vPractice() {
   h += `<div class="opts">`;
   if (isW) h += `<div class="seg"><button class="${P.type === "mc" ? "on" : ""}" data-t="mc">${L("選擇題", "Multiple choice")}</button><button class="${P.type === "spell" ? "on" : ""}" data-t="spell">${L("拼字", "Spelling")}</button></div>`;
   if (P.type === "spell") h += `<label><input type="checkbox" id="hint"${hintFirst ? " checked" : ""}>${L("提示字首和字數", "Show first letter and length")}</label>`;
+  if (P.type === "spell" && canSay) h += `<label><input type="checkbox" id="listen"${listen ? " checked" : ""}>${L("聽寫：先念出整句", "Dictation: read the sentence aloud")}</label>`;
   h += `</div>`;
   if (!P.deck.length) {
     h += `<div class="card"><div class="empty">${isW ? L("目前沒有錯題 🎉<br><span class='small'>練習或模擬考答錯的題目會自動收進來</span>", "No mistakes right now 🎉<br><span class='small'>Questions you miss in practice or mock tests are added here automatically</span>") : L("沒有題目", "No questions")}</div></div>`;
@@ -1986,6 +2138,7 @@ function vPractice() {
   bindChips(w => { S.week = w; startPractice(P.type, "all"); render(); });
   app.querySelectorAll(".seg [data-t]").forEach(b => b.onclick = () => { startPractice(b.dataset.t, "wrong"); render(); });
   const hint = $("hint"); if (hint) hint.onchange = () => { hintFirst = hint.checked; store(K_HINT, hintFirst); render(); };
+  const ls = $("listen"); if (ls) ls.onchange = () => { listen = ls.checked; store(K_LISTEN, listen); P.said = -1; render(); };
   const again = $("again"); if (again) again.onclick = () => { startPractice(P.type, P.source); render(); };
   const again2 = $("again2"); if (again2) again2.onclick = () => { startPractice(P.type, "wrong"); render(); };
   if (P.deck.length && P.i < P.deck.length) {
@@ -1993,6 +2146,76 @@ function vPractice() {
     bindQ(d, P.type, P.opts,
       (g, ok, note) => { P.ans = { given: g, ok, note }; P.done++; if (ok) P.right++; else if (!P.miss.includes(d.id)) P.miss.push(d.id); record(d.id, ok); render(); },
       () => { P.i++; P.ans = null; P.opts = null; render(); });
+    if (P.type === "spell" && listen && !P.ans && P.said !== P.i) { P.said = P.i; say(plainS(d)); }
+  }
+}
+
+/* ---------- daily review (spaced repetition) ---------- */
+// One round: words that are due (lowest box first), topped up with new words, R_SIZE in all.
+// Boxes 0–2 ask multiple choice, boxes 3–5 ask spelling. A miss comes back a few questions later.
+const R_SIZE = 20;
+function startReview() {
+  const due = shuffle(dueList()).sort((a, b) => (stats[a.id].b || 0) - (stats[b.id].b || 0)).slice(0, R_SIZE);
+  const fresh = shuffle(newList()).slice(0, R_SIZE - due.length);
+  R = { q: shuffle([...due, ...fresh]).map(d => d.id), i: 0, ans: null, opts: null, type: null, tag: null, said: -1, first: {}, fresh: new Set(fresh.map(d => d.id)) };
+}
+const firstRight = () => Object.values(R.first).filter(Boolean).length;
+function nextDue() {
+  const t = dayStr(); let dt = null, n = 0;
+  Object.values(stats).forEach(s => { if (s.due && s.due > t) { if (!dt || s.due < dt) { dt = s.due; n = 1; } else if (s.due === dt) n++; } });
+  return dt ? { dt, n } : null;
+}
+function levelsHTML() {
+  const c = [0, 0, 0, 0];   // not tried, box 0–1, box 2–3, box 4–5
+  DATA.forEach(d => { const s = stats[d.id]; if (!s) c[0]++; else { const b = s.b || 0; c[b <= 1 ? 1 : b <= 3 ? 2 : 3]++; } });
+  const names = [L("還沒練過", "Not tried"), L("剛開始記", "Just started"), L("有印象", "Getting there"), L("記熟了", "Solid")];
+  return `<div class="lv">` + names.map((nm, k) => `<div class="wkrow"><span class="l">${nm}</span><span class="b"><i style="width:${c[k] / DATA.length * 100}%"></i></span><span class="r">${c[k]}</span></div>`).join("") + `</div>`;
+}
+function reviewSide() {
+  const n = Object.keys(R.first).length;
+  return `<aside class="play-side"><div class="ps-box"><div class="ps-lb">${L("這一輪", "This round")}</div>
+    <div class="ps-big">${R.q.length - R.i} <small>${L("題要做", "to go")}</small></div>
+    <div class="ps-row"><span>${L("一次就答對", "Right first time")}</span><b>${firstRight()} / ${n}</b></div>
+    <div class="ps-row"><span>${L("今天已答", "Answered today")}</span><b>${days[dayStr()] || 0} / ${GOAL}</b></div>
+    <div class="ps-row"><span>${L("連續天數", "Streak")}</span><b>${streak()}</b></div></div>
+    <div class="ps-box"><div class="ps-lb">${L("記憶程度（200 個字）", "Memory level (200 words)")}</div>${levelsHTML()}
+    <div class="ps-none" style="margin-top:.5rem">${L("答對的字隔 1、2、4、7、14 天再出現；答錯就從頭來。", "Words you get right come back after 1, 2, 4, 7, then 14 days. A miss starts the word over.")}</div></div>
+    ${keysBox(R.type === "mc" ? [["A–D 1–4", L("作答", "Answer")], ["Enter", L("下一題", "Next")]] : [["Enter", L("送出／下一題", "Check / next")]])}</aside>`;
+}
+function vReview() {
+  const left = R.q.length - R.i;
+  let h = topbar(L("今日複習", "Daily review"), R.q.length && left > 0 ? L(`剩 ${left} 題`, `${left} to go`) : "");
+  if (!R.q.length) {
+    const nx = nextDue();
+    h += `<div class="card center"><div class="big">🎉</div><div>${L("今天沒有要複習的字，200 個字也都練過了。", "Nothing is due today, and you have tried all 200 words.")}</div>
+      ${nx ? `<div class="small" style="margin-top:.375rem">${L(`下一次複習：${md(nx.dt)}，${nx.n} 個字`, `Next review: ${md(nx.dt)}, ${nx.n} words`)}</div>` : ""}
+      <div class="btns"><button class="btn pri" data-go="examSetup">${L("做一次模擬考", "Take a mock test")}</button><button class="btn" data-go="match">${L("玩配對遊戲", "Play the matching game")}</button></div></div>`;
+  } else if (R.i >= R.q.length) {
+    const n = Object.keys(R.first).length, ok = firstRight(), miss = n - ok, more = dueList().length, nw = newList().length;
+    const tm = addDays(dayStr(), 1), tmN = DATA.filter(d => { const s = stats[d.id]; return s && s.due && s.due <= tm; }).length;
+    const again = more ? L(`再複習 ${Math.min(more, R_SIZE)} 題`, `Review ${Math.min(more, R_SIZE)} more`) : nw ? L(`再學 ${Math.min(nw, R_SIZE)} 個新字`, `Learn ${Math.min(nw, R_SIZE)} new words`) : "";
+    h += `<div class="card center"><div class="big">${ok}<small> / ${n}</small></div><div>${L("一次就答對", "right the first time")}</div>
+      <p class="small">${miss ? L(`答錯的 ${miss} 個字已經多練一次，明天會再出現。`, `The ${miss} you missed got an extra try and come back tomorrow.`) : L("全部一次就答對 💯", "All right the first time 💯")}${L(`明天要複習 ${tmN} 個字。`, ` ${tmN} due tomorrow.`)}</p>
+      <div class="btns">${again ? `<button class="btn pri" id="rAgain">${again}</button>` : ""}<button class="btn" data-go="home">${L("回首頁", "Back to home")}</button></div></div>
+      <div class="sec">${L("記憶程度（200 個字）", "Memory level (200 words)")}</div>${levelsHTML()}`;
+  } else {
+    const id = R.q[R.i], d = DATA[id];
+    if (!R.type) { R.type = stats[id] && stats[id].b >= 3 ? "spell" : "mc"; R.tag = id in R.first ? "again" : R.fresh.has(id) ? "new" : "rev"; }
+    if (R.type === "mc" && !R.opts) R.opts = makeOpts(d);
+    const tg = { again: L("再一次", "Again"), new: L("新字", "New"), rev: L("複習", "Review") }[R.tag];
+    h += `<div class="play"><div class="play-main">` + qCard(d, R.type, R.opts, R.ans, `<b class="rtag ${R.tag}">${tg}</b>${R.i + 1} / ${R.q.length}`, true) + `</div>${reviewSide()}</div>`;
+  }
+  app.innerHTML = h; bindGo();
+  const ra = $("rAgain"); if (ra) ra.onclick = () => { startReview(); render(); window.scrollTo(0, 0); };
+  if (R.q.length && R.i < R.q.length) {
+    const d = DATA[R.q[R.i]];
+    bindQ(d, R.type, R.opts, (g, ok, note) => {
+      R.ans = { given: g, ok, note };
+      if (!(d.id in R.first)) R.first[d.id] = ok;
+      if (!ok) R.q.splice(Math.min(R.q.length, R.i + 4), 0, d.id);   // ask it again a few questions later
+      record(d.id, ok); render();
+    }, () => { R.i++; R.ans = null; R.opts = null; R.type = null; render(); });
+    if (R.type === "spell" && listen && !R.ans && R.said !== R.i) { R.said = R.i; say(plainS(d)); }
   }
 }
 
@@ -2087,7 +2310,7 @@ function vCard() {
     h += `<div class="play"><div class="play-main"><div class="card"><div class="meta"><span>Week ${d.wk}</span><span>${C.pos + 1} / ${C.deck.length}</span></div>
       <div class="sent">${sentHTML(d, C.rev ? "show" : "blank", true)}</div>${tipHTML()}
       <div class="hint">${L("中文：", "Chinese: ")}<b>${esc(d.zh)}</b></div>
-      ${C.rev ? `<div class="ans">${L("答案：", "Answer: ")}<span class="hl">${esc(d.w)}</span></div>${d.alt ? `<div class="alt">⚠ ${L("推測題：", "Guessed answer: ")}${esc(altText(d.alt))}</div>` : ""}` : ""}
+      ${C.rev ? `<div class="ans">${L("答案：", "Answer: ")}<span class="hl">${esc(d.w)}</span></div>${d.alt ? `<div class="alt">⚠ ${L("推測題：", "Guessed answer: ")}${esc(altText(d.alt))}</div>` : ""}${sayBtn(d)}` : ""}
       <div class="row">${C.rev ? `<button class="again" id="bA">${L("還不熟", "Not yet")}</button><button class="know" id="bK">${L("會了", "Got it")}</button>` : `<button class="reveal" id="bR">${L("看答案", "Show answer")}</button>`}</div>
       <div class="kbd">${C.rev ? L("鍵盤：<kbd>←</kbd> 還不熟、<kbd>→</kbd> 會了", "Keyboard: <kbd>←</kbd> not yet, <kbd>→</kbd> got it") : L("鍵盤：按 <kbd>空白鍵</kbd> 看答案", "Keyboard: press <kbd>Space</kbd> to show the answer")}</div></div></div>`;
   }
@@ -2108,6 +2331,79 @@ function vCard() {
   const mark = ok => { const d = C.deck[C.pos]; if (ok) known.add(d.id); else { known.delete(d.id); C.deck.push(d); } store(K_KNOWN, [...known]); C.pos++; C.rev = false; render(); };
   const bA = $("bA"); if (bA) bA.onclick = () => mark(false);
   const bK = $("bK"); if (bK) bK.onclick = () => mark(true);
+}
+
+/* ---------- matching game ---------- */
+const K_MATCH = "ncut-1152-vocab-match", M_PAIRS = 6;
+let matchBest = load(K_MATCH, {});   // range ("0" = all weeks, "6" = Week 6 …) -> best time in ms, wrong-match seconds included
+if (!matchBest || typeof matchBest !== "object") matchBest = {};
+const zhPlain = d => d.zh.replace(/（[A-Za-z\- ]+）/g, "").trim();   // "敲（knock）" would give the answer away
+const secs = ms => (ms / 1000).toFixed(1);
+function startMatch() {
+  if (timerId) { clearInterval(timerId); timerId = null; }
+  const pick = [], ws = new Set(), zs = new Set();
+  for (const d of shuffle(DATA.filter(x => !S.week || x.wk === S.week))) {
+    const w = d.base.toLowerCase(), z = zhPlain(d);
+    if (ws.has(w) || zs.has(z)) continue;
+    ws.add(w); zs.add(z); pick.push(d); if (pick.length === M_PAIRS) break;
+  }
+  M = { pick, tiles: shuffle([...pick.map(d => ({ id: d.id, en: true })), ...pick.map(d => ({ id: d.id, en: false }))]),
+        sel: null, left: pick.length, start: 0, end: 0, pen: 0, miss: 0, newBest: false };
+}
+function vMatch() {
+  const b = matchBest[String(S.week)];
+  const bestTxt = b ? L(`這個範圍最快 ${secs(b)} 秒`, `Best for this range: ${secs(b)} s`) : L("這個範圍還沒有紀錄", "No best time for this range yet");
+  let h = topbar(L("配對遊戲", "Matching game")) + chipsHTML(S.week);
+  if (M.end) {
+    const tm = M.end - M.start + M.pen;
+    h += `<div class="card center"><div class="big">${secs(tm)}<small> ${L("秒", "s")}</small></div>
+      <div>${M.miss ? L(`配錯 ${M.miss} 次（每次加 1 秒）`, `${M.miss} wrong ${M.miss === 1 ? "match" : "matches"} (+1 s each)`) : L("全部一次就配對成功", "No wrong matches")}</div>
+      ${M.newBest ? `<div><span class="newbest">🎉 ${L("這個範圍的新紀錄", "New best for this range")}</span></div>` : `<div class="small" style="margin-top:.375rem">${bestTxt}</div>`}
+      <div class="btns"><button class="btn pri" id="mAgain">${L("再玩一組", "Play another set")}</button><button class="btn" data-go="home">${L("回首頁", "Back to home")}</button></div></div>
+      <div class="sec">${L("這一組的字（點字看說明）", "Words in this set (tap a word for notes)")}</div><div class="items">` +
+      M.pick.map(d => `<div class="item" data-d="${d.id}"><div><span class="w wd">${esc(d.w)}</span><span class="z">${esc(zhPlain(d))}</span></div><div class="s">${sentHTML(d, "show")}</div></div>`).join("") + `</div>`;
+  } else {
+    h += `<div class="mtop"><span>${L("點一個英文字，再點它的中文意思。配錯會加 1 秒。", "Tap an English word, then its Chinese meaning. A wrong match adds 1 second.")}</span>
+      <span class="mclock"><span id="mclock">${secs(M.start ? Date.now() - M.start + M.pen : 0)}</span>${L(" 秒", " s")}<span class="mpen" id="mpen" hidden>+1</span></span></div>`;
+    h += `<div class="mgrid">` + M.tiles.map((t, k) => {
+      const d = DATA[t.id], tx = t.en ? d.base : zhPlain(d);
+      return `<button type="button" class="tile${t.en && tx.length >= 10 ? " long" : ""}${t.gone ? " gone" : ""}${M.sel === k ? " sel" : ""}" data-k="${k}"${t.en ? ' lang="en"' : ""}${t.gone ? " disabled" : ""}>${esc(tx)}</button>`;
+    }).join("") + `</div>`;
+    h += `<div class="statrow" style="margin-top:.75rem"><span class="stat">${bestTxt}</span><button class="linkbtn" id="mNew">${L("換一組字", "New words")}</button></div>`;
+  }
+  app.innerHTML = h; bindGo();
+  bindChips(w => { S.week = w; startMatch(); render(); });
+  ["mAgain", "mNew"].forEach(x => { const el = $(x); if (el) el.onclick = () => { startMatch(); render(); window.scrollTo(0, 0); }; });
+  app.querySelectorAll(".tile").forEach(el => el.onclick = () => tapTile(el));
+}
+function tapTile(el) {
+  const k = +el.dataset.k, t = M.tiles[k];
+  if (t.gone || M.end) return;
+  if (!M.start) {
+    M.start = Date.now(); const cur = M;
+    timerId = setInterval(() => { const c = $("mclock"); if (c && M === cur) c.textContent = secs(Date.now() - M.start + M.pen); }, 100);
+  }
+  const prev = M.sel == null ? null : app.querySelector(`.tile[data-k="${M.sel}"]`);
+  if (M.sel === k) { M.sel = null; el.classList.remove("sel"); return; }
+  if (M.sel == null || M.tiles[M.sel].en === t.en) { if (prev) prev.classList.remove("sel"); M.sel = k; el.classList.add("sel"); return; }
+  const a = M.tiles[M.sel]; M.sel = null;
+  if (a.id === t.id) {
+    a.gone = t.gone = true;
+    [prev, el].forEach(x => { x.classList.remove("sel"); x.classList.add("gone"); x.disabled = true; });
+    if (--M.left === 0) finishMatch();
+  } else {
+    M.pen += 1000; M.miss++;
+    [prev, el].forEach(x => { x.classList.remove("sel", "bad"); void x.offsetWidth; x.classList.add("bad"); setTimeout(() => x.classList.remove("bad"), 450); });
+    const pc = $("mpen"); if (pc) { pc.hidden = false; clearTimeout(pc._t); pc._t = setTimeout(() => { pc.hidden = true; }, 700); }
+  }
+}
+function finishMatch() {
+  if (timerId) { clearInterval(timerId); timerId = null; }
+  M.end = Date.now();
+  const key = String(S.week), tm = M.end - M.start + M.pen;
+  if (!matchBest[key] || tm < matchBest[key]) { matchBest[key] = tm; store(K_MATCH, matchBest); M.newBest = true; }
+  bumpDay(M_PAIRS);
+  const cur = M; setTimeout(() => { if (S.view === "match" && M === cur) { render(); window.scrollTo(0, 0); } }, 350);
 }
 
 /* ---------- word list ---------- */
