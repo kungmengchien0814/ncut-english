@@ -7,8 +7,8 @@
 <meta name="description" content="勤益科大語言中心 115-2 字彙測驗（英檢輔導A選課資格）練習：模擬考、選擇題、拼字、錯題本、單字卡。非官方網站。">
 <meta name="robots" content="noindex">
 <meta name="theme-color" content="#2f6fdb">
-<link rel="icon" href="favicon.svg?v=20261122c" type="image/svg+xml">
-<link rel="apple-touch-icon" href="apple-touch-icon.png?v=20261122c">
+<link rel="icon" href="favicon.svg?v=20261122d" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png?v=20261122d">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="zh_TW">
 <meta property="og:title" content="勤益 115-2 字彙測驗練習">
@@ -18,9 +18,11 @@
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
+<script>/* apply the saved theme and language before first paint */try{var t=JSON.parse(localStorage.getItem("ncut-vocab-theme"));if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t);if(JSON.parse(localStorage.getItem("ncut-vocab-lang"))==="en")document.documentElement.lang="en";}catch(e){}</script>
 <style>
-:root{--bg:#f7f7f5;--card:#fff;--fg:#1d1d1f;--mut:#6b6b70;--line:#e3e3e0;--acc:#2f6fdb;--acc2:#e8f0fd;--ok:#1f8a4c;--okb:#e6f4ec;--bad:#c0392b;--badb:#fdecea;--warn:#a85f00;--warnb:#fdf3e2;}
-@media (prefers-color-scheme:dark){:root{--bg:#141416;--card:#1e1e21;--fg:#ececee;--mut:#9a9aa1;--line:#2e2e33;--acc:#6ea0ff;--acc2:#1f2a40;--ok:#4cc483;--okb:#16301f;--bad:#ff7b72;--badb:#3a1c1c;--warn:#f0b04d;--warnb:#33270f;}}
+:root{color-scheme:light;--bg:#f7f7f5;--card:#fff;--fg:#1d1d1f;--mut:#6b6b70;--line:#e3e3e0;--acc:#2f6fdb;--acc2:#e8f0fd;--ok:#1f8a4c;--okb:#e6f4ec;--bad:#c0392b;--badb:#fdecea;--warn:#a85f00;--warnb:#fdf3e2;}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){color-scheme:dark;--bg:#141416;--card:#1e1e21;--fg:#ececee;--mut:#9a9aa1;--line:#2e2e33;--acc:#6ea0ff;--acc2:#1f2a40;--ok:#4cc483;--okb:#16301f;--bad:#ff7b72;--badb:#3a1c1c;--warn:#f0b04d;--warnb:#33270f;}}
+:root[data-theme="dark"]{color-scheme:dark;--bg:#141416;--card:#1e1e21;--fg:#ececee;--mut:#9a9aa1;--line:#2e2e33;--acc:#6ea0ff;--acc2:#1f2a40;--ok:#4cc483;--okb:#16301f;--bad:#ff7b72;--badb:#3a1c1c;--warn:#f0b04d;--warnb:#33270f;}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--fg);font-family:-apple-system,BlinkMacSystemFont,"PingFang TC","Noto Sans TC","Microsoft JhengHei",sans-serif;line-height:1.5;-webkit-text-size-adjust:100%}
 button{font-family:inherit;cursor:pointer}
@@ -167,6 +169,15 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--acc);outline-offset
 .nav .ic{width:22px;text-align:center;flex:none}
 .nav .badge{margin-left:auto;font-size:12px;background:var(--badb);color:var(--bad);border-radius:999px;padding:0 8px;font-weight:700}
 .side-foot{margin-top:auto;padding:14px 10px 0;font-size:12px;color:var(--mut);line-height:1.6}
+.side-foot p{margin:12px 0 0}
+/* theme and language switches */
+.seg.sm{display:inline-flex;padding:2px;gap:2px;border-radius:9px}
+.seg.sm button{flex:none;padding:5px 10px;font-size:13px;border-radius:7px}
+.prefs{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:8px;margin:0 0 6px}
+.pref{margin-top:10px}
+.pref-l{display:block;margin-bottom:4px;font-weight:600}
+.pref .seg.sm{display:flex}
+.pref .seg.sm button{flex:1}
 /* tablet: 720px and up */
 @media (min-width:720px){
   .wrap{max-width:880px;padding:24px 32px 56px}
@@ -198,6 +209,7 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--acc);outline-offset
   .wrap.v-rules{max-width:1080px}
   header.top{margin-bottom:18px}
   header.top .back{display:none}
+  .prefs{display:none}
   .ttl{font-size:22px}
   .home{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:32px;align-items:start}
   .home-side{padding-top:8px}
@@ -1540,6 +1552,41 @@ function record(id, ok) {
 }
 const wrongList = () => DATA.filter(d => stats[d.id] && stats[d.id].last === 0);
 
+/* ---------- theme and language ---------- */
+// Site settings, not tied to one semester's question bank, so their keys have no 1152.
+const K_THEME = "ncut-vocab-theme", K_LANG = "ncut-vocab-lang";
+let theme = load(K_THEME, "auto"), lang = load(K_LANG, "zh");
+if (!["auto", "light", "dark"].includes(theme)) theme = "auto";
+if (lang !== "en") lang = "zh";
+const L = (zh, en) => lang === "en" ? en : zh;
+function applyTheme() {
+  if (theme === "auto") document.documentElement.removeAttribute("data-theme");
+  else document.documentElement.setAttribute("data-theme", theme);
+}
+function applyLang() {
+  document.documentElement.lang = lang === "en" ? "en" : "zh-Hant";
+  document.title = L("勤益 115-2 字彙測驗練習", "NCUT 115-2 Vocabulary Test Practice");
+}
+function prefsHTML(labels) {
+  const seg = (attr, cur, opts, name) => `<div class="seg sm" role="group" aria-label="${name}">` + opts.map(([v, t, l]) =>
+    `<button type="button" data-${attr}="${v}" class="${v === cur ? "on" : ""}" aria-pressed="${v === cur}"${l ? ` lang="${l}"` : ""}>${t}</button>`).join("") + `</div>`;
+  const th = seg("theme-set", theme, [["auto", L("自動", "Auto")], ["light", L("淺色", "Light")], ["dark", L("深色", "Dark")]], L("外觀", "Theme"));
+  const lg = seg("lang-set", lang, [["zh", "中文", "zh-Hant"], ["en", "English", "en"]], L("語言", "Language"));
+  return labels ? `<div class="pref"><span class="pref-l">${L("外觀", "Theme")}</span>${th}</div><div class="pref"><span class="pref-l">${L("語言", "Language")}</span>${lg}</div>`
+    : `<div class="prefs">${th}${lg}</div>`;
+}
+document.addEventListener("click", e => {
+  const b = e.target.closest && e.target.closest("[data-theme-set],[data-lang-set]");
+  if (!b) return;
+  if (b.dataset.themeSet) {
+    theme = b.dataset.themeSet; store(K_THEME, theme); applyTheme();
+    document.querySelectorAll("[data-theme-set]").forEach(x => { const on = x.dataset.themeSet === theme; x.classList.toggle("on", on); x.setAttribute("aria-pressed", on); });
+  } else if (b.dataset.langSet !== lang) {
+    lang = b.dataset.langSet; store(K_LANG, lang); applyLang(); buildSide(); render();
+  }
+});
+const altText = a => L(a, a.replace(/^也可能考\s*/, "Might also test ").replace(/（/g, " (").replace(/）/g, ")"));
+
 /* ---------- helpers ---------- */
 const $ = id => document.getElementById(id);
 const app = $("app");
@@ -1577,14 +1624,14 @@ function checkSpell(d, given) {
   const g = norm(given), ans = d.w.toLowerCase();
   if (g === ans) return { ok: true, note: "" };
   let note = "";
-  if (d.base !== d.w && g === d.base.toLowerCase()) note = `詞形要跟句子一致，要寫 ${d.w}`;
-  else if (lev(g, ans) <= 1) note = "只差一個字母，注意拼法";
+  if (d.base !== d.w && g === d.base.toLowerCase()) note = L(`詞形要跟句子一致，要寫 ${d.w}`, `Use the form that fits the sentence: ${d.w}`);
+  else if (lev(g, ans) <= 1) note = L("只差一個字母，注意拼法", "One letter off. Check the spelling.");
   return { ok: false, note };
 }
 
 /* ---------- shared UI ---------- */
-function topbar(t, extra = "") { return `<header class="top"><button class="back" data-go="home">‹ 首頁</button><span class="ttl">${t}</span><span class="tr">${extra}</span></header>`; }
-function chipsHTML(sel) { return `<div class="chips" id="chips">` + [0, ...WEEKS].map(w => `<button class="chip${w === sel ? " on" : ""}" data-w="${w}">${w ? "Week " + w : "全部"}</button>`).join("") + `</div>`; }
+function topbar(t, extra = "") { return `<header class="top"><button class="back" data-go="home">‹ ${L("首頁", "Home")}</button><span class="ttl">${t}</span><span class="tr">${extra}</span></header>`; }
+function chipsHTML(sel) { return `<div class="chips" id="chips">` + [0, ...WEEKS].map(w => `<button class="chip${w === sel ? " on" : ""}" data-w="${w}">${w ? "Week " + w : L("全部", "All")}</button>`).join("") + `</div>`; }
 function bindChips(cb) { const el = $("chips"); if (el) el.querySelectorAll(".chip").forEach(b => b.onclick = () => cb(+b.dataset.w)); }
 function bindGo() { app.querySelectorAll("[data-go]").forEach(b => b.onclick = () => go(b.dataset.go, b.dataset.arg)); }
 
@@ -1593,23 +1640,23 @@ function qCard(d, type, opts, ans, progress, feedback) {
   let h = `<div class="card"><div class="meta"><span>Week ${d.wk}</span><span>${progress}</span></div>`;
   h += `<div class="sent">${sentHTML(d, show ? "show" : "blank", type === "spell" && hintFirst, feedback)}</div>`;
   if (feedback) h += tipHTML();
-  if (type === "spell" || show) h += `<div class="hint">中文：<b>${esc(d.zh)}</b></div>`;
+  if (type === "spell" || show) h += `<div class="hint">${L("中文：", "Chinese: ")}<b>${esc(d.zh)}</b></div>`;
   if (type === "mc") {
     h += `<div class="optlist">` + opts.map((o, k) => {
       let c = "opt";
       if (show) { if (o === d.w) c += " right"; else if (o === ans.given) c += " wrong"; }
       return `<button class="${c}" data-o="${k}"${show ? " disabled" : ""}>${String.fromCharCode(65 + k)}. ${esc(o)}</button>`;
     }).join("") + `</div>`;
-    if (!show) h += `<div class="kbd">鍵盤：按 <kbd>A</kbd>–<kbd>D</kbd> 或 <kbd>1</kbd>–<kbd>4</kbd> 作答</div>`;
+    if (!show) h += `<div class="kbd">${L("鍵盤：按 <kbd>A</kbd>–<kbd>D</kbd> 或 <kbd>1</kbd>–<kbd>4</kbd> 作答", "Keyboard: press <kbd>A</kbd>–<kbd>D</kbd> or <kbd>1</kbd>–<kbd>4</kbd> to answer")}</div>`;
   } else {
-    h += `<form id="spf" autocomplete="off"><input class="sp" id="spi" type="text" autocapitalize="off" autocorrect="off" spellcheck="false" enterkeyhint="done" placeholder="輸入英文單字"${show ? ` disabled value="${esc(ans.given)}"` : ""}>${show ? "" : `<button class="btn pri wide" type="submit">送出</button>`}</form>`;
-    if (!show) h += `<div class="kbd">按 <kbd>Enter</kbd> 送出</div>`;
+    h += `<form id="spf" autocomplete="off"><input class="sp" id="spi" type="text" autocapitalize="off" autocorrect="off" spellcheck="false" enterkeyhint="done" placeholder="${L("輸入英文單字", "Type the English word")}"${show ? ` disabled value="${esc(ans.given)}"` : ""}>${show ? "" : `<button class="btn pri wide" type="submit">${L("送出", "Check")}</button>`}</form>`;
+    if (!show) h += `<div class="kbd">${L("按 <kbd>Enter</kbd> 送出", "Press <kbd>Enter</kbd> to check")}</div>`;
   }
   if (show) {
-    h += ans.ok ? `<div class="fb ok">✓ 答對了</div>`
-      : `<div class="fb no">✗ 正確答案：<b>${esc(d.w)}</b>${ans.note ? `<br><span>${esc(ans.note)}</span>` : ""}</div>`;
-    if (d.alt) h += `<div class="alt">⚠ 推測題：${esc(d.alt)}</div>`;
-    h += `<button class="btn pri wide" id="next">下一題</button><div class="kbd">按 <kbd>Enter</kbd> 下一題</div>`;
+    h += ans.ok ? `<div class="fb ok">✓ ${L("答對了", "Correct")}</div>`
+      : `<div class="fb no">✗ ${L("正確答案：", "Answer: ")}<b>${esc(d.w)}</b>${ans.note ? `<br><span>${esc(ans.note)}</span>` : ""}</div>`;
+    if (d.alt) h += `<div class="alt">⚠ ${L("推測題：", "Guessed answer: ")}${esc(altText(d.alt))}</div>`;
+    h += `<button class="btn pri wide" id="next">${L("下一題", "Next")}</button><div class="kbd">${L("按 <kbd>Enter</kbd> 下一題", "Press <kbd>Enter</kbd> for the next one")}</div>`;
   }
   return h + `</div>`;
 }
@@ -1629,6 +1676,10 @@ function bindQ(d, type, opts, onAnswer, onNext) {
 /* ---------- word help (tap a word) ---------- */
 const POS_ZH = { n: "名詞", v: "動詞", adj: "形容詞", adv: "副詞", prep: "介系詞", conj: "連接詞", pron: "代名詞", art: "冠詞",
   aux: "助動詞", num: "數字", name: "人名", place: "地名", prop: "專有名詞", abbr: "縮寫", typo: "原檔錯字" };
+const POS_EN = { n: "noun", v: "verb", adj: "adjective", adv: "adverb", prep: "preposition", conj: "conjunction", pron: "pronoun", art: "article",
+  aux: "auxiliary verb", num: "number", name: "name", place: "place", prop: "proper noun", abbr: "abbreviation", typo: "typo in the original" };
+const FT_EN = { "過去式": "past tense", "過去分詞": "past participle", "過去式、過去分詞": "past tense and past participle", "現在式": "present tense",
+  "第三人稱單數": "third-person singular", "複數": "plural", "-ing 形": "-ing form", "比較級": "comparative", "最高級": "superlative" };
 const TGT = new Map(DATA.map(d => [d.w.toLowerCase(), d]));
 const NOTES = new Map(NOTE.trim().split("\n").map(l => { const [w, pos, n] = l.split("|"); return [w, { pos, n }]; }));
 const DICTM = new Map(DICT.trim().split("\n").map(l => {
@@ -1640,7 +1691,7 @@ const PHRS = PHR.trim().split("\n").map(l => {
 });
 const canSay = typeof speechSynthesis !== "undefined" && typeof SpeechSynthesisUtterance !== "undefined";
 let tipSeen = load(K_TIP, false), popEl = null, popBg = null, popWord = null, popPrev = null, popVW = 0;
-function tipHTML() { return tipSeen ? "" : `<div class="tip">👆 句子裡不懂的字，點一下就有中文和說明</div>`; }
+function tipHTML() { return tipSeen ? "" : `<div class="tip">👆 ${L("句子裡不懂的字，點一下就有中文和說明", "Tap any word in a sentence to see its Chinese meaning and notes")}</div>`; }
 function say(t) {
   try { speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(t); u.lang = "en-US"; u.rate = 0.9; speechSynthesis.speak(u); } catch (e) {}
 }
@@ -1655,12 +1706,17 @@ function wordInfo(tok) {
 function popHTML(tok, sid) {
   const e = wordInfo(tok), noLink = ["name", "typo", "abbr"].includes(e.pos);
   let h = `<div class="pop-h"><b class="pop-w" lang="en">${esc(tok)}</b>`;
-  if (canSay && !noLink) h += `<button class="pop-say" id="popSay" aria-label="念出 ${esc(tok)}" title="發音">🔊</button>`;
-  h += `<button class="pop-x" id="popX" aria-label="關閉">✕</button></div>`;
-  if (!e.zh) return h + `<p class="pop-n">這個字還沒有收錄說明。</p>`;
-  h += `<div class="pop-zh">${e.pos && e.pos !== "name" ? `<span class="pop-pos">${POS_ZH[e.pos] || esc(e.pos)}</span>` : ""}${esc(e.zh)}</div>`;
-  if (e.ft) h += `<p class="pop-n">${e.h !== e.k ? `<span lang="en">${esc(e.k)}</span> 是 <b lang="en">${esc(e.h)}</b> 的` : "這裡是"}${e.ft[0] === "-" ? " " : ""}${esc(e.ft)}。</p>`;
-  if (e.poss) h += `<p class="pop-n">字尾的 's 表示所有格，意思是「…的」。</p>`;
+  if (canSay && !noLink) h += `<button class="pop-say" id="popSay" aria-label="${L("念出", "Say")} ${esc(tok)}" title="${L("發音", "Pronounce")}">🔊</button>`;
+  h += `<button class="pop-x" id="popX" aria-label="${L("關閉", "Close")}">✕</button></div>`;
+  if (!e.zh) return h + `<p class="pop-n">${L("這個字還沒有收錄說明。", "No notes for this word yet.")}</p>`;
+  const posT = lang === "en" ? POS_EN[e.pos] : POS_ZH[e.pos];
+  h += `<div class="pop-zh">${e.pos && e.pos !== "name" ? `<span class="pop-pos">${posT || esc(e.pos)}</span>` : ""}${esc(e.zh)}</div>`;
+  if (e.ft) {
+    const ft = FT_EN[e.ft] || e.ft, k = `<span lang="en">${esc(e.k)}</span>`, hd = `<b lang="en">${esc(e.h)}</b>`;
+    h += `<p class="pop-n">${e.h !== e.k ? L(`${k} 是 ${hd} 的${e.ft[0] === "-" ? " " : ""}${esc(e.ft)}。`, `${k} is the ${esc(ft)} of ${hd}.`)
+      : L(`這裡是${esc(e.ft)}。`, `Here it is the ${esc(ft)}.`)}</p>`;
+  }
+  if (e.poss) h += `<p class="pop-n">${L("字尾的 's 表示所有格，意思是「…的」。", "The 's ending shows possession: it means “belonging to …”.")}</p>`;
   if (e.n) h += `<p class="pop-n">${esc(e.n)}</p>`;
   const d = sid == null ? null : DATA[sid];
   if (d) {   // phrases in the sentence this word was tapped in
@@ -1668,16 +1724,16 @@ function popHTML(tok, sid) {
     const hits = PHRS.filter(p => p.ws.has(e.k) && p.re.test(low) && !e.n.toLowerCase().includes(p.p)).map(p => {
       const m = p.re.exec(low); return `<div><b lang="en">${esc(plain.substr(m.index + m[1].length, p.p.length))}</b>　${esc(p.zh)}</div>`;
     });
-    if (hits.length) h += `<div class="pop-sec pop-phr"><span class="pop-lb">這句裡的片語</span>${hits.join("")}</div>`;
+    if (hits.length) h += `<div class="pop-sec pop-phr"><span class="pop-lb">${L("這句裡的片語", "Phrases in this sentence")}</span>${hits.join("")}</div>`;
   }
   if (e.tgt) {
     const t = e.tgt;
-    h += `<div class="pop-sec pop-tgt"><span class="pop-lb">題庫考點・Week ${t.wk}</span>`;
-    h += t.id === sid ? `這個字就是這一題的答案。` : `<div lang="en">${sentHTML(t, "show", false, false)}</div>`;
-    if (t.alt) h += `<div class="alt">⚠ 推測題：${esc(t.alt)}</div>`;
+    h += `<div class="pop-sec pop-tgt"><span class="pop-lb">${L("題庫考點・Week", "Test word, Week")} ${t.wk}</span>`;
+    h += t.id === sid ? L("這個字就是這一題的答案。", "This word is the answer to this question.") : `<div lang="en">${sentHTML(t, "show", false, false)}</div>`;
+    if (t.alt) h += `<div class="alt">⚠ ${L("推測題：", "Guessed answer: ")}${esc(altText(t.alt))}</div>`;
     h += `</div>`;
   }
-  if (!noLink) h += `<a class="pop-more" href="https://tw.dictionary.search.yahoo.com/search?p=${encodeURIComponent(e.h)}" target="_blank" rel="noopener">到 Yahoo 字典查 ${esc(e.h)} 的音標和更多例句（另開分頁）</a>`;
+  if (!noLink) h += `<a class="pop-more" href="https://tw.dictionary.search.yahoo.com/search?p=${encodeURIComponent(e.h)}" target="_blank" rel="noopener">${L(`到 Yahoo 字典查 ${esc(e.h)} 的音標和更多例句（另開分頁）`, `Look up ${esc(e.h)} in Yahoo Dictionary for pronunciation and more examples (opens a new tab)`)}</a>`;
   return h;
 }
 // Before a question is answered, drop any line of the popup that would give its answer away.
@@ -1696,7 +1752,7 @@ function openPop(w) {
   popWord = w; w.classList.add("on");
   popBg = document.createElement("div"); popBg.className = "pop-bg";
   popEl = document.createElement("div"); popEl.className = "pop"; popEl.tabIndex = -1;
-  popEl.setAttribute("role", "dialog"); popEl.setAttribute("aria-label", tok + " 的意思");
+  popEl.setAttribute("role", "dialog"); popEl.setAttribute("aria-label", L(tok + " 的意思", "Meaning of " + tok));
   popEl.innerHTML = popHTML(tok, sid);
   if (sid != null && holder.querySelector(".blank")) hideAnswer(popEl, DATA[sid]);
   document.body.append(popBg, popEl);
@@ -1743,13 +1799,18 @@ function go(v, arg) {
   render(); window.scrollTo(0, 0);
 }
 const NARROW = new Set(["mc", "spell", "wrong", "card", "examSetup", "exam", "result"]);
-const NAV = [["home", "🏠", "首頁"], ["examSetup", "📝", "模擬考"], ["mc", "🔘", "選擇題練習"], ["spell", "⌨️", "拼字練習"],
-  ["wrong", "❗", "錯題本"], ["card", "🃏", "單字卡"], ["list", "📖", "單字表"], ["rules", "🎓", "畢業門檻說明"]];
+const NAV = () => [["home", "🏠", L("首頁", "Home")], ["examSetup", "📝", L("模擬考", "Mock test")], ["mc", "🔘", L("選擇題練習", "Multiple choice")],
+  ["spell", "⌨️", L("拼字練習", "Spelling")], ["wrong", "❗", L("錯題本", "Mistakes")], ["card", "🃏", L("單字卡", "Flashcards")],
+  ["list", "📖", L("單字表", "Word list")], ["rules", "🎓", L("畢業門檻說明", "Graduation requirement")]];
 const side = $("side");
-side.innerHTML = `<div class="brand"><b>勤益 115-2</b><span>字彙測驗練習</span></div>` +
-  NAV.map(([v, ic, t]) => `<button class="nav" data-go="${v}"${v === "wrong" ? ' data-arg="mc"' : ""}><span class="ic">${ic}</span>${t}${v === "wrong" ? '<span class="badge" id="navWrong" hidden></span>' : ""}</button>`).join("") +
-  `<div class="side-foot">同學自製的非官方練習網站。練習紀錄只存在這台裝置。</div>`;
-side.querySelectorAll("[data-go]").forEach(b => b.onclick = () => go(b.dataset.go, b.dataset.arg));
+function buildSide() {
+  side.setAttribute("aria-label", L("功能選單", "Menu"));
+  side.innerHTML = `<div class="brand"><b>${L("勤益 115-2", "NCUT 115-2")}</b><span>${L("字彙測驗練習", "Vocabulary test practice")}</span></div>` +
+    NAV().map(([v, ic, t]) => `<button class="nav" data-go="${v}"${v === "wrong" ? ' data-arg="mc"' : ""}><span class="ic">${ic}</span>${t}${v === "wrong" ? '<span class="badge" id="navWrong" hidden></span>' : ""}</button>`).join("") +
+    `<div class="side-foot">${prefsHTML(true)}<p>${L("同學自製的非官方練習網站。練習紀錄只存在這台裝置。", "Unofficial practice site made by a student. Your records stay on this device.")}</p></div>`;
+  side.querySelectorAll("[data-go]").forEach(b => b.onclick = () => go(b.dataset.go, b.dataset.arg));
+}
+applyTheme(); applyLang(); buildSide();
 function renderSide() {
   const cur = { exam: "examSetup", result: "examSetup" }[S.view] || S.view;
   side.querySelectorAll(".nav").forEach(b => {
@@ -1781,31 +1842,33 @@ function vHome() {
   let r = 0, w = 0; Object.values(stats).forEach(s => { r += s.r; w += s.w; });
   const acc = r + w ? Math.round(r / (r + w) * 100) + "%" : "—";
   const wl = wrongList().length;
-  let h = `<div class="home"><div class="home-main"><h1>勤益 115-2 字彙測驗練習</h1><p class="sub">語言中心題庫｜Week 6–10、16–20｜共 200 句</p>
+  let h = prefsHTML(false) + `<div class="home"><div class="home-main"><h1>${L("勤益 115-2 字彙測驗練習", "NCUT 115-2 Vocabulary Test Practice")}</h1><p class="sub">${L("語言中心題庫｜Week 6–10、16–20｜共 200 句", "Language Center question bank | Weeks 6–10, 16–20 | 200 sentences")}</p>
   <div class="grid">
-    <button class="mode primary" data-go="examSetup"><div class="ic">📝</div><div class="n">模擬考</div><div class="d">隨機出題、計時，交卷後看分數和錯題</div></button>
-    <button class="mode" data-go="mc"><div class="ic">🔘</div><div class="n">選擇題練習</div><div class="d">4 選 1，馬上對答案</div></button>
-    <button class="mode" data-go="spell"><div class="ic">⌨️</div><div class="n">拼字練習</div><div class="d">看句子和中文，打出單字</div></button>
-    <button class="mode" data-go="wrong" data-arg="mc"><div class="ic">❗</div><div class="n">錯題本</div><div class="d">目前 ${wl} 題，答對就移出</div></button>
-    <button class="mode" data-go="card"><div class="ic">🃏</div><div class="n">單字卡</div><div class="d">翻卡記憶</div></button>
-    <button class="mode" data-go="list"><div class="ic">📖</div><div class="n">單字表</div><div class="d">200 個字＋例句，可搜尋</div></button>
-    <button class="mode" data-go="rules"><div class="ic">🎓</div><div class="n">畢業門檻說明</div><div class="d">要不要考字彙測驗、場次、申請流程</div></button>
+    <button class="mode primary" data-go="examSetup"><div class="ic">📝</div><div class="n">${L("模擬考", "Mock test")}</div><div class="d">${L("隨機出題、計時，交卷後看分數和錯題", "Random questions, timed. See your score and mistakes when you hand in.")}</div></button>
+    <button class="mode" data-go="mc"><div class="ic">🔘</div><div class="n">${L("選擇題練習", "Multiple choice")}</div><div class="d">${L("4 選 1，馬上對答案", "Pick 1 of 4 and check right away")}</div></button>
+    <button class="mode" data-go="spell"><div class="ic">⌨️</div><div class="n">${L("拼字練習", "Spelling")}</div><div class="d">${L("看句子和中文，打出單字", "Read the sentence and the Chinese, type the word")}</div></button>
+    <button class="mode" data-go="wrong" data-arg="mc"><div class="ic">❗</div><div class="n">${L("錯題本", "Mistakes")}</div><div class="d">${L(`目前 ${wl} 題，答對就移出`, `${wl} now. Answer one right to clear it.`)}</div></button>
+    <button class="mode" data-go="card"><div class="ic">🃏</div><div class="n">${L("單字卡", "Flashcards")}</div><div class="d">${L("翻卡記憶", "Flip and memorize")}</div></button>
+    <button class="mode" data-go="list"><div class="ic">📖</div><div class="n">${L("單字表", "Word list")}</div><div class="d">${L("200 個字＋例句，可搜尋", "200 words with examples, searchable")}</div></button>
+    <button class="mode" data-go="rules"><div class="ic">🎓</div><div class="n">${L("畢業門檻說明", "Graduation requirement")}</div><div class="d">${L("要不要考字彙測驗、場次、申請流程", "Do you need the test, dates, how to apply")}</div></button>
   </div></div>
   <aside class="home-side"><div class="stats">
-    <div class="st"><b>${tried}</b><span>已練過 /200</span></div>
-    <div class="st"><b>${acc}</b><span>正確率</span></div>
-    <div class="st"><b>${wl}</b><span>錯題</span></div>
-    <div class="st"><b>${best ? best.score : "—"}</b><span>模擬考最佳</span></div>
+    <div class="st"><b>${tried}</b><span>${L("已練過 /200", "done /200")}</span></div>
+    <div class="st"><b>${acc}</b><span>${L("正確率", "accuracy")}</span></div>
+    <div class="st"><b>${wl}</b><span>${L("錯題", "mistakes")}</span></div>
+    <div class="st"><b>${best ? best.score : "—"}</b><span>${L("模擬考最佳", "best test")}</span></div>
   </div>
-  <div class="sec">各週掌握度（最近一次答對）</div><div class="weeks">`;
+  <div class="sec">${L("各週掌握度（最近一次答對）", "Mastery by week (last answer right)")}</div><div class="weeks">`;
   h += WEEKS.map(wk => {
     const items = DATA.filter(d => d.wk === wk), m = items.filter(d => stats[d.id] && stats[d.id].last === 1).length;
     return `<div class="wkrow"><span class="l">Week ${wk}</span><span class="b"><i style="width:${m / items.length * 100}%"></i></span><span class="r">${m}/${items.length}</span></div>`;
   }).join("");
-  h += `</div></aside></div><p class="note">本站為同學自製的非官方練習網站。題目來源：勤益語言中心〈115-2字彙測驗題庫.pdf〉（<a href="https://lgc.ncut.edu.tw/p/405-1029-95793,c82.php?Lang=zh-tw" style="color:inherit">官方公告</a>）。原檔只有少數重點字是粗體，其餘考點依句意判斷；標「推測」的題目可能考句中另一個字，兩個都記最保險。句子照原檔保留（含原有錯字）。正式題型與及格標準以語言中心公告為準。練習紀錄只存在這台裝置的瀏覽器。</p>
-  <div class="statrow"><span></span><button class="linkbtn" id="resetAll">清除所有練習紀錄</button></div>`;
+  const notice = `<a href="https://lgc.ncut.edu.tw/p/405-1029-95793,c82.php?Lang=zh-tw" style="color:inherit">${L("官方公告", "official notice, in Chinese")}</a>`;
+  h += `</div></aside></div><p class="note">${L(`本站為同學自製的非官方練習網站。題目來源：勤益語言中心〈115-2字彙測驗題庫.pdf〉（${notice}）。原檔只有少數重點字是粗體，其餘考點依句意判斷；標「推測」的題目可能考句中另一個字，兩個都記最保險。句子照原檔保留（含原有錯字）。正式題型與及格標準以語言中心公告為準。練習紀錄只存在這台裝置的瀏覽器。`,
+    `An unofficial practice site made by a student. The questions come from the NCUT Language Center file 115-2字彙測驗題庫.pdf (${notice}). Only a few key words are bold in that file, so the other answers were worked out from each sentence. Questions marked “guess” may test a different word in the sentence; learn both to be safe. Sentences are kept exactly as in the original, typos included. The official test format and passing score are whatever the Language Center announces. Your practice records stay in this browser only.`)}</p>
+  <div class="statrow"><span></span><button class="linkbtn" id="resetAll">${L("清除所有練習紀錄", "Clear all practice records")}</button></div>`;
   app.innerHTML = h; bindGo();
-  twoTap("resetAll", "清除所有練習紀錄", "再按一次確認清除", () => {
+  twoTap("resetAll", L("清除所有練習紀錄", "Clear all practice records"), L("再按一次確認清除", "Tap again to clear everything"), () => {
     stats = {}; best = null; known = new Set(); store(K_STATS, stats); store(K_BEST, null); store(K_KNOWN, []); render();
   });
 }
@@ -1817,19 +1880,19 @@ function startPractice(type, source) {
 }
 function vPractice() {
   const isW = P.source === "wrong";
-  const title = isW ? "錯題本" : (P.type === "mc" ? "選擇題練習" : "拼字練習");
-  let h = topbar(title, `答對 ${P.right}/${P.done}`);
+  const title = isW ? L("錯題本", "Mistakes") : (P.type === "mc" ? L("選擇題練習", "Multiple choice") : L("拼字練習", "Spelling"));
+  let h = topbar(title, L(`答對 ${P.right}/${P.done}`, `Correct ${P.right}/${P.done}`));
   if (!isW) h += chipsHTML(S.week);
   h += `<div class="opts">`;
-  if (isW) h += `<div class="seg"><button class="${P.type === "mc" ? "on" : ""}" data-t="mc">選擇題</button><button class="${P.type === "spell" ? "on" : ""}" data-t="spell">拼字</button></div>`;
-  if (P.type === "spell") h += `<label><input type="checkbox" id="hint"${hintFirst ? " checked" : ""}>提示字首和字數</label>`;
+  if (isW) h += `<div class="seg"><button class="${P.type === "mc" ? "on" : ""}" data-t="mc">${L("選擇題", "Multiple choice")}</button><button class="${P.type === "spell" ? "on" : ""}" data-t="spell">${L("拼字", "Spelling")}</button></div>`;
+  if (P.type === "spell") h += `<label><input type="checkbox" id="hint"${hintFirst ? " checked" : ""}>${L("提示字首和字數", "Show first letter and length")}</label>`;
   h += `</div>`;
   if (!P.deck.length) {
-    h += `<div class="card"><div class="empty">${isW ? "目前沒有錯題 🎉<br><span class='small'>練習或模擬考答錯的題目會自動收進來</span>" : "沒有題目"}</div></div>`;
+    h += `<div class="card"><div class="empty">${isW ? L("目前沒有錯題 🎉<br><span class='small'>練習或模擬考答錯的題目會自動收進來</span>", "No mistakes right now 🎉<br><span class='small'>Questions you miss in practice or mock tests are added here automatically</span>") : L("沒有題目", "No questions")}</div></div>`;
   } else if (P.i >= P.deck.length) {
     const pct = P.done ? Math.round(P.right / P.done * 100) : 0, wl = wrongList().length;
-    h += `<div class="card center"><div class="big">${pct}<small>%</small></div><div>這一輪答對 ${P.right} / ${P.done}</div>
-      <div class="btns"><button class="btn pri" id="again">再來一輪</button>${wl && !isW ? `<button class="btn" data-go="wrong" data-arg="${P.type}">練錯題（${wl}）</button>` : ""}${isW && wl ? `<button class="btn" id="again2">再練剩下的 ${wl} 題</button>` : ""}</div></div>`;
+    h += `<div class="card center"><div class="big">${pct}<small>%</small></div><div>${L(`這一輪答對 ${P.right} / ${P.done}`, `This round: ${P.right} / ${P.done} correct`)}</div>
+      <div class="btns"><button class="btn pri" id="again">${L("再來一輪", "Another round")}</button>${wl && !isW ? `<button class="btn" data-go="wrong" data-arg="${P.type}">${L(`練錯題（${wl}）`, `Practice mistakes (${wl})`)}</button>` : ""}${isW && wl ? `<button class="btn" id="again2">${L(`再練剩下的 ${wl} 題`, `Practice the ${wl} left`)}</button>` : ""}</div></div>`;
   } else {
     const d = P.deck[P.i];
     if (P.type === "mc" && !P.opts) P.opts = makeOpts(d);
@@ -1853,13 +1916,14 @@ function vPractice() {
 function vExamSetup() {
   const poolN = DATA.filter(d => !EX.week || d.wk === EX.week).length;
   const n = Math.min(EX.count, poolN);
-  let h = topbar("模擬考");
-  h += `<div class="sec">範圍</div>` + chipsHTML(EX.week);
-  h += `<div class="sec">題數</div><div class="seg">` + [20, 50, 100, 200].map(c => `<button class="${EX.count === c ? "on" : ""}" data-n="${c}">${c === 200 ? "全部" : c + " 題"}</button>`).join("") + `</div>`;
-  h += `<div class="sec">題型</div><div class="seg">` + [["mc", "選擇題"], ["spell", "拼字"], ["mix", "混合"]].map(([k, t]) => `<button class="${EX.type === k ? "on" : ""}" data-ty="${k}">${t}</button>`).join("") + `</div>`;
-  if (EX.type !== "mc") h += `<div class="opts" style="margin-top:12px"><label><input type="checkbox" id="hint"${hintFirst ? " checked" : ""}>拼字題提示字首和字數</label></div>`;
-  h += `<button class="btn pri wide" id="start">開始考試（${n} 題）</button>`;
-  h += `<p class="note">交卷前不會顯示對錯，答錯的題目會自動收進錯題本。20 題以上的模擬考會記錄最佳成績。正式考試一場 60 分鐘（1/19 那場 2 小時）、每天最多考 2 次；正式題型與及格標準以語言中心為準。</p>`;
+  let h = topbar(L("模擬考", "Mock test"));
+  h += `<div class="sec">${L("範圍", "Range")}</div>` + chipsHTML(EX.week);
+  h += `<div class="sec">${L("題數", "Questions")}</div><div class="seg">` + [20, 50, 100, 200].map(c => `<button class="${EX.count === c ? "on" : ""}" data-n="${c}">${c === 200 ? L("全部", "All") : L(c + " 題", c)}</button>`).join("") + `</div>`;
+  h += `<div class="sec">${L("題型", "Type")}</div><div class="seg">` + [["mc", L("選擇題", "Multiple choice")], ["spell", L("拼字", "Spelling")], ["mix", L("混合", "Mixed")]].map(([k, t]) => `<button class="${EX.type === k ? "on" : ""}" data-ty="${k}">${t}</button>`).join("") + `</div>`;
+  if (EX.type !== "mc") h += `<div class="opts" style="margin-top:12px"><label><input type="checkbox" id="hint"${hintFirst ? " checked" : ""}>${L("拼字題提示字首和字數", "Show first letter and length in spelling questions")}</label></div>`;
+  h += `<button class="btn pri wide" id="start">${L(`開始考試（${n} 題）`, `Start test (${n} questions)`)}</button>`;
+  h += `<p class="note">${L("交卷前不會顯示對錯，答錯的題目會自動收進錯題本。20 題以上的模擬考會記錄最佳成績。正式考試一場 60 分鐘（1/19 那場 2 小時）、每天最多考 2 次；正式題型與及格標準以語言中心為準。",
+    "You won't see right or wrong until you hand in, and missed questions go to your mistakes list. Mock tests of 20 questions or more record your best score. The real test is 60 minutes (2 hours for the Jan 19 session), at most twice a day. The Language Center sets the official format and passing score.")}</p>`;
   app.innerHTML = h; bindGo();
   bindChips(w => { EX.week = w; render(); });
   app.querySelectorAll("[data-n]").forEach(b => b.onclick = () => { EX.count = +b.dataset.n; render(); });
@@ -1880,16 +1944,16 @@ function startExam() {
 }
 function vExam() {
   const q = E.qs[E.i];
-  let h = topbar("模擬考", `<span id="timer">⏱ ${fmt(Date.now() - E.start)}</span>`);
+  let h = topbar(L("模擬考", "Mock test"), `<span id="timer">⏱ ${fmt(Date.now() - E.start)}</span>`);
   h += `<div class="bar"><i style="width:${E.i / E.qs.length * 100}%"></i></div>`;
-  h += qCard(q.d, q.t, q.opts, null, `第 ${E.i + 1} / ${E.qs.length} 題`, false);
-  h += `<div class="statrow" style="margin-top:8px"><span class="stat">${q.t === "mc" ? "選擇題" : "拼字題"}｜已作答 ${E.i}</span><button class="linkbtn" id="submitAll">提早交卷</button></div>`;
+  h += qCard(q.d, q.t, q.opts, null, L(`第 ${E.i + 1} / ${E.qs.length} 題`, `Question ${E.i + 1} / ${E.qs.length}`), false);
+  h += `<div class="statrow" style="margin-top:8px"><span class="stat">${q.t === "mc" ? L("選擇題", "Multiple choice") : L("拼字題", "Spelling")}${L(`｜已作答 ${E.i}`, ` | ${E.i} answered`)}</span><button class="linkbtn" id="submitAll">${L("提早交卷", "Hand in now")}</button></div>`;
   app.innerHTML = h; bindGo();
   bindQ(q.d, q.t, q.opts, (g, ok, note) => {
     E.ans[E.i] = { given: g, ok, note }; E.i++;
     if (E.i >= E.qs.length) finishExam(); else { render(); window.scrollTo(0, 0); }
   }, null);
-  twoTap("submitAll", "提早交卷", "再按一次確認交卷（未答算錯）", finishExam);
+  twoTap("submitAll", L("提早交卷", "Hand in now"), L("再按一次確認交卷（未答算錯）", "Tap again to hand in (unanswered count as wrong)"), finishExam);
 }
 function finishExam() {
   if (timerId) { clearInterval(timerId); timerId = null; }
@@ -1905,19 +1969,19 @@ function finishExam() {
 }
 function vResult() {
   const wrong = E.qs.map((q, k) => ({ q, a: E.ans[k] })).filter(x => !x.a || !x.a.ok);
-  let h = topbar("考試結果");
-  h += `<div class="card center"><div class="big">${E.score}<small> 分</small></div>
-    <div>答對 ${E.right} / ${E.qs.length}｜用時 ${fmt(E.end - E.start)}</div>
-    ${E.newBest ? `<div><span class="newbest">🎉 新的最佳成績</span></div>` : (best ? `<div class="small" style="margin-top:6px">最佳成績 ${best.score} 分</div>` : "")}
-    <div class="btns"><button class="btn pri" data-go="examSetup">再考一次</button>${wrongList().length ? `<button class="btn" data-go="wrong" data-arg="mc">去錯題本</button>` : ""}<button class="btn" data-go="home">回首頁</button></div></div>`;
+  let h = topbar(L("考試結果", "Test result"));
+  h += `<div class="card center"><div class="big">${E.score}<small>${L(" 分", " points")}</small></div>
+    <div>${L(`答對 ${E.right} / ${E.qs.length}｜用時 ${fmt(E.end - E.start)}`, `${E.right} / ${E.qs.length} correct | time ${fmt(E.end - E.start)}`)}</div>
+    ${E.newBest ? `<div><span class="newbest">🎉 ${L("新的最佳成績", "New best score")}</span></div>` : (best ? `<div class="small" style="margin-top:6px">${L(`最佳成績 ${best.score} 分`, `Best score: ${best.score}`)}</div>` : "")}
+    <div class="btns"><button class="btn pri" data-go="examSetup">${L("再考一次", "Take another test")}</button>${wrongList().length ? `<button class="btn" data-go="wrong" data-arg="mc">${L("去錯題本", "Go to mistakes")}</button>` : ""}<button class="btn" data-go="home">${L("回首頁", "Back to home")}</button></div></div>`;
   if (wrong.length) {
-    h += `<div class="sec">這次答錯的題目（${wrong.length}）</div>` + wrong.map(({ q, a }) =>
+    h += `<div class="sec">${L(`這次答錯的題目（${wrong.length}）`, `Missed this time (${wrong.length})`)}</div>` + wrong.map(({ q, a }) =>
       `<div class="item"><div class="s">${sentHTML(q.d, "show")}</div>
-       <div class="small" style="margin-top:4px">正確：<b>${esc(q.d.w)}</b>｜你的答案：${a ? `<s>${esc(a.given)}</s>` : "未作答"}｜${esc(q.d.zh)}</div>
+       <div class="small" style="margin-top:4px">${L("正確：", "Answer: ")}<b>${esc(q.d.w)}</b>${L("｜你的答案：", " | Yours: ")}${a ? `<s>${esc(a.given)}</s>` : L("未作答", "not answered")}${L("｜", " | ")}${esc(q.d.zh)}</div>
        ${a && a.note ? `<div class="small">${esc(a.note)}</div>` : ""}
-       ${q.d.alt ? `<div class="alt">⚠ 推測題：${esc(q.d.alt)}</div>` : ""}</div>`).join("");
+       ${q.d.alt ? `<div class="alt">⚠ ${L("推測題：", "Guessed answer: ")}${esc(altText(q.d.alt))}</div>` : ""}</div>`).join("");
   } else {
-    h += `<p class="empty">全對！太強了 💯</p>`;
+    h += `<p class="empty">${L("全對！太強了 💯", "All correct! Amazing 💯")}</p>`;
   }
   app.innerHTML = h; bindGo();
 }
@@ -1926,21 +1990,21 @@ function vResult() {
 function cardPool() { return DATA.filter(d => (!S.week || d.wk === S.week) && (!onlyNew || !known.has(d.id))); }
 function startCard() { C = { deck: shuffle(cardPool().slice()), pos: 0, rev: false }; }
 function vCard() {
-  let h = topbar("單字卡") + chipsHTML(S.week) +
-    `<div class="opts"><label><input type="checkbox" id="onlyNew"${onlyNew ? " checked" : ""}>只看還不熟的</label><button class="btn" id="shuf">重新洗牌</button></div>`;
-  if (!C.deck.length) h += `<div class="card"><div class="empty">${onlyNew ? "這個範圍都熟了 🎉" : "沒有題目"}</div></div>`;
-  else if (C.pos >= C.deck.length) h += `<div class="card"><div class="empty">這一輪看完了！<div class="btns"><button class="btn pri" id="again">再來一輪</button></div></div></div>`;
+  let h = topbar(L("單字卡", "Flashcards")) + chipsHTML(S.week) +
+    `<div class="opts"><label><input type="checkbox" id="onlyNew"${onlyNew ? " checked" : ""}>${L("只看還不熟的", "Only cards I don't know yet")}</label><button class="btn" id="shuf">${L("重新洗牌", "Shuffle")}</button></div>`;
+  if (!C.deck.length) h += `<div class="card"><div class="empty">${onlyNew ? L("這個範圍都熟了 🎉", "You know every card in this range 🎉") : L("沒有題目", "No questions")}</div></div>`;
+  else if (C.pos >= C.deck.length) h += `<div class="card"><div class="empty">${L("這一輪看完了！", "Round finished!")}<div class="btns"><button class="btn pri" id="again">${L("再來一輪", "Another round")}</button></div></div></div>`;
   else {
     const d = C.deck[C.pos];
     h += `<div class="card"><div class="meta"><span>Week ${d.wk}</span><span>${C.pos + 1} / ${C.deck.length}</span></div>
       <div class="sent">${sentHTML(d, C.rev ? "show" : "blank", true)}</div>${tipHTML()}
-      <div class="hint">中文：<b>${esc(d.zh)}</b></div>
-      ${C.rev ? `<div class="ans">答案：<span class="hl">${esc(d.w)}</span></div>${d.alt ? `<div class="alt">⚠ 推測題：${esc(d.alt)}</div>` : ""}` : ""}
-      <div class="row">${C.rev ? `<button class="again" id="bA">還不熟</button><button class="know" id="bK">會了</button>` : `<button class="reveal" id="bR">看答案</button>`}</div>
-      <div class="kbd">${C.rev ? "鍵盤：<kbd>←</kbd> 還不熟、<kbd>→</kbd> 會了" : "鍵盤：按 <kbd>空白鍵</kbd> 看答案"}</div></div>`;
+      <div class="hint">${L("中文：", "Chinese: ")}<b>${esc(d.zh)}</b></div>
+      ${C.rev ? `<div class="ans">${L("答案：", "Answer: ")}<span class="hl">${esc(d.w)}</span></div>${d.alt ? `<div class="alt">⚠ ${L("推測題：", "Guessed answer: ")}${esc(altText(d.alt))}</div>` : ""}` : ""}
+      <div class="row">${C.rev ? `<button class="again" id="bA">${L("還不熟", "Not yet")}</button><button class="know" id="bK">${L("會了", "Got it")}</button>` : `<button class="reveal" id="bR">${L("看答案", "Show answer")}</button>`}</div>
+      <div class="kbd">${C.rev ? L("鍵盤：<kbd>←</kbd> 還不熟、<kbd>→</kbd> 會了", "Keyboard: <kbd>←</kbd> not yet, <kbd>→</kbd> got it") : L("鍵盤：按 <kbd>空白鍵</kbd> 看答案", "Keyboard: press <kbd>Space</kbd> to show the answer")}</div></div>`;
   }
   const scope = DATA.filter(d => !S.week || d.wk === S.week), k = scope.filter(d => known.has(d.id)).length;
-  h += `<div class="bar"><i style="width:${k / scope.length * 100}%"></i></div><div class="stat">已熟 ${k} / ${scope.length}</div>`;
+  h += `<div class="bar"><i style="width:${k / scope.length * 100}%"></i></div><div class="stat">${L("已熟", "Known")} ${k} / ${scope.length}</div>`;
   app.innerHTML = h; bindGo();
   bindChips(w => { S.week = w; startCard(); render(); });
   $("onlyNew").onchange = e => { onlyNew = e.target.checked; startCard(); render(); };
@@ -1954,8 +2018,8 @@ function vCard() {
 
 /* ---------- word list ---------- */
 function vList() {
-  app.innerHTML = topbar("單字表") + chipsHTML(S.week) +
-    `<input class="sp search" id="q" type="search" placeholder="搜尋英文或中文" value="${esc(listQ)}" autocapitalize="off" autocorrect="off" spellcheck="false">${tipHTML()}<div id="items"></div>`;
+  app.innerHTML = topbar(L("單字表", "Word list")) + chipsHTML(S.week) +
+    `<input class="sp search" id="q" type="search" placeholder="${L("搜尋英文或中文", "Search English or Chinese")}" value="${esc(listQ)}" autocapitalize="off" autocorrect="off" spellcheck="false">${tipHTML()}<div id="items"></div>`;
   bindGo();
   bindChips(w => { S.week = w; render(); });
   const q = $("q"); q.oninput = () => { listQ = q.value; closePop(true); drawItems(); };
@@ -1969,12 +2033,12 @@ function drawItems() {
     if (!items.length) return "";
     return `<div class="wk">Week ${wk}</div><div class="items">` + items.map(d => {
       const st = stats[d.id];
-      const mk = st ? (st.last === 1 ? `<span class="mk ok">✓</span>` : `<span class="mk no">錯題</span>`) : "";
-      return `<div class="item" data-d="${d.id}"><div><span class="w wd">${esc(d.w)}</span><span class="z">${esc(d.zh)}</span>${mk}${d.alt ? `<span class="tag">推測</span>` : ""}</div>
-        <div class="s">${sentHTML(d, "show")}</div>${d.alt ? `<div class="alt">${esc(d.alt)}</div>` : ""}</div>`;
+      const mk = st ? (st.last === 1 ? `<span class="mk ok">✓</span>` : `<span class="mk no">${L("錯題", "missed")}</span>`) : "";
+      return `<div class="item" data-d="${d.id}"><div><span class="w wd">${esc(d.w)}</span><span class="z">${esc(d.zh)}</span>${mk}${d.alt ? `<span class="tag">${L("推測", "guess")}</span>` : ""}</div>
+        <div class="s">${sentHTML(d, "show")}</div>${d.alt ? `<div class="alt">${esc(altText(d.alt))}</div>` : ""}</div>`;
     }).join("") + `</div>`;
   }).join("");
-  $("items").innerHTML = html || `<div class="empty">找不到符合的單字</div>`;
+  $("items").innerHTML = html || `<div class="empty">${L("找不到符合的單字", "No matching words")}</div>`;
 }
 
 /* ---------- graduation threshold rules ---------- */
@@ -1987,26 +2051,26 @@ const LINK = {
   apply: "https://lgc.ncut.edu.tw/p/405-1029-13750,c82.php?Lang=zh-tw",
   home: "https://lgc.ncut.edu.tw/"
 };
-const SESSIONS = [  // [label, end time in Taiwan time (+08:00), time, room]
-  ["11/25（三）", "2026-11-25T14:00", "13:00–14:00", "國秀樓 301"],
-  ["12/02（三）", "2026-12-02T14:00", "13:00–14:00", "國秀樓 301"],
-  ["12/16（三）", "2026-12-16T14:00", "13:00–14:00", "國秀樓 301"],
-  ["12/23（三）", "2026-12-23T14:00", "13:00–14:00", "國秀樓 301"],
-  ["12/30（三）", "2026-12-30T14:00", "13:00–14:00", "國秀樓 301"],
-  ["1/19（二）", "2027-01-19T15:00", "13:00–15:00（2 小時）", "國秀樓 語言教室A"]
+const SESSIONS = [  // [label, English label, end time in Taiwan time (+08:00), time, room, English room]
+  ["11/25（三）", "Wed, Nov 25", "2026-11-25T14:00", "13:00–14:00", "國秀樓 301", "國秀樓 Room 301"],
+  ["12/02（三）", "Wed, Dec 2", "2026-12-02T14:00", "13:00–14:00", "國秀樓 301", "國秀樓 Room 301"],
+  ["12/16（三）", "Wed, Dec 16", "2026-12-16T14:00", "13:00–14:00", "國秀樓 301", "國秀樓 Room 301"],
+  ["12/23（三）", "Wed, Dec 23", "2026-12-23T14:00", "13:00–14:00", "國秀樓 301", "國秀樓 Room 301"],
+  ["12/30（三）", "Wed, Dec 30", "2026-12-30T14:00", "13:00–14:00", "國秀樓 301", "國秀樓 Room 301"],
+  ["1/19（二）", "Tue, Jan 19", "2027-01-19T15:00", "13:00–15:00", "國秀樓 語言教室A", "國秀樓 Language Classroom A", "（2 小時）", " (2 hours)"]
 ];
 function vRules() {
   const now = Date.now();
   let nextSet = false;
-  const rows = SESSIONS.map(([d, end, t, room]) => {
+  const rows = SESSIONS.map(([d, dEn, end, t, room, roomEn, extra = "", extraEn = ""]) => {
     const past = Date.parse(end + ":00+08:00") < now;
     let cls = "", pill = "";
-    if (past) { cls = "past"; pill = `<span class="pill past">已結束</span>`; }
-    else if (!nextSet) { nextSet = true; cls = "next"; pill = `<span class="pill next">下一場</span>`; }
-    return `<tr class="${cls}"><td>${d}</td><td>${t}${pill}<br><span class="mut">${room}</span></td></tr>`;
+    if (past) { cls = "past"; pill = `<span class="pill past">${L("已結束", "Ended")}</span>`; }
+    else if (!nextSet) { nextSet = true; cls = "next"; pill = `<span class="pill next">${L("下一場", "Next")}</span>`; }
+    return `<tr class="${cls}"><td>${L(d, dEn)}</td><td>${t}${L(extra, extraEn)}${pill}<br><span class="mut">${L(room, roomEn)}</span></td></tr>`;
   }).join("");
   const a = (k, t) => `<a href="${LINK[k]}" target="_blank" rel="noopener">${t}</a>`;
-  app.innerHTML = topbar("畢業門檻說明") + `<div class="rules">
+  const zh = () => `<div class="rules">
   <div class="rule"><h2>我要考字彙測驗嗎？</h2>
     <ol>
       <li>先看有沒有<b>通過英文畢業門檻</b>（下一段）。有 → 不用考，記得到語言中心登錄。</li>
@@ -2075,6 +2139,77 @@ function vRules() {
     </ul>
   </div>
   </div><p class="note">本頁由同學整理，${CHECKED} 對照語言中心網頁。規定可能更新，一切以語言中心公告為準。</p>`;
+  const en = () => `<div class="rules">
+  <div class="rule"><h2>Do I need to take the vocabulary test?</h2>
+    <ol>
+      <li>First check whether you have <b>passed the English graduation requirement</b> (next section). If you have, you don't need the test; remember to register your score with the Language Center.</li>
+      <li>If not, you must take the remedial course English Proficiency Tutoring A (英檢輔導A). Four-year students need to take an English proficiency test at least twice <b>by the end of the first semester of their second year</b>; two-year students at least once <b>by the end of the first semester of their first year</b>.</li>
+      <li>If <b>at least one</b> of those scores reaches <b>elementary level</b> (CSEPT 170 or higher, or TOEIC 225 or higher with listening 110 and reading 115), apply for course eligibility directly.</li>
+      <li>If none reach elementary level, <b>pass the vocabulary test first</b>, then apply for Tutoring A. This site is for practicing that test.</li>
+    </ol>
+    <p class="mut">Applies to day-division four-year and two-year students admitted in academic year 97 (2008) or later.</p>
+  </div>
+
+  <div class="rule"><h2>Graduation requirement (non-Applied English majors, meet any one)</h2>
+    <ul>
+      <li>GEPT Intermediate, first stage or higher</li>
+      <li>TOEIC 387 or higher, with listening 110 and reading 115 or higher</li>
+      <li>CSEPT Level 1: 200 or higher if admitted before academic year 115; 170 or higher if admitted from academic year 115</li>
+      <li>TOEFL ITP 424, iBT 38 or CBT 115 or higher</li>
+      <li>IELTS 3.5 or higher</li>
+      <li>BESTEP listening and reading total 140, or speaking and writing total 460 or higher</li>
+      <li>TOEIC Bridge 152 or higher (listening 64, reading 70)</li>
+      <li>Cambridge PET, BULATS ALTE Level 2, FLPT and others: see the full regulations</li>
+      <li>PVQC Professional English Vocabulary Specialist Tier 4 and Spelling Tier 3 or higher, earned while enrolled, can also be registered</li>
+    </ul>
+    <p class="mut">If your department sets a higher standard, the department's rule applies. Applied English has different standards; see the ${a("rules", "regulations")}.</p>
+  </div>
+
+  <div class="rule"><h2>115-2 vocabulary test sessions</h2>
+    <table class="sess">${rows}</table>
+    ${nextSet ? `<div class="callout">⚠ The notice lists Jan 19 as a Wednesday, but Jan 19, 2027 is a Tuesday. Check with the Language Center before you go.</div>`
+      : `<div class="callout">All sessions this semester are over. For new sessions, see the ${a("exam", "Language Center notice")}.</div>`}
+    <ul>
+      <li>No sign-up needed. Bring your <b>student ID</b> to the classroom.</li>
+      <li>At most 2 attempts a day.</li>
+      <li>Check in no later than 20 minutes before the session ends. Papers are collected right at the end time.</li>
+      <li>Results are posted at 12:00 the next day (the notice says 隔日上午12:00): ${a("result", "vocabulary test results")}</li>
+      <li>Scope: GEPT Weekly Word Builder 1, Weeks 6–10 and 16–20. The question bank PDF can be downloaded from the ${a("exam", "session notice")}.</li>
+    </ul>
+  </div>
+
+  <div class="rule"><h2>Applying for Tutoring A eligibility</h2>
+    <ol>
+      <li>On the school homepage, go to 學生事務 (Student Affairs) › 學生篇 (Students) › 畢業門檻 (Graduation requirements) › 英檢輔導資格登錄 and upload your score report.</li>
+      <li>After filling in the form, download the application and <b>email it to lgc02@ncut.edu.tw</b>.</li>
+      <li>You can register for the course only after the Language Center approves it.</li>
+    </ol>
+    <p>If you passed the vocabulary test, you also need to upload the required score report <b>before 115-2 starts</b>, and it is reviewed the same way. For the steps, see the ${a("apply", "online application notes")}.</p>
+  </div>
+
+  <div class="rule"><h2>How to pass Tutoring A</h2>
+    <ul>
+      <li>0 credits, 2 class hours.</li>
+      <li>In-person course: take the tests and improve by 15 points or more from the pre-test to the post-test. Summer courses and courses taken after the normal study period are self-paid.</li>
+      <li>Online course (from academic year 115): watch the required number of English videos on the assigned platform and pass the online test. There is no summer course. Apply and upload your score during the set period at the end of the semester before the course.</li>
+      <li>If you pass the graduation requirement while taking the course, you can skip the remaining remedial courses.</li>
+      <li>Students directly affected by a major disaster, and students with disabilities, can apply to go straight into the remedial course.</li>
+    </ul>
+  </div>
+
+  <div class="rule"><h2>Contact the Language Center</h2>
+    <p>Foreign Language Teaching Section: <a href="tel:+886423924505,5175">(04)2392-4505 ext. 5175</a><br>Email: <a href="mailto:lgc02@ncut.edu.tw">lgc02@ncut.edu.tw</a></p>
+    <ul>
+      <li>${a("rules", "English graduation requirement regulations")}</li>
+      <li>${a("exam", "115-2 vocabulary test notice (with question bank download)")}</li>
+      <li>${a("result", "Vocabulary test results")}</li>
+      <li>${a("apply", "Notes on applying online for Tutoring A eligibility")}</li>
+      <li>${a("home", "Language Center homepage")}</li>
+    </ul>
+    <p class="mut">The Language Center pages are in Chinese.</p>
+  </div>
+  </div><p class="note">Compiled by a student and checked against the Language Center website on ${CHECKED}. Rules may change; the Language Center's announcements are what count.</p>`;
+  app.innerHTML = topbar(L("畢業門檻說明", "Graduation requirement")) + (lang === "en" ? en() : zh());
   bindGo();
 }
 
