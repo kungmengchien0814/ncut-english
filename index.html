@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>勤益 115-2 字彙測驗練習</title>
+<meta name="description" content="勤益科大語言中心 115-2 字彙測驗（英檢輔導A選課資格）練習：模擬考、選擇題、拼字、錯題本、單字卡。非官方網站。">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#2f6fdb">
+<link rel="icon" href="favicon.svg?v=20261122a" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png?v=20261122a">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:title" content="勤益 115-2 字彙測驗練習">
+<meta property="og:description" content="英檢輔導A選課資格「字彙測驗」練習：模擬考、選擇題、拼字、錯題本、單字卡，還有畢業門檻說明。同學自製，非官方。">
+<meta property="og:url" content="https://kungmengchien.uk/ncut-english/">
+<meta property="og:image" content="https://kungmengchien.uk/ncut-english/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+:root{--bg:#f7f7f5;--card:#fff;--fg:#1d1d1f;--mut:#6b6b70;--line:#e3e3e0;--acc:#2f6fdb;--acc2:#e8f0fd;--ok:#1f8a4c;--okb:#e6f4ec;--bad:#c0392b;--badb:#fdecea;--warn:#a85f00;--warnb:#fdf3e2;}
+@media (prefers-color-scheme:dark){:root{--bg:#141416;--card:#1e1e21;--fg:#ececee;--mut:#9a9aa1;--line:#2e2e33;--acc:#6ea0ff;--acc2:#1f2a40;--ok:#4cc483;--okb:#16301f;--bad:#ff7b72;--badb:#3a1c1c;--warn:#f0b04d;--warnb:#33270f;}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:-apple-system,BlinkMacSystemFont,"PingFang TC","Noto Sans TC","Microsoft JhengHei",sans-serif;line-height:1.5;-webkit-text-size-adjust:100%}
+button{font-family:inherit;cursor:pointer}
+.wrap{max-width:640px;margin:0 auto;padding:14px 16px 48px}
+h1{font-size:21px;margin:6px 0 2px}
+.sub{color:var(--mut);font-size:13px;margin:0 0 14px}
+header.top{display:flex;align-items:center;gap:10px;margin-bottom:12px;min-height:34px}
+.back{border:0;background:transparent;color:var(--acc);font-size:15px;padding:4px 0;font-weight:600}
+.ttl{font-weight:700;font-size:17px}
+.tr{margin-left:auto;font-size:14px;color:var(--mut);font-variant-numeric:tabular-nums}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.mode{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;text-align:left;color:var(--fg)}
+.mode .ic{font-size:22px;line-height:1}
+.mode .n{font-weight:700;font-size:16px;margin-top:6px}
+.mode .d{font-size:12.5px;color:var(--mut);margin-top:2px}
+.mode.primary{grid-column:1/-1;background:var(--acc);border-color:var(--acc);color:#fff}
+.mode.primary .d{color:rgba(255,255,255,.85)}
+.mode.full{grid-column:1/-1}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:14px 0 4px}
+.st{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 4px;text-align:center}
+.st b{display:block;font-size:18px;font-variant-numeric:tabular-nums}
+.st span{font-size:11.5px;color:var(--mut)}
+.sec{font-size:13px;color:var(--mut);font-weight:700;margin:16px 0 6px}
+.wkrow{display:flex;align-items:center;gap:10px;font-size:13px;margin:5px 0}
+.wkrow .l{width:62px;color:var(--mut)}
+.wkrow .b{flex:1;height:8px;background:var(--line);border-radius:6px;overflow:hidden}
+.wkrow .b i{display:block;height:100%;background:var(--ok)}
+.wkrow .r{width:44px;text-align:right;color:var(--mut);font-variant-numeric:tabular-nums}
+.chips{display:flex;gap:6px;overflow-x:auto;padding-bottom:6px;margin-bottom:8px;scrollbar-width:none}
+.chips::-webkit-scrollbar{display:none}
+.chip{flex:none;border:1px solid var(--line);background:var(--card);color:var(--fg);border-radius:999px;padding:6px 12px;font-size:14px}
+.chip.on{background:var(--acc);border-color:var(--acc);color:#fff}
+.seg{display:flex;background:var(--line);padding:3px;border-radius:10px;gap:3px}
+.seg button{flex:1;border:0;background:transparent;color:var(--fg);padding:8px 10px;border-radius:8px;font-size:14px;font-weight:600}
+.seg button.on{background:var(--card);box-shadow:0 1px 2px rgba(0,0,0,.08)}
+.opts{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;font-size:14px;color:var(--mut);margin-bottom:12px}
+.opts .seg{min-width:180px}
+.opts label{display:flex;align-items:center;gap:6px}
+.opts input{width:18px;height:18px;accent-color:var(--acc)}
+.btn{border:1px solid var(--line);background:var(--card);color:var(--fg);border-radius:10px;padding:8px 14px;font-size:14px}
+.btn.pri{background:var(--acc);border-color:var(--acc);color:#fff;font-weight:600}
+.wide{display:block;width:100%;margin-top:12px;padding:12px;font-size:16px;font-weight:600;border-radius:12px}
+.btns{display:flex;gap:8px;justify-content:center;margin-top:16px;flex-wrap:wrap}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;min-height:230px;display:flex;flex-direction:column}
+.card.center{text-align:center;min-height:0}
+.meta{display:flex;justify-content:space-between;font-size:13px;color:var(--mut);margin-bottom:10px}
+.sent{font-size:19px;line-height:1.65}
+.blank{display:inline-block;min-width:4em;border-bottom:2px solid var(--acc);color:var(--acc);font-weight:700;letter-spacing:.08em;text-align:center;padding:0 2px}
+.hl{color:var(--acc);font-weight:700;background:var(--acc2);border-radius:4px;padding:0 3px}
+.hint{margin-top:12px;font-size:15px;color:var(--mut)}
+.hint b{color:var(--fg)}
+.ans{margin-top:8px;font-size:16px}
+.optlist{margin-top:8px}
+.opt{display:block;width:100%;text-align:left;border:1.5px solid var(--line);background:var(--card);color:var(--fg);border-radius:12px;padding:12px 14px;font-size:17px;margin-top:8px}
+.opt:disabled{cursor:default;opacity:1}
+.opt.right{border-color:var(--ok);background:var(--okb);color:var(--ok);font-weight:700}
+.opt.wrong{border-color:var(--bad);background:var(--badb);color:var(--bad)}
+input.sp{width:100%;font-size:18px;padding:12px 14px;border:1.5px solid var(--line);border-radius:12px;background:var(--bg);color:var(--fg);margin-top:14px;font-family:inherit}
+input.sp:focus{outline:none;border-color:var(--acc)}
+input.search{margin:0 0 6px;font-size:16px}
+.fb{margin-top:12px;padding:10px 12px;border-radius:10px;font-size:15px}
+.fb.ok{background:var(--okb);color:var(--ok);font-weight:600}
+.fb.no{background:var(--badb);color:var(--bad)}
+.alt{margin-top:8px;font-size:13px;color:var(--warn)}
+.tag{display:inline-block;font-size:11.5px;padding:1px 8px;border-radius:999px;background:var(--warnb);color:var(--warn);margin-left:6px;vertical-align:middle;font-weight:600}
+.mk{display:inline-block;font-size:11.5px;padding:1px 8px;border-radius:999px;margin-left:6px;vertical-align:middle;font-weight:600}
+.mk.ok{background:var(--okb);color:var(--ok)}
+.mk.no{background:var(--badb);color:var(--bad)}
+.row{display:flex;gap:10px;margin-top:16px}
+.row button{flex:1;padding:13px;border-radius:12px;font-size:16px;font-weight:600;border:0}
+.reveal{background:var(--acc);color:#fff}
+.again{background:var(--warnb);color:var(--warn)}
+.know{background:var(--okb);color:var(--ok)}
+.bar{height:6px;background:var(--line);border-radius:6px;overflow:hidden;margin:12px 0 6px}
+.bar i{display:block;height:100%;background:var(--ok);width:0;transition:width .3s}
+.statrow{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.stat{font-size:13px;color:var(--mut)}
+.linkbtn{border:0;background:transparent;color:var(--mut);font-size:13px;text-decoration:underline;padding:4px 0}
+.empty{text-align:center;color:var(--mut);padding:36px 0;margin:auto 0}
+.big{font-size:46px;font-weight:800;line-height:1.1;color:var(--fg)}
+.big small{font-size:18px;font-weight:600}
+.small{font-size:13px;color:var(--mut)}
+.newbest{display:inline-block;margin-top:8px;background:var(--okb);color:var(--ok);border-radius:999px;padding:2px 12px;font-size:13px;font-weight:700}
+.wk{margin:18px 0 6px;font-size:15px;font-weight:700}
+.item{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 12px;margin-bottom:6px}
+.item .w{font-weight:700;font-size:16px}
+.item .z{color:var(--mut);font-size:14px;margin-left:6px}
+.item .s{font-size:14px;margin-top:3px}
+.item s{color:var(--bad)}
+.note{font-size:12.5px;color:var(--mut);margin-top:22px;line-height:1.65}
+.rule{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin-bottom:10px;font-size:15px}
+.rule h2{font-size:16px;margin:0 0 8px}
+.rule p{margin:6px 0}
+.rule ol,.rule ul{margin:6px 0;padding-left:1.3em}
+.rule li{margin:4px 0}
+.rule a{color:var(--acc)}
+.rule .mut{color:var(--mut);font-size:13px}
+.sess{width:100%;border-collapse:collapse;font-size:14px;margin:6px 0}
+.sess td{padding:7px 4px;border-top:1px solid var(--line);vertical-align:top}
+.sess td:first-child{white-space:nowrap;font-weight:700;font-variant-numeric:tabular-nums;width:6.2em}
+.sess tr.past td{color:var(--mut);font-weight:400}
+.sess tr.next td:first-child{color:var(--acc)}
+.pill{display:inline-block;font-size:11.5px;padding:1px 8px;border-radius:999px;font-weight:600;margin-left:4px}
+.pill.next{background:var(--acc2);color:var(--acc)}
+.pill.past{background:var(--line);color:var(--mut)}
+.callout{background:var(--warnb);color:var(--warn);border-radius:10px;padding:8px 10px;font-size:13.5px;margin-top:8px}
+</style>
+</head>
+<body>
+<div class="wrap" id="app"></div>
+
+<script>
+const RAW = `6|Alan was badly {hurt} when he was hit by a car as he crossed the street.|受傷|也可能考 badly（嚴重地）
+6|The air {pollution} is bad here.|污染
+6|I wish I could win the {lottery}.|樂透、彩券
+6|The cloth had a {pattern} printed on it, and it looked very pretty.|圖案
+6|They like to walk their dog along the {shore}.|岸邊
+6|That's great {photo} of the family.|照片
+6|What is the {value} of these old coins?|價值
+6|Did you {notice} that the star of the show was one of your friends from high school?|注意到|也可能考 star（明星）
+6|The little boy is just learning to {clap} his hands, and he looks so cute when he does it.|拍（手）
+6|You can {choose} to eat either chicken or fish for dinner tonight.|選擇
+6|Someone {knocked} on the door, so I went to see who was there.|敲（knock）
+6|Holding your neck with both hands is a {gesture} that means you are choking.|手勢
+6|Don't {blame} me for this mess, because I didn't make it.|責怪
+6|The {population} of the island is growing very slowly.|人口
+6|You should keep the {speed} of your car down when you're driving through the city.|速度
+6|I can't remember the {title} of the book I just read, but it was a wonderful book to read.|標題、書名
+6|There are many {reasons} I want this job.|理由（reason）
+6|If you don't eat your lunch, you won't have the {energy} to work in the afternoon.|精力
+6|I received a party {invitation} from Nancy yesterday, but I don't think I can go.|邀請
+6|Math is my favorite {subject} in school, and my teacher is great.|科目
+7|Molly got a {perfect} score.|完美的
+7|Patty likes to wear {fashionable} clothing, and she loves to go shopping on weekends.|時髦的
+7|They were late; {therefore} they got told off.|因此
+7|When the light on the oven turns off, that will {indicate} it is hot enough to put in the cake.|表示、顯示
+7|Larry won't be {available} to help you this afternoon, but tomorrow should be OK.|有空的
+7|I {especially} like the steaks that they serve at this restaurant.|尤其、特別
+7|Now we will {discuss} yesterday's test.|討論
+7|Have you ever been {abroad}?|在國外
+7|Henry is still {afraid} of the dark.|害怕的
+7|Do you {agree} with this decision?|同意
+7|Don't {assume} you will do well on the test if you don't study for it.|以為、假定
+7|Riding a bicycle is a very {convenient} way to get around the city because it's so easy to park.|方便的
+7|The mother {kissed} her children as they left for school each day.|親吻（kiss）
+7|It's {traditional} to give red envelopes at Chinese New Year.|傳統的
+7|Most parents {emphasize} good manners.|強調
+7|Jerry always says {negative} things about the way that I look, and that's why I don't like him.|負面的
+7|The boy used glue to {paste} pictures of animals in his notebook.|黏貼
+7|I can meet you at the movie {theater} about 20 minutes before the show starts.|戲院
+7|There has been some {sudden} changes to the plan.|突然的
+7|Sometimes I like to sit {beside} the river.|在…旁邊
+8|After a {burglar} robbed my house, I had a security system installed.|竊賊
+8|Felicia broke up with her {boyfriend} last week, and she has been very sad since.|男朋友
+8|Even though he knew he had lost the race already, the runner kept his {dignity} by crossing the finishing line.|尊嚴
+8|The {hijacker} had a gun, and he forced the pilot of the plane to fly to a different country.|劫機者
+8|The {operator} of the machine should always wear safety glasses to keep his eyes safe.|操作員
+8|Larry is a very {athletic} person who plays on three of my school's sports teams.|擅長運動的
+8|My work {colleague} has been out sick all week, so I've had to do a lot of his work.|同事
+8|Barry is a very {charming} person, and all my friends like him.|迷人的
+8|I have read many books written by this {philosopher}, and I agree with a lot of his ideas.|哲學家
+8|When Oliver won his final tennis match, he became the {champion} of his age group.|冠軍
+8|Lenny was {astonished} to learn that his best friend from high school was now a famous actor.|驚訝的
+8|People who suffer from {depression} can get medicine that will make them feel happier.|憂鬱症
+8|You will do fine in this class if you have a good {attitude} and work hard.|態度
+8|The tennis player will face his main {rival} n the tennis court this weekend.|對手
+8|The bank robber agreed to let a {hostage} go if the police listened to his demands.|人質
+8|Kevin is an excellent {storyteller}, and he always makes people laugh.|說故事的人
+8|The little boy loves baseball, and this famous player is his {idol}.|偶像
+8|Maria doesn't eat any meat because she is a {vegetarian}.|素食者
+8|The {founder} of this company started it with a friend in his parents' garage.|創辦人
+8|A {spokesman} for the company said that a new president would be chosen in the next few weeks.|發言人
+9|Katie is very {enthusiastic} about starting her new job next week.|熱衷的
+9|To fight {loneliness} people should find groups to join where people have similar interests.|寂寞
+9|I get along very well with my {stepmother}.|繼母
+9|My boss has a bad {temper} and he gets very angry when employees are late for work.|脾氣
+9|As the {disease} began to spread, it became very important for people to wash their hands often.|疾病
+9|You need to put a {bandage} on your arm to stop the cut from bleeding.|繃帶
+9|Please cover your mouth when you {sneeze}.|打噴嚏
+9|The man died after the {fatal} car accident.|致命的
+9|Laura is very {sensitive} about her new haircut, so don't say anything bad about it.|敏感的
+9|Leonard is that boy's real name, but everyone calls him by his {nickname} "Sparky."|綽號
+9|Our fingers have a lot of {nerves} in them, so we can tell what something is just by feeling it.|神經（nerve）
+9|If you're afraid of {germs} on the vegetables, you should cook them before you eat them.|細菌（germ）
+9|Tommy was {sympathetic} towards the people that lost their house in the fire.|同情的
+9|Don't come near me if you have a {virus} which I don't wat to catch.|病毒
+9|A runny nose is a common {symptom} of the flu.|症狀
+9|Andrew has a nasty {habit} of calling me up at all hours of the night.|習慣|也可能考 nasty（惡劣的）
+9|Mike used all his {strength} to lift the heavy weight.|力氣
+9|If you have a headache, take an {aspirin} and drink plenty of water.|阿斯匹靈|也可能考 headache（頭痛）
+9|Ice hockey is a very {physical} sport.|肢體碰撞多的、身體的
+9|He can't walk yet because he is just an {infant}.|嬰兒
+10|You will have very strong {breath} if you eat this dish, because it has a lot of garlic in it.|口氣、呼吸|也可能考 garlic（大蒜）
+10|The first ten years after the year 2000 were a {decade} of many changes in society.|十年
+10|If you don't have a very big {appetite}, you should just order something small.|胃口
+10|If you just follow the {recipe} for making banana bread, it should taste great.|食譜
+10|If there is an {emergency}, you should call the police right away.|緊急情況
+10|I need to go to the bank to {deposit} some money in my bank account.|存（錢）
+10|The father gives his young son NT$100 each week for his {allowance}|零用錢
+10|Penny only eats the white part of fried eggs because she doesn't like the {yolks}.|蛋黃（yolk）
+10|On Chinese New Year, my mother cooks a {feast} that my whole family enjoys eating.|盛宴
+10|Debbie is {unable} to see very well if she forgets to wear her glasses.|不能的
+10|Some people like to drink a glass of milk after they eat to aid with {digestion}.|消化
+10|I haven't noticed much {inflation} lately, and the prices of things seem to have stayed the same.|通貨膨脹
+10|We should {cherish} every moment in life, because we won't live forever.|珍惜
+10|We bought this house at great {expense}.|花費
+10|I'm going to {invest} in gold.|投資
+10|The peach I bit into was very {juicy}, so I had to wipe my face after eating it.|多汁的
+10|Eating dark green leafy vegetables like {spinach} is good for your health.|菠菜
+10|I got a great {discount} on this TV. It was pretty cheap.|折扣
+10|I can't meet you today because I have an {appointment}.|約會、預約
+10|They might have a bad flavor, but all of these plants are {edible}.|可食用的
+16|After the old man died, his family held a {funeral} at their church.|葬禮
+16|It was such a clear day that you could see all the way to the {horizon}.|地平線
+16|I could barely read the note Kevin wrote to me because his {handwriting} is so bad.|筆跡
+16|There is a {legend} about a strange creature that shows up in this region during a full moon.|傳說
+16|You should get {insurance} for your car, especially if you are going to be driving around the city.|保險
+16|I will need a {minimum} of four hours to finish this project, but it will probably take more.|最低限度
+16|The president supported the new law, but he faced a lot of {opposition} from others in the government.|反對
+16|The two businessmen met for a {negotiation} about some issues about pricing for some products.|協商、談判
+16|Kelly had her {portrait} painted by one of her friends who is a great painter.|肖像
+16|Make sure you keep your {receipt} just in case you need to return anything to the store after you buy it.|收據
+16|The pilot of the plane relies on {radar} to see what is ahead when he is flying through clouds.|雷達
+16|Do you know the {origin} of these strange houses in this village?|起源
+16|If you want to go on the class trip, you will need {permission} from your parents.|許可
+16|Wilma has a lot of {passion} for playing the piano, so she practices many hours each day.|熱情
+16|I need to study for my test, but I don't have any {motivation} to do it.|動機、動力
+16|Why these empty boats washed to the shore without anyone in them is a {mystery}.|謎
+16|If you want to look at very small things, you need to use a {microscope}.|顯微鏡
+16|To solve this difficult problem, it helps to use {logic}.|邏輯
+16|Doris wanted her {independence} from her parents, so she moved out of her family home.|獨立
+16|I was under the {impression} that you were going to take time off from work next week.|印象
+17|Three years of experience working in sales is a {requirement} for this job.|必要條件
+17|Mary hopes to get a raise in her {salary} now that she has worked at the company for one year.|薪水
+17|The police spoke with the robbery {victim} to get information about the man who did it.|受害者
+17|If the people in the village don't get food soon, many people will die of {starvation}.|飢餓
+17|This book was written in French originally, but I read the English {translation} of it.|翻譯
+17|I have a lot of {sympathy} for the people at the factory who lost their jobs.|同情
+17|The company needs to {advertise} its new products if it wants to sell more of them.|打廣告
+17|The man has a large ranch where he {breeds} horses that are used for racing.|繁殖、飼養（breed）|也可能考 ranch（大農場）
+17|You can {attach} this name tag to your jacket with a pin.|別上、附上
+17|Tom called me on the phone to {congratulate} me for landing a new position at my company.|恭喜
+17|Jim has a {tendency} to nod off in class, which often gets him into trouble.|傾向
+17|How much electricity does an average household {consume} a month?|消耗
+17|There is no {shame} in losing if you tried your best.|羞恥
+17|What we think of as a {sin} is different for everybody.|罪
+17|After {confessing} his crime, the criminal was taken to prison.|坦承、招供（confess）
+17|Despite his {reputation}, the coach was a nice man.|名聲
+17|Abby is afraid to {confront} the problem.|面對
+17|Thankfully, the ambulance's {response} was very fast.|反應、回應
+17|Police were unable to stop {violence} at a recent soccer competition.|暴力
+17|They tried to {capture} the raccoon, but they failed.|捕捉
+18|The mother smiled as she watched her baby {crawl} across the floor.|爬
+18|The teacher will only {dismiss} her class after all students have cleaned off their desks.|讓…離開、下課
+18|Be careful not to {delete} this file on your computer, because I'm going to need it later.|刪除
+18|My friend Lisa will {faint} if she sees blood, so cover up that cut on your arm.|昏倒
+18|The news that the enemy soldiers were invading caused people in the town to {panic}.|恐慌
+18|I {refuse} to eat shark fin soup because I think it is cruel the way the sharks are treated.|拒絕
+18|The president was worried that the people would {protest} the new tax law.|抗議
+18|The rescuers were trying to {locate} the hikers who were lost on the mountain.|找出位置
+18|If you {gamble} with your money, you could end up losing all of it.|賭博
+18|It is very rude to {intrude} on someone who wants to be left alone.|打擾、闖入
+18|You should {reduce} the amount of waste you produce and try to recycle more.|減少
+18|To {prevent} fires, you should never leave candles burning when you're not in the room.|預防
+18|If you {neglect} your studies, you will not get good grades in school.|忽略、疏忽
+18|Since it is such a hot day, the ice cream cones will {melt} very quickly.|融化
+18|The soldiers came to {liberate} the people in the town from their evil ruler.|解放
+18|You should {freeze} this meat if you're not going to eat it within a few days.|冷凍
+18|Don't {insult} me by saying that I'm not smart enough to pass the test!|侮辱
+18|The police were worried that the bomb would {explode}, so they told everyone to leave the building.|爆炸
+18|On Christmas Day, I like to {exchange} gifts with members of my family.|交換
+18|If you {disapprove} of my plan, feel free to come up with another one to replace it.|不贊成
+19|I was {relieved} to find out that I had done pretty well on the exam.|鬆了一口氣的
+19|When I asked Fred if he wanted to go out to eat, he just {shrugged} and said he didn't really care.|聳肩（shrug）
+19|You {resemble} one of the people who works at my company so much that you could be his twin!|長得像
+19|The teacher asked me to {summarize} the story of the book for my book report.|摘要、總結
+19|You could see the diamond {sparkle} whenever it was hit by sunlight.|閃耀
+19|We should {warn} those hikers that bears have been spotted in the area.|警告
+19|Could you {twist} the cap off this bottle for me?|轉、扭
+19|Even though the oil spill was {accidental}, the company that owns the ship will still have to pay a big fine.|意外的
+19|It is important to be {consistent} with the rules that are taught to children.|一致的
+19|James is {fluent} in three languages, for he has lived in Europe for many years.|流利的
+19|The men crossing the desert on foot were {desperate} to find a source of water to drink.|極度渴望的
+19|The land is very {fertile} in this region, so there are lots of farms growing crops.|肥沃的
+19|If you keep doing {illegal} things, you're going to get caught and sent to jail.|違法的
+19|I could see a(n) {distant} ship sailing out on the ocean.|遙遠的
+19|To solve this {complex} problem, you have to be very good at math.|複雜的
+19|Citizens should be {alert} to any strange activity.|警覺的
+19|I like to {stir} some olive oil into my soup|攪拌
+19|Your clothes are too {casual}! Go and get changed.|隨便的、休閒的
+19|Harry {tossed} his bathrobe onto the chair.|扔（toss）
+19|I love this picture of a cat {yawning}.|打哈欠（yawn）
+20|If the pants are too {loose}, you should wear a belt.|鬆的
+20|The tables on the wooden porch are not {movable} because they are screwed into the floor.|可移動的
+20|The rich family lives in a {luxurious} house that cost millions of dollars.|豪華的
+20|Peter is {qualified} for this position at our company because he has lots of experience doing the same job at a different company.|有資格的
+20|People who are {religious} often spend time each day praying to God.|虔誠的、宗教的
+20|My new bicycle is {superior} to my old one, which was a piece of junk.|較好的
+20|These gold coins are very {valuable} so keep them in a safe place.|貴重的
+20|You can {easily} get to the subway station by just walking down this street.|容易地
+20|Since Jacob did his homework {satisfactorily}, the teacher gave him a good grade on it.|令人滿意地
+20|There are many {political} parties in this country, and each one tries to win elections.|政治的
+20|You must put on a {protective} suit before you come in here.|保護的
+20|It's quite {obvious} he isn't coming, so let's continue the meeting.|明顯的
+20|The advice suggests you should always be {suspicious} of people you meet on the Internet.|懷疑的
+20|The {practical} talk show is on at 9 pm every night.|實用的
+20|We need to think of a {long-term} solution to this problem.|長期的
+20|You have {sufficient} time to get to the bank before we leave.|足夠的
+20|This year's firework display was {memorable}.|難忘的
+20|I think it's quite {ridiculous} that the room has been decorated like this.|荒謬的
+20|For me, the red sofa is much {preferable} to the blue one.|較好的、更合意的
+20|Professor Roberts is a {mathematical} genius.|數學的`;
+
+/* ---------- data ---------- */
+const DATA = RAW.trim().split("\n").map((line, i) => {
+  const [wk, s, zh, alt] = line.split("|");
+  const w = s.match(/\{([^}]+)\}/)[1];
+  const bm = zh.match(/（([A-Za-z\- ]+)）/);
+  return { id: i, wk: +wk, s, w, zh, alt: alt || "", base: bm ? bm[1] : w };
+});
+const WEEKS = [6, 7, 8, 9, 10, 16, 17, 18, 19, 20];
+const K_KNOWN = "ncut-1152-vocab-known", K_STATS = "ncut-1152-vocab-stats",
+      K_BEST = "ncut-1152-vocab-best", K_HINT = "ncut-1152-vocab-hint";
+
+/* ---------- storage ---------- */
+function load(k, def) { try { const v = localStorage.getItem(k); return v ? JSON.parse(v) : def; } catch (e) { return def; } }
+function store(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} }
+let known = new Set(load(K_KNOWN, []));
+let stats = load(K_STATS, {});          // id -> {r, w, last}
+let best = load(K_BEST, null);          // {score, n, date}
+let hintFirst = load(K_HINT, true);
+function record(id, ok) {
+  const s = stats[id] || { r: 0, w: 0, last: null };
+  ok ? s.r++ : s.w++; s.last = ok ? 1 : 0; stats[id] = s; store(K_STATS, stats);
+}
+const wrongList = () => DATA.filter(d => stats[d.id] && stats[d.id].last === 0);
+
+/* ---------- helpers ---------- */
+const $ = id => document.getElementById(id);
+const app = $("app");
+function esc(t) { return String(t).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
+function shuffle(a) { for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
+function fmt(ms) { const s = Math.max(0, Math.floor(ms / 1000)); return Math.floor(s / 60) + ":" + String(s % 60).padStart(2, "0"); }
+function blank(w, h) { return h ? w.split("").map((c, i) => i === 0 ? c : (c === "-" ? "-" : "_")).join(" ") : "＿＿＿＿＿"; }
+function sentHTML(d, mode, h) {
+  return esc(d.s).replace(/\{([^}]+)\}/, (m, w) =>
+    mode === "show" ? `<span class="hl">${esc(w)}</span>` : `<span class="blank">${esc(blank(w, h))}</span>`);
+}
+function makeOpts(d) {
+  const others = shuffle(DATA.filter(x => x.wk === d.wk && x.w !== d.w).map(x => x.w));
+  return shuffle([d.w, ...others.slice(0, 3)]);
+}
+function norm(s) { return s.trim().toLowerCase().replace(/[’‘]/g, "'").replace(/\s+/g, " "); }
+function lev(a, b) {
+  if (Math.abs(a.length - b.length) > 1) return 2;
+  const dp = Array.from({ length: a.length + 1 }, (_, i) => [i, ...Array(b.length).fill(0)]);
+  for (let j = 1; j <= b.length; j++) dp[0][j] = j;
+  for (let i = 1; i <= a.length; i++) for (let j = 1; j <= b.length; j++)
+    dp[i][j] = Math.min(dp[i - 1][j] + 1, dp[i][j - 1] + 1, dp[i - 1][j - 1] + (a[i - 1] === b[j - 1] ? 0 : 1));
+  return dp[a.length][b.length];
+}
+function checkSpell(d, given) {
+  const g = norm(given), ans = d.w.toLowerCase();
+  if (g === ans) return { ok: true, note: "" };
+  let note = "";
+  if (d.base !== d.w && g === d.base.toLowerCase()) note = `詞形要跟句子一致，要寫 ${d.w}`;
+  else if (lev(g, ans) <= 1) note = "只差一個字母，注意拼法";
+  return { ok: false, note };
+}
+
+/* ---------- shared UI ---------- */
+function topbar(t, extra = "") { return `<header class="top"><button class="back" data-go="home">‹ 首頁</button><span class="ttl">${t}</span><span class="tr">${extra}</span></header>`; }
+function chipsHTML(sel) { return `<div class="chips" id="chips">` + [0, ...WEEKS].map(w => `<button class="chip${w === sel ? " on" : ""}" data-w="${w}">${w ? "Week " + w : "全部"}</button>`).join("") + `</div>`; }
+function bindChips(cb) { const el = $("chips"); if (el) el.querySelectorAll(".chip").forEach(b => b.onclick = () => cb(+b.dataset.w)); }
+function bindGo() { app.querySelectorAll("[data-go]").forEach(b => b.onclick = () => go(b.dataset.go, b.dataset.arg)); }
+
+function qCard(d, type, opts, ans, progress, feedback) {
+  const show = !!ans && feedback;
+  let h = `<div class="card"><div class="meta"><span>Week ${d.wk}</span><span>${progress}</span></div>`;
+  h += `<div class="sent">${sentHTML(d, show ? "show" : "blank", type === "spell" && hintFirst)}</div>`;
+  if (type === "spell" || show) h += `<div class="hint">中文：<b>${esc(d.zh)}</b></div>`;
+  if (type === "mc") {
+    h += `<div class="optlist">` + opts.map((o, k) => {
+      let c = "opt";
+      if (show) { if (o === d.w) c += " right"; else if (o === ans.given) c += " wrong"; }
+      return `<button class="${c}" data-o="${k}"${show ? " disabled" : ""}>${String.fromCharCode(65 + k)}. ${esc(o)}</button>`;
+    }).join("") + `</div>`;
+  } else {
+    h += `<form id="spf" autocomplete="off"><input class="sp" id="spi" type="text" autocapitalize="off" autocorrect="off" spellcheck="false" enterkeyhint="done" placeholder="輸入英文單字"${show ? ` disabled value="${esc(ans.given)}"` : ""}>${show ? "" : `<button class="btn pri wide" type="submit">送出</button>`}</form>`;
+  }
+  if (show) {
+    h += ans.ok ? `<div class="fb ok">✓ 答對了</div>`
+      : `<div class="fb no">✗ 正確答案：<b>${esc(d.w)}</b>${ans.note ? `<br><span>${esc(ans.note)}</span>` : ""}</div>`;
+    if (d.alt) h += `<div class="alt">⚠ 推測題：${esc(d.alt)}</div>`;
+    h += `<button class="btn pri wide" id="next">下一題</button>`;
+  }
+  return h + `</div>`;
+}
+function bindQ(d, type, opts, onAnswer, onNext) {
+  if (type === "mc") {
+    app.querySelectorAll(".opt:not([disabled])").forEach(b => b.onclick = () => { const g = opts[+b.dataset.o]; onAnswer(g, g === d.w, ""); });
+  } else {
+    const f = $("spf"), inp = $("spi");
+    if (f && inp && !inp.disabled) {
+      f.onsubmit = e => { e.preventDefault(); const g = inp.value; if (!g.trim()) return; const r = checkSpell(d, g); onAnswer(g.trim(), r.ok, r.note); };
+      setTimeout(() => { try { inp.focus(); } catch (e) {} }, 30);
+    }
+  }
+  const n = $("next"); if (n && onNext) { n.onclick = onNext; setTimeout(() => { try { n.focus({ preventScroll: true }); } catch (e) {} }, 30); }
+}
+
+/* ---------- navigation ---------- */
+const S = { view: "home", week: 0 };
+let P = null, E = null, C = null, timerId = null, onlyNew = false, listQ = "", armed = null;
+const EX = { week: 0, count: 50, type: "mc" };
+
+function go(v, arg) {
+  if (timerId) { clearInterval(timerId); timerId = null; }
+  armed = null; S.view = v;
+  if (v === "mc" || v === "spell") startPractice(v, "all");
+  if (v === "wrong") startPractice(arg || "mc", "wrong");
+  if (v === "card") startCard();
+  render(); window.scrollTo(0, 0);
+}
+function render() {
+  ({ home: vHome, mc: vPractice, spell: vPractice, wrong: vPractice, card: vCard, list: vList,
+     examSetup: vExamSetup, exam: vExam, result: vResult, rules: vRules })[S.view]();
+}
+function twoTap(id, label, confirmLabel, action) {
+  const b = $(id); if (!b) return;
+  b.onclick = () => {
+    if (armed !== id) { armed = id; b.textContent = confirmLabel; setTimeout(() => { if (armed === id) { armed = null; const x = $(id); if (x) x.textContent = label; } }, 3000); return; }
+    armed = null; action();
+  };
+}
+
+/* ---------- home ---------- */
+function vHome() {
+  const tried = DATA.filter(d => stats[d.id]).length;
+  let r = 0, w = 0; Object.values(stats).forEach(s => { r += s.r; w += s.w; });
+  const acc = r + w ? Math.round(r / (r + w) * 100) + "%" : "—";
+  const wl = wrongList().length;
+  let h = `<h1>勤益 115-2 字彙測驗練習</h1><p class="sub">語言中心題庫｜Week 6–10、16–20｜共 200 句</p>
+  <div class="grid">
+    <button class="mode primary" data-go="examSetup"><div class="ic">📝</div><div class="n">模擬考</div><div class="d">隨機出題、計時，交卷後看分數和錯題</div></button>
+    <button class="mode" data-go="mc"><div class="ic">🔘</div><div class="n">選擇題練習</div><div class="d">4 選 1，馬上對答案</div></button>
+    <button class="mode" data-go="spell"><div class="ic">⌨️</div><div class="n">拼字練習</div><div class="d">看句子和中文，打出單字</div></button>
+    <button class="mode" data-go="wrong" data-arg="mc"><div class="ic">❗</div><div class="n">錯題本</div><div class="d">目前 ${wl} 題，答對就移出</div></button>
+    <button class="mode" data-go="card"><div class="ic">🃏</div><div class="n">單字卡</div><div class="d">翻卡記憶</div></button>
+    <button class="mode" data-go="list"><div class="ic">📖</div><div class="n">單字表</div><div class="d">200 個字＋例句，可搜尋</div></button>
+    <button class="mode" data-go="rules"><div class="ic">🎓</div><div class="n">畢業門檻說明</div><div class="d">要不要考字彙測驗、場次、申請流程</div></button>
+  </div>
+  <div class="stats">
+    <div class="st"><b>${tried}</b><span>已練過 /200</span></div>
+    <div class="st"><b>${acc}</b><span>正確率</span></div>
+    <div class="st"><b>${wl}</b><span>錯題</span></div>
+    <div class="st"><b>${best ? best.score : "—"}</b><span>模擬考最佳</span></div>
+  </div>
+  <div class="sec">各週掌握度（最近一次答對）</div>`;
+  h += WEEKS.map(wk => {
+    const items = DATA.filter(d => d.wk === wk), m = items.filter(d => stats[d.id] && stats[d.id].last === 1).length;
+    return `<div class="wkrow"><span class="l">Week ${wk}</span><span class="b"><i style="width:${m / items.length * 100}%"></i></span><span class="r">${m}/${items.length}</span></div>`;
+  }).join("");
+  h += `<p class="note">本站為同學自製的非官方練習網站。題目來源：勤益語言中心〈115-2字彙測驗題庫.pdf〉（<a href="https://lgc.ncut.edu.tw/p/405-1029-95793,c82.php?Lang=zh-tw" style="color:inherit">官方公告</a>）。原檔只有少數重點字是粗體，其餘考點依句意判斷；標「推測」的題目可能考句中另一個字，兩個都記最保險。句子照原檔保留（含原有錯字）。正式題型與及格標準以語言中心公告為準。練習紀錄只存在這台裝置的瀏覽器。</p>
+  <div class="statrow"><span></span><button class="linkbtn" id="resetAll">清除所有練習紀錄</button></div>`;
+  app.innerHTML = h; bindGo();
+  twoTap("resetAll", "清除所有練習紀錄", "再按一次確認清除", () => {
+    stats = {}; best = null; known = new Set(); store(K_STATS, stats); store(K_BEST, null); store(K_KNOWN, []); render();
+  });
+}
+
+/* ---------- practice (mc / spell / wrong) ---------- */
+function startPractice(type, source) {
+  const pool = source === "wrong" ? wrongList() : DATA.filter(d => !S.week || d.wk === S.week);
+  P = { type, source, deck: shuffle(pool.slice()), i: 0, ans: null, right: 0, done: 0, opts: null };
+}
+function vPractice() {
+  const isW = P.source === "wrong";
+  const title = isW ? "錯題本" : (P.type === "mc" ? "選擇題練習" : "拼字練習");
+  let h = topbar(title, `答對 ${P.right}/${P.done}`);
+  if (!isW) h += chipsHTML(S.week);
+  h += `<div class="opts">`;
+  if (isW) h += `<div class="seg"><button class="${P.type === "mc" ? "on" : ""}" data-t="mc">選擇題</button><button class="${P.type === "spell" ? "on" : ""}" data-t="spell">拼字</button></div>`;
+  if (P.type === "spell") h += `<label><input type="checkbox" id="hint"${hintFirst ? " checked" : ""}>提示字首和字數</label>`;
+  h += `</div>`;
+  if (!P.deck.length) {
+    h += `<div class="card"><div class="empty">${isW ? "目前沒有錯題 🎉<br><span class='small'>練習或模擬考答錯的題目會自動收進來</span>" : "沒有題目"}</div></div>`;
+  } else if (P.i >= P.deck.length) {
+    const pct = P.done ? Math.round(P.right / P.done * 100) : 0, wl = wrongList().length;
+    h += `<div class="card center"><div class="big">${pct}<small>%</small></div><div>這一輪答對 ${P.right} / ${P.done}</div>
+      <div class="btns"><button class="btn pri" id="again">再來一輪</button>${wl && !isW ? `<button class="btn" data-go="wrong" data-arg="${P.type}">練錯題（${wl}）</button>` : ""}${isW && wl ? `<button class="btn" id="again2">再練剩下的 ${wl} 題</button>` : ""}</div></div>`;
+  } else {
+    const d = P.deck[P.i];
+    if (P.type === "mc" && !P.opts) P.opts = makeOpts(d);
+    h += qCard(d, P.type, P.opts, P.ans, `${P.i + 1} / ${P.deck.length}`, true);
+  }
+  app.innerHTML = h; bindGo();
+  bindChips(w => { S.week = w; startPractice(P.type, "all"); render(); });
+  app.querySelectorAll(".seg [data-t]").forEach(b => b.onclick = () => { startPractice(b.dataset.t, "wrong"); render(); });
+  const hint = $("hint"); if (hint) hint.onchange = () => { hintFirst = hint.checked; store(K_HINT, hintFirst); render(); };
+  const again = $("again"); if (again) again.onclick = () => { startPractice(P.type, P.source); render(); };
+  const again2 = $("again2"); if (again2) again2.onclick = () => { startPractice(P.type, "wrong"); render(); };
+  if (P.deck.length && P.i < P.deck.length) {
+    const d = P.deck[P.i];
+    bindQ(d, P.type, P.opts,
+      (g, ok, note) => { P.ans = { given: g, ok, note }; P.done++; if (ok) P.right++; record(d.id, ok); render(); },
+      () => { P.i++; P.ans = null; P.opts = null; render(); });
+  }
+}
+
+/* ---------- exam ---------- */
+function vExamSetup() {
+  const poolN = DATA.filter(d => !EX.week || d.wk === EX.week).length;
+  const n = Math.min(EX.count, poolN);
+  let h = topbar("模擬考");
+  h += `<div class="sec">範圍</div>` + chipsHTML(EX.week);
+  h += `<div class="sec">題數</div><div class="seg">` + [20, 50, 100, 200].map(c => `<button class="${EX.count === c ? "on" : ""}" data-n="${c}">${c === 200 ? "全部" : c + " 題"}</button>`).join("") + `</div>`;
+  h += `<div class="sec">題型</div><div class="seg">` + [["mc", "選擇題"], ["spell", "拼字"], ["mix", "混合"]].map(([k, t]) => `<button class="${EX.type === k ? "on" : ""}" data-ty="${k}">${t}</button>`).join("") + `</div>`;
+  if (EX.type !== "mc") h += `<div class="opts" style="margin-top:12px"><label><input type="checkbox" id="hint"${hintFirst ? " checked" : ""}>拼字題提示字首和字數</label></div>`;
+  h += `<button class="btn pri wide" id="start">開始考試（${n} 題）</button>`;
+  h += `<p class="note">交卷前不會顯示對錯，答錯的題目會自動收進錯題本。20 題以上的模擬考會記錄最佳成績。正式考試一場 60 分鐘（1/19 那場 2 小時）、每天最多考 2 次；正式題型與及格標準以語言中心為準。</p>`;
+  app.innerHTML = h; bindGo();
+  bindChips(w => { EX.week = w; render(); });
+  app.querySelectorAll("[data-n]").forEach(b => b.onclick = () => { EX.count = +b.dataset.n; render(); });
+  app.querySelectorAll("[data-ty]").forEach(b => b.onclick = () => { EX.type = b.dataset.ty; render(); });
+  const hint = $("hint"); if (hint) hint.onchange = () => { hintFirst = hint.checked; store(K_HINT, hintFirst); };
+  $("start").onclick = startExam;
+}
+function startExam() {
+  const pool = shuffle(DATA.filter(d => !EX.week || d.wk === EX.week).slice());
+  const qs = pool.slice(0, Math.min(EX.count, pool.length)).map(d => {
+    const t = EX.type === "mix" ? (Math.random() < 0.5 ? "mc" : "spell") : EX.type;
+    return { d, t, opts: t === "mc" ? makeOpts(d) : null };
+  });
+  E = { qs, i: 0, ans: [], start: Date.now(), end: null };
+  armed = null; S.view = "exam"; render(); window.scrollTo(0, 0);
+  if (timerId) clearInterval(timerId);
+  timerId = setInterval(() => { const el = $("timer"); if (el) el.textContent = "⏱ " + fmt(Date.now() - E.start); }, 1000);
+}
+function vExam() {
+  const q = E.qs[E.i];
+  let h = topbar("模擬考", `<span id="timer">⏱ ${fmt(Date.now() - E.start)}</span>`);
+  h += `<div class="bar"><i style="width:${E.i / E.qs.length * 100}%"></i></div>`;
+  h += qCard(q.d, q.t, q.opts, null, `第 ${E.i + 1} / ${E.qs.length} 題`, false);
+  h += `<div class="statrow" style="margin-top:8px"><span class="stat">${q.t === "mc" ? "選擇題" : "拼字題"}｜已作答 ${E.i}</span><button class="linkbtn" id="submitAll">提早交卷</button></div>`;
+  app.innerHTML = h; bindGo();
+  bindQ(q.d, q.t, q.opts, (g, ok, note) => {
+    E.ans[E.i] = { given: g, ok, note }; E.i++;
+    if (E.i >= E.qs.length) finishExam(); else { render(); window.scrollTo(0, 0); }
+  }, null);
+  twoTap("submitAll", "提早交卷", "再按一次確認交卷（未答算錯）", finishExam);
+}
+function finishExam() {
+  if (timerId) { clearInterval(timerId); timerId = null; }
+  E.end = Date.now();
+  E.qs.forEach((q, k) => { const a = E.ans[k]; if (a) record(q.d.id, a.ok); });
+  E.right = E.ans.filter(a => a && a.ok).length;
+  E.score = Math.round(E.right / E.qs.length * 100);
+  E.newBest = false;
+  if (E.qs.length >= 20 && (!best || E.score > best.score)) {
+    best = { score: E.score, n: E.qs.length, date: new Date().toISOString().slice(0, 10) }; store(K_BEST, best); E.newBest = true;
+  }
+  armed = null; S.view = "result"; render(); window.scrollTo(0, 0);
+}
+function vResult() {
+  const wrong = E.qs.map((q, k) => ({ q, a: E.ans[k] })).filter(x => !x.a || !x.a.ok);
+  let h = topbar("考試結果");
+  h += `<div class="card center"><div class="big">${E.score}<small> 分</small></div>
+    <div>答對 ${E.right} / ${E.qs.length}｜用時 ${fmt(E.end - E.start)}</div>
+    ${E.newBest ? `<div><span class="newbest">🎉 新的最佳成績</span></div>` : (best ? `<div class="small" style="margin-top:6px">最佳成績 ${best.score} 分</div>` : "")}
+    <div class="btns"><button class="btn pri" data-go="examSetup">再考一次</button>${wrongList().length ? `<button class="btn" data-go="wrong" data-arg="mc">去錯題本</button>` : ""}<button class="btn" data-go="home">回首頁</button></div></div>`;
+  if (wrong.length) {
+    h += `<div class="sec">這次答錯的題目（${wrong.length}）</div>` + wrong.map(({ q, a }) =>
+      `<div class="item"><div class="s">${sentHTML(q.d, "show")}</div>
+       <div class="small" style="margin-top:4px">正確：<b>${esc(q.d.w)}</b>｜你的答案：${a ? `<s>${esc(a.given)}</s>` : "未作答"}｜${esc(q.d.zh)}</div>
+       ${a && a.note ? `<div class="small">${esc(a.note)}</div>` : ""}
+       ${q.d.alt ? `<div class="alt">⚠ 推測題：${esc(q.d.alt)}</div>` : ""}</div>`).join("");
+  } else {
+    h += `<p class="empty">全對！太強了 💯</p>`;
+  }
+  app.innerHTML = h; bindGo();
+}
+
+/* ---------- flashcards ---------- */
+function cardPool() { return DATA.filter(d => (!S.week || d.wk === S.week) && (!onlyNew || !known.has(d.id))); }
+function startCard() { C = { deck: shuffle(cardPool().slice()), pos: 0, rev: false }; }
+function vCard() {
+  let h = topbar("單字卡") + chipsHTML(S.week) +
+    `<div class="opts"><label><input type="checkbox" id="onlyNew"${onlyNew ? " checked" : ""}>只看還不熟的</label><button class="btn" id="shuf">重新洗牌</button></div>`;
+  if (!C.deck.length) h += `<div class="card"><div class="empty">${onlyNew ? "這個範圍都熟了 🎉" : "沒有題目"}</div></div>`;
+  else if (C.pos >= C.deck.length) h += `<div class="card"><div class="empty">這一輪看完了！<div class="btns"><button class="btn pri" id="again">再來一輪</button></div></div></div>`;
+  else {
+    const d = C.deck[C.pos];
+    h += `<div class="card"><div class="meta"><span>Week ${d.wk}</span><span>${C.pos + 1} / ${C.deck.length}</span></div>
+      <div class="sent">${sentHTML(d, C.rev ? "show" : "blank", true)}</div>
+      <div class="hint">中文：<b>${esc(d.zh)}</b></div>
+      ${C.rev ? `<div class="ans">答案：<span class="hl">${esc(d.w)}</span></div>${d.alt ? `<div class="alt">⚠ 推測題：${esc(d.alt)}</div>` : ""}` : ""}
+      <div class="row">${C.rev ? `<button class="again" id="bA">還不熟</button><button class="know" id="bK">會了</button>` : `<button class="reveal" id="bR">看答案</button>`}</div></div>`;
+  }
+  const scope = DATA.filter(d => !S.week || d.wk === S.week), k = scope.filter(d => known.has(d.id)).length;
+  h += `<div class="bar"><i style="width:${k / scope.length * 100}%"></i></div><div class="stat">已熟 ${k} / ${scope.length}</div>`;
+  app.innerHTML = h; bindGo();
+  bindChips(w => { S.week = w; startCard(); render(); });
+  $("onlyNew").onchange = e => { onlyNew = e.target.checked; startCard(); render(); };
+  $("shuf").onclick = () => { startCard(); render(); };
+  const again = $("again"); if (again) again.onclick = () => { startCard(); render(); };
+  const bR = $("bR"); if (bR) bR.onclick = () => { C.rev = true; render(); };
+  const mark = ok => { const d = C.deck[C.pos]; if (ok) known.add(d.id); else { known.delete(d.id); C.deck.push(d); } store(K_KNOWN, [...known]); C.pos++; C.rev = false; render(); };
+  const bA = $("bA"); if (bA) bA.onclick = () => mark(false);
+  const bK = $("bK"); if (bK) bK.onclick = () => mark(true);
+}
+
+/* ---------- word list ---------- */
+function vList() {
+  app.innerHTML = topbar("單字表") + chipsHTML(S.week) +
+    `<input class="sp search" id="q" type="search" placeholder="搜尋英文或中文" value="${esc(listQ)}" autocapitalize="off" autocorrect="off" spellcheck="false"><div id="items"></div>`;
+  bindGo();
+  bindChips(w => { S.week = w; render(); });
+  const q = $("q"); q.oninput = () => { listQ = q.value; drawItems(); };
+  drawItems();
+}
+function drawItems() {
+  const qq = listQ.trim().toLowerCase();
+  const ws = (S.week && !qq) ? [S.week] : WEEKS;   // searching looks across all weeks
+  const html = ws.map(wk => {
+    const items = DATA.filter(d => d.wk === wk && (!qq || d.w.toLowerCase().includes(qq) || d.base.toLowerCase().includes(qq) || d.zh.includes(qq) || d.s.toLowerCase().includes(qq)));
+    if (!items.length) return "";
+    return `<div class="wk">Week ${wk}</div>` + items.map(d => {
+      const st = stats[d.id];
+      const mk = st ? (st.last === 1 ? `<span class="mk ok">✓</span>` : `<span class="mk no">錯題</span>`) : "";
+      return `<div class="item"><div><span class="w">${esc(d.w)}</span><span class="z">${esc(d.zh)}</span>${mk}${d.alt ? `<span class="tag">推測</span>` : ""}</div>
+        <div class="s">${sentHTML(d, "show")}</div>${d.alt ? `<div class="alt">${esc(d.alt)}</div>` : ""}</div>`;
+    }).join("");
+  }).join("");
+  $("items").innerHTML = html || `<div class="empty">找不到符合的單字</div>`;
+}
+
+/* ---------- graduation threshold rules ---------- */
+// Checked against the Language Center pages on 2026-11-22. Update SESSIONS and CHECKED each semester.
+const CHECKED = "2026-11-22";
+const LINK = {
+  rules: "https://lgc.ncut.edu.tw/p/16-1029-3435.php?Lang=zh-tw",
+  exam: "https://lgc.ncut.edu.tw/p/405-1029-95793,c82.php?Lang=zh-tw",
+  result: "https://lgc.ncut.edu.tw/p/405-1029-97016,c82.php?Lang=zh-tw",
+  apply: "https://lgc.ncut.edu.tw/p/405-1029-13750,c82.php?Lang=zh-tw",
+  home: "https://lgc.ncut.edu.tw/"
+};
+const SESSIONS = [  // [label, end time in Taiwan time (+08:00), time, room]
+  ["11/25（三）", "2026-11-25T14:00", "13:00–14:00", "國秀樓 301"],
+  ["12/02（三）", "2026-12-02T14:00", "13:00–14:00", "國秀樓 301"],
+  ["12/16（三）", "2026-12-16T14:00", "13:00–14:00", "國秀樓 301"],
+  ["12/23（三）", "2026-12-23T14:00", "13:00–14:00", "國秀樓 301"],
+  ["12/30（三）", "2026-12-30T14:00", "13:00–14:00", "國秀樓 301"],
+  ["1/19（二）", "2027-01-19T15:00", "13:00–15:00（2 小時）", "國秀樓 語言教室A"]
+];
+function vRules() {
+  const now = Date.now();
+  let nextSet = false;
+  const rows = SESSIONS.map(([d, end, t, room]) => {
+    const past = Date.parse(end + ":00+08:00") < now;
+    let cls = "", pill = "";
+    if (past) { cls = "past"; pill = `<span class="pill past">已結束</span>`; }
+    else if (!nextSet) { nextSet = true; cls = "next"; pill = `<span class="pill next">下一場</span>`; }
+    return `<tr class="${cls}"><td>${d}</td><td>${t}${pill}<br><span class="mut">${room}</span></td></tr>`;
+  }).join("");
+  const a = (k, t) => `<a href="${LINK[k]}" target="_blank" rel="noopener">${t}</a>`;
+  app.innerHTML = topbar("畢業門檻說明") + `
+  <div class="rule"><h2>我要考字彙測驗嗎？</h2>
+    <ol>
+      <li>先看有沒有<b>通過英文畢業門檻</b>（下一段）。有 → 不用考，記得到語言中心登錄。</li>
+      <li>沒通過 → 要修補救課程「英檢輔導A」。四技要在<b>第二學年上學期結束前</b>至少考過 2 次英檢；二技在<b>第一學年上學期結束前</b>至少 1 次。</li>
+      <li>那些英檢成績<b>至少一次達「初級」</b>：CSEPT 170 分以上，或 TOEIC 225 分以上（聽力 110、閱讀 115）→ 直接申請選課資格。</li>
+      <li>都沒達初級 → <b>先通過字彙測驗</b>，才能申請「英檢輔導A」。這個網站就是練這個。</li>
+    </ol>
+    <p class="mut">適用 97 學年度（含）以後入學的日間部四技、二技學生。</p>
+  </div>
+
+  <div class="rule"><h2>畢業門檻（非應用英語系，符合一項即可）</h2>
+    <ul>
+      <li>全民英檢（GEPT）中級初試以上</li>
+      <li>新多益 387 分以上，且聽力 110、閱讀 115 以上</li>
+      <li>CSEPT 第一級：115 學年度前入學 200 分以上；115 學年度起入學 170 分以上</li>
+      <li>TOEFL ITP 424、iBT 38、CBT 115 以上</li>
+      <li>IELTS 3.5 以上</li>
+      <li>BESTEP 聽讀合計 140 或說寫合計 460 以上</li>
+      <li>TOEIC Bridge 152 分以上（聽力 64、閱讀 70）</li>
+      <li>劍橋 PET、BULATS ALTE Level 2、FLPT 等，見作業要點全文</li>
+      <li>在校期間考到 PVQC 專業英文詞彙 Specialist Tier 4 及 Spelling Tier 3 以上，也可登錄抵免</li>
+    </ul>
+    <p class="mut">系上若另訂更高標準，以系上規定為準。應用英語系標準不同，請看${a("rules", "作業要點")}。</p>
+  </div>
+
+  <div class="rule"><h2>115-2 字彙測驗場次</h2>
+    <table class="sess">${rows}</table>
+    ${nextSet ? `<div class="callout">⚠ 公告寫 1/19（三），但 2027/1/19 是星期二，去之前請先跟語言中心確認。</div>`
+      : `<div class="callout">這學期的場次都結束了，新場次請看${a("exam", "語言中心公告")}。</div>`}
+    <ul>
+      <li>不用報名，帶<b>學生證</b>直接到教室考。</li>
+      <li>每天最多考 2 次。</li>
+      <li>最晚要在考試結束前 20 分鐘報到；時間一到立即收卷。</li>
+      <li>結果在隔天 12:00 公告（公告原文「隔日上午12:00」）：${a("result", "字彙測驗結果公告")}</li>
+      <li>範圍：GEPT Weekly Word Builder 1 的 Week 6–10、16–20；題庫 PDF 在${a("exam", "場次公告")}可下載。</li>
+    </ul>
+  </div>
+
+  <div class="rule"><h2>申請「英檢輔導A」選課資格</h2>
+    <ol>
+      <li>到「學校首頁＞學生事務＞學生篇＞畢業門檻＞英檢輔導資格登錄」上傳英檢成績單。</li>
+      <li>資料填完後，下載申請資料，<b>Email 到 lgc02@ncut.edu.tw</b>。</li>
+      <li>語言中心審核通過，才有選課資格。</li>
+    </ol>
+    <p>通過字彙測驗的人，也要在 <b>115-2 開學前</b>上傳指定的英檢成績單，一樣要審核。操作步驟見${a("apply", "線上申請注意事項")}。</p>
+  </div>
+
+  <div class="rule"><h2>英檢輔導A 怎樣算通過</h2>
+    <ul>
+      <li>0 學分、2 學時。</li>
+      <li>實體課：參加測驗，前後測進步 15 分以上；暑修、延畢修課要自費。</li>
+      <li>線上課（115 學年度起）：在指定平台看完規定次數的英語影片，並通過線上測驗；不開暑修。要在修課前一學期末的規定期間申請並上傳英檢成績。</li>
+      <li>修課期間如果考過畢業門檻，後面的補救課程可以免修。</li>
+      <li>重大災害直接受害或身心障礙學生，可以申請直接進入補救課程。</li>
+    </ul>
+  </div>
+
+  <div class="rule"><h2>聯絡語言中心</h2>
+    <p>外語教學組：<a href="tel:+886423924505,5175">(04)2392-4505 轉 5175</a><br>Email：<a href="mailto:lgc02@ncut.edu.tw">lgc02@ncut.edu.tw</a></p>
+    <ul>
+      <li>${a("rules", "英文畢業門檻標準及輔導計畫作業要點")}</li>
+      <li>${a("exam", "115-2 字彙測驗公告（含題庫下載）")}</li>
+      <li>${a("result", "字彙測驗結果公告")}</li>
+      <li>${a("apply", "線上申請英檢輔導A選課資格注意事項")}</li>
+      <li>${a("home", "語言中心首頁")}</li>
+    </ul>
+  </div>
+  <p class="note">本頁由同學整理，${CHECKED} 對照語言中心網頁。規定可能更新，一切以語言中心公告為準。</p>`;
+  bindGo();
+}
+
+render();
+</script>
+</body>
+</html>
