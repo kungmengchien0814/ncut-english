@@ -4,15 +4,15 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>勤益 115-2 字彙測驗練習</title>
-<meta name="description" content="勤益科大語言中心 115-2 字彙測驗（英檢輔導A選課資格）練習：今日複習、模擬考、選擇題、拼字、錯題本、單字卡、配對遊戲。非官方網站。">
+<meta name="description" content="勤益科大語言中心 115-2 字彙測驗（英檢輔導A選課資格）練習：仿正式考卷的模擬考（選詞填空＋選擇題）、今日複習、選詞填空、選擇題、錯題本、單字卡、拼字、配對遊戲。非官方網站。">
 <meta name="robots" content="noindex">
 <meta name="theme-color" content="#2f6fdb">
-<link rel="icon" href="favicon.svg?v=20261123a" type="image/svg+xml">
-<link rel="apple-touch-icon" href="apple-touch-icon.png?v=20261123a">
+<link rel="icon" href="favicon.svg?v=20261125a" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png?v=20261125a">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="zh_TW">
 <meta property="og:title" content="勤益 115-2 字彙測驗練習">
-<meta property="og:description" content="英檢輔導A選課資格「字彙測驗」練習：今日複習、模擬考、選擇題、拼字、錯題本、單字卡、配對遊戲，還有畢業門檻說明。同學自製，非官方。">
+<meta property="og:description" content="英檢輔導A選課資格「字彙測驗」練習：仿正式考卷的模擬考（雙面、選詞填空＋選擇題）、今日複習、選詞填空、選擇題、錯題本、單字卡，還有畢業門檻說明。同學自製，非官方。">
 <meta property="og:url" content="https://kungmengchien.uk/ncut-english/">
 <meta property="og:image" content="https://kungmengchien.uk/ncut-english/og.png">
 <meta property="og:image:width" content="1200">
@@ -34,7 +34,7 @@ header.top{display:flex;align-items:center;gap:.625rem;margin-bottom:.75rem;min-
 .ttl{font-weight:700;font-size:1.0625rem}
 .tr{margin-left:auto;font-size:.875rem;color:var(--mut);font-variant-numeric:tabular-nums}
 .grid{display:grid;grid-template-columns:1fr 1fr;gap:.625rem}
-.mode{background:var(--card);border:1px solid var(--line);border-radius:.875rem;padding:.875rem;text-align:left;color:var(--fg)}
+.mode{display:flex;flex-direction:column;justify-content:flex-start;background:var(--card);border:1px solid var(--line);border-radius:.875rem;padding:.875rem;text-align:left;color:var(--fg)}
 .mode .ic{font-size:1.375rem;line-height:1}
 .mode .n{font-weight:700;font-size:1rem;margin-top:.375rem}
 .mode .d{font-size:.7812rem;color:var(--mut);margin-top:2px}
@@ -238,6 +238,47 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--acc);outline-offset
 .notice{background:var(--acc2);border-radius:.75rem;padding:.75rem .875rem;margin-top:1rem;font-size:.875rem}
 .notice .btns{justify-content:flex-start;margin-top:.625rem}
 .notice.err{background:var(--badb);color:var(--bad)}
+/* real test format (reported by test takers) and paper-style questions */
+.fmt{background:var(--acc2);border-radius:.75rem;padding:.625rem .75rem;font-size:.8438rem;line-height:1.65;margin:0 0 .875rem}
+.mode.last1{grid-column:1/-1}
+.paper-h{display:flex;justify-content:space-between;align-items:center;gap:.25rem .75rem;flex-wrap:wrap;font-size:.8125rem;color:var(--mut);margin:0 0 .25rem}
+.paper-h b{color:var(--fg);font-variant-numeric:tabular-nums}
+.secttl{font-weight:700;font-size:.9375rem;margin:.875rem 0 .5rem;line-height:1.5}
+.bank{display:flex;flex-wrap:wrap;gap:.375rem;background:var(--acc2);border-radius:.75rem;padding:.625rem;margin-bottom:.5rem}
+.bank span{background:var(--card);border:1px solid var(--line);border-radius:.5rem;padding:.25rem .625rem;font-size:.9375rem;font-weight:600}
+.bank span.used{opacity:.45;text-decoration:line-through}
+.q{background:var(--card);border:1px solid var(--line);border-radius:.75rem;padding:.75rem .75rem .625rem;margin-bottom:.5rem;scroll-margin-top:1rem}
+.qs{font-size:1rem;line-height:1.65}
+.qs .num{font-weight:700;color:var(--mut)}
+.q .hint{margin-top:.375rem;font-size:.875rem}
+.q input.sp{margin-top:.5rem;font-size:1rem;padding:.625rem .75rem}
+.letters{display:flex;gap:.375rem;margin-top:.5rem}
+.letters button{flex:1;min-height:2.75rem;border:1.5px solid var(--line);background:var(--bg);color:var(--fg);border-radius:.5625rem;font-size:.9375rem;font-weight:700}
+.mcgrid{display:grid;grid-template-columns:1fr 1fr;gap:.375rem;margin-top:.5rem}
+.mcgrid button{min-height:2.75rem;border:1.5px solid var(--line);background:var(--bg);color:var(--fg);border-radius:.5625rem;padding:.5rem .625rem;font-size:.9375rem;text-align:left;overflow-wrap:anywhere}
+.letters button.sel,.mcgrid button.sel{background:var(--acc);border-color:var(--acc);color:#fff}
+.letters button:disabled{cursor:default}
+.letters button.right-b{border-color:var(--ok);background:var(--okb);color:var(--ok)}
+.letters button.wrong-b{border-color:var(--bad);background:var(--badb);color:var(--bad)}
+.fill{display:inline-block;min-width:4.5em;border-bottom:2px solid var(--acc);color:var(--acc);font-weight:700;text-align:center;padding:0 .25rem}
+.fill.okc{color:var(--ok);border-color:var(--ok)}
+.fill.noc{color:var(--bad);border-color:var(--bad)}
+.qfb{margin-top:.375rem;font-size:.8438rem;font-weight:600}
+.qfb.ok{color:var(--ok)}
+.qfb.no{color:var(--bad)}
+.navrow{display:flex;justify-content:space-between;gap:.625rem;margin-top:1rem}
+.navrow .btn{padding:.75rem 1rem;font-size:1rem;font-weight:600;border-radius:.75rem}
+.over{color:var(--bad);font-weight:700}
+.verdict{font-size:1.125rem;font-weight:800;margin-top:.375rem}
+.verdict.pass{color:var(--ok)}
+.verdict.fail{color:var(--bad)}
+.setup{min-height:0}
+.setup h2{font-size:1rem;margin:0}
+.setup ul{margin:.5rem 0 0;padding-left:1.2em;font-size:.875rem;line-height:1.75}
+.sheet{display:grid;grid-template-columns:repeat(8,1fr);gap:.25rem;margin-top:.625rem}
+.sheet button{border:1px solid var(--line);background:var(--bg);color:var(--mut);border-radius:.375rem;padding:.25rem 0;font-size:.75rem;font-variant-numeric:tabular-nums}
+.sheet button.done{background:var(--acc2);border-color:var(--acc2);color:var(--acc);font-weight:700}
+.sheet button.cur{box-shadow:inset 0 -2px 0 var(--acc)}
 /* tablet: 720px and up */
 @media (min-width:720px){
   .wrap{max-width:55rem;padding:1.5rem 2rem 3.5rem}
@@ -259,7 +300,12 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--acc);outline-offset
   .pop-bg{display:none}
   .pop{position:absolute;right:auto;bottom:auto;width:22.5rem;max-height:none;overflow:visible;border:1px solid var(--line);border-radius:.875rem;padding:.75rem 1rem 1rem;box-shadow:0 .75rem 2rem rgba(0,0,0,.18);animation-name:popIn}
   .pop::before{display:none}
-  .mode.last3{grid-column:span 2}
+  .mode.last1{grid-column:auto}
+  .fmt{font-size:.875rem}
+  .q{padding:.875rem 1rem .75rem}
+  .qs{font-size:1.0625rem}
+  .mcgrid{grid-template-columns:repeat(4,1fr)}
+  .letters{max-width:24rem}
   .mgrid{grid-template-columns:repeat(4,1fr);gap:.75rem}
   .tile{min-height:6.5rem;font-size:1.0625rem}
   .tile[lang="en"]{font-size:1.25rem}
@@ -295,6 +341,7 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--acc);outline-offset
   .rule h2{font-size:1.125rem}
   header.top{margin-bottom:1.125rem}
   header.top .back{display:none}
+  header.top .back.keep{display:inline}
   .prefs{display:none}
   .ttl{font-size:1.375rem}
   .home{display:grid;grid-template-columns:minmax(0,1fr) 21rem;gap:2.5rem;align-items:start}
@@ -308,7 +355,17 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--acc);outline-offset
 }
 /* wide desktop: practice gets a second column with round progress, missed words and shortcuts */
 @media (min-width:1280px){
-  .wrap.v-mc,.wrap.v-spell,.wrap.v-wrong,.wrap.v-card,.wrap.v-exam,.wrap.v-review,.wrap.v-match{max-width:76rem;padding-bottom:2rem}
+  .wrap.v-mc,.wrap.v-spell,.wrap.v-wrong,.wrap.v-card,.wrap.v-exam,.wrap.v-review,.wrap.v-match,.wrap.v-bank{max-width:76rem;padding-bottom:2rem}
+  .play .q{padding:1.125rem 1.375rem 1rem;border-radius:1rem;margin-bottom:.75rem}
+  .play .qs{font-size:1.25rem}
+  .play .secttl{font-size:1.0625rem;margin-top:1.125rem}
+  .play .bank{padding:.75rem;gap:.5rem}
+  .play .bank span{font-size:1.0625rem;padding:.3125rem .75rem}
+  .play .letters{max-width:28rem}
+  .play .letters button,.play .mcgrid button{min-height:2.875rem;font-size:1.0625rem}
+  .play .mcgrid{gap:.5rem;margin-top:.625rem}
+  .play .qfb{font-size:.9375rem}
+  .play .paper-h{font-size:.875rem}
   .tile{min-height:max(7rem,calc((100vh - 18rem) / 3));font-size:1.25rem;border-radius:1rem}
   .tile[lang="en"]{font-size:1.625rem}
   .tile[lang="en"].long{font-size:1.25rem}
@@ -1893,9 +1950,9 @@ function openPop(w) {
   popBg = document.createElement("div"); popBg.className = "pop-bg";
   popEl = document.createElement("div"); popEl.className = "pop"; popEl.tabIndex = -1;
   popEl.setAttribute("role", "dialog"); popEl.setAttribute("aria-label", L(tok + " 的意思", "Meaning of " + tok));
-  popEl.innerHTML = popHTML(tok, sid, !!holder && !!holder.querySelector(".hl, .blank"));
-  const open = app.querySelector(".sent .blank"), oh = open && open.closest("[data-d]");   // a question on screen that is not answered yet
-  if (oh) hideAnswer(popEl, DATA[+oh.dataset.d]);
+  popEl.innerHTML = popHTML(tok, sid, !!holder && !!holder.querySelector(".hl, .blank, .fill"));
+  // every question on screen that is not answered yet (one card, or a word-bank set of 5)
+  new Set([...app.querySelectorAll("[data-d] .blank, [data-d] .fill.open")].map(x => +x.closest("[data-d]").dataset.d)).forEach(id => hideAnswer(popEl, DATA[id]));
   document.body.append(popBg, popEl);
   if (matchMedia("(min-width:720px)").matches) {   // tablet/desktop: float next to the word
     const r = w.getBoundingClientRect(), pw = popEl.offsetWidth, ph = popEl.offsetHeight;
@@ -1935,10 +1992,18 @@ document.addEventListener("click", e => { const b = e.target.closest && e.target
 
 /* ---------- navigation ---------- */
 const S = { view: "home", week: 0 };
-let P = null, E = null, C = null, R = null, M = null, timerId = null, onlyNew = false, listQ = "", armed = null;
-const EX = { week: 0, count: 50, type: "mc" };
+let P = null, E = null, B = null, C = null, R = null, M = null, timerId = null, onlyNew = false, listQ = "", armed = null, leaveArm = null;
 
 function go(v, arg) {
+  // Leaving a mock test that has answers takes a second tap on the same button.
+  if (S.view === "exam" && E && !E.end && v !== "exam" && answeredN() && leaveArm !== v) {
+    leaveArm = v;
+    const n = $("leaveNote");
+    if (n) { n.hidden = false; n.scrollIntoView({ block: "nearest" }); }
+    setTimeout(() => { if (leaveArm === v) { leaveArm = null; const x = $("leaveNote"); if (x) x.hidden = true; } }, 4000);
+    return;
+  }
+  leaveArm = null;
   if (timerId) { clearInterval(timerId); timerId = null; }
   armed = null; S.view = v; pendingImport = null; importErr = false;
   if (v === "mc" || v === "spell") startPractice(v, "all");
@@ -1946,12 +2011,13 @@ function go(v, arg) {
   if (v === "card") startCard();
   if (v === "review") startReview();
   if (v === "match") startMatch();
+  if (v === "bank") startBank();
   render(); window.scrollTo(0, 0);
 }
-const NARROW = new Set(["mc", "spell", "wrong", "card", "examSetup", "exam", "result", "review", "match"]);
+const NARROW = new Set(["mc", "spell", "wrong", "card", "examSetup", "exam", "result", "review", "match", "bank"]);
 const NAV = () => [["home", "🏠", L("首頁", "Home")], ["review", "🔁", L("今日複習", "Daily review")], ["examSetup", "📝", L("模擬考", "Mock test")],
-  ["mc", "🔘", L("選擇題練習", "Multiple choice")], ["spell", "⌨️", L("拼字練習", "Spelling")], ["wrong", "❗", L("錯題本", "Mistakes")],
-  ["card", "🃏", L("單字卡", "Flashcards")], ["match", "🧩", L("配對遊戲", "Matching game")],
+  ["bank", "🔤", L("選詞填空練習", "Word bank")], ["mc", "🔘", L("選擇題練習", "Multiple choice")], ["wrong", "❗", L("錯題本", "Mistakes")],
+  ["card", "🃏", L("單字卡", "Flashcards")], ["spell", "⌨️", L("拼字練習", "Spelling")], ["match", "🧩", L("配對遊戲", "Matching game")],
   ["list", "📖", L("單字表", "Word list")], ["rules", "🎓", L("畢業門檻說明", "Graduation requirement")]];
 const side = $("side");
 function buildSide() {
@@ -1978,7 +2044,7 @@ function render() {
   renderView(); renderSide();
 }
 function renderView() {
-  ({ home: vHome, mc: vPractice, spell: vPractice, wrong: vPractice, card: vCard, list: vList, review: vReview, match: vMatch,
+  ({ home: vHome, mc: vPractice, spell: vPractice, wrong: vPractice, card: vCard, list: vList, review: vReview, match: vMatch, bank: vBank,
      examSetup: vExamSetup, exam: vExam, result: vResult, rules: vRules })[S.view]();
 }
 function twoTap(id, label, confirmLabel, action) {
@@ -1998,16 +2064,19 @@ function vHome() {
   const rv = dueN ? L(`${dueN} 個字到期該複習了`, `${dueN} words are due`)
     : newN ? L(`沒有到期的字，來學 ${Math.min(R_SIZE, newN)} 個新字`, `Nothing due. Learn ${Math.min(R_SIZE, newN)} new words`) : L("今天的複習都做完了", "All caught up for today");
   let h = prefsHTML(false) + `<div class="home"><div class="home-main"><h1>${L("勤益 115-2 字彙測驗練習", "NCUT 115-2 Vocabulary Test Practice")}</h1><p class="sub">${L("語言中心題庫｜Week 6–10、16–20｜共 200 句", "Language Center question bank | Weeks 6–10, 16–20 | 200 sentences")}</p>
+  <div class="fmt">${L("<b>正式考試題型</b>（115-2 考生回報）：雙面試卷，每面「一、選詞填空」約 5 題（5 個字填 5 格）＋「二、選擇題」約 15 題，正反面題目不同；有多種卷別；<b>60 分及格</b>。",
+    "<b>Real test format</b> (reported by 115-2 test takers): a two-sided paper. Each side has Part 1, a word bank with about 5 blanks (5 words for 5 blanks), and Part 2, about 15 multiple-choice questions. The two sides have different questions, and there are several versions of the paper. <b>60 to pass.</b>")}</div>
   <div class="grid">
     <button class="mode primary" data-go="review"><div class="ic">🔁</div><div class="n">${L("今日複習", "Daily review")}</div><div class="d">${rv}<br>${L(`今天 ${td}/${GOAL} 題`, `Today ${td}/${GOAL}`)}${st ? L(`｜連續 ${st} 天`, ` | ${st}-day streak`) : ""}</div></button>
-    <button class="mode" data-go="examSetup"><div class="ic">📝</div><div class="n">${L("模擬考", "Mock test")}</div><div class="d">${L("隨機出題、計時，交卷後看分數和錯題", "Random questions, timed. See your score and mistakes when you hand in.")}</div></button>
-    <button class="mode" data-go="mc"><div class="ic">🔘</div><div class="n">${L("選擇題練習", "Multiple choice")}</div><div class="d">${L("4 選 1，馬上對答案", "Pick 1 of 4 and check right away")}</div></button>
-    <button class="mode" data-go="spell"><div class="ic">⌨️</div><div class="n">${L("拼字練習", "Spelling")}</div><div class="d">${L("看句子和中文，打出單字", "Read the sentence and the Chinese, type the word")}</div></button>
+    <button class="mode" data-go="examSetup"><div class="ic">📝</div><div class="n">${L("模擬考", "Mock test")}</div><div class="d">${L("仿正式考卷：雙面 40 題，選詞填空＋選擇題", "Like the real paper: 2 sides, 40 questions, word bank + multiple choice, 60 to pass")}</div></button>
+    <button class="mode" data-go="bank"><div class="ic">🔤</div><div class="n">${L("選詞填空練習", "Word bank")}</div><div class="d">${L("5 個字填 5 格，同第一大題", "5 words for 5 blanks, like Part 1")}</div></button>
+    <button class="mode" data-go="mc"><div class="ic">🔘</div><div class="n">${L("選擇題練習", "Multiple choice")}</div><div class="d">${L("4 選 1，同第二大題", "Pick 1 of 4, like Part 2")}</div></button>
     <button class="mode" data-go="wrong" data-arg="mc"><div class="ic">❗</div><div class="n">${L("錯題本", "Mistakes")}</div><div class="d">${L(`目前 ${wl} 題，答對就移出`, `${wl} now. Answer one right to clear it.`)}</div></button>
     <button class="mode" data-go="card"><div class="ic">🃏</div><div class="n">${L("單字卡", "Flashcards")}</div><div class="d">${L("翻卡記憶", "Flip and memorize")}</div></button>
+    <button class="mode" data-go="spell"><div class="ic">⌨️</div><div class="n">${L("拼字練習", "Spelling")}</div><div class="d">${L("加強記憶用，正式考試不考拼字", "For memory. The real test has no spelling.")}</div></button>
     <button class="mode" data-go="match"><div class="ic">🧩</div><div class="n">${L("配對遊戲", "Matching game")}</div><div class="d">${L("6 組英文配中文，看誰最快", "Match 6 words to their meanings against the clock")}</div></button>
     <button class="mode" data-go="list"><div class="ic">📖</div><div class="n">${L("單字表", "Word list")}</div><div class="d">${L("200 個字＋例句，可搜尋", "200 words with examples, searchable")}</div></button>
-    <button class="mode last3" data-go="rules"><div class="ic">🎓</div><div class="n">${L("畢業門檻說明", "Graduation requirement")}</div><div class="d">${L("要不要考字彙測驗、場次、申請流程", "Do you need the test, dates, how to apply")}</div></button>
+    <button class="mode last1" data-go="rules"><div class="ic">🎓</div><div class="n">${L("畢業門檻說明", "Graduation requirement")}</div><div class="d">${L("要不要考字彙測驗、場次、申請流程", "Do you need the test, dates, how to apply")}</div></button>
   </div></div>
   <aside class="home-side">${todayHTML()}<div class="stats">
     <div class="st"><b>${tried}</b><span>${L("已練過 /200", "done /200")}</span></div>
@@ -2219,19 +2288,195 @@ function vReview() {
   }
 }
 
-/* ---------- exam ---------- */
-function vExamSetup() {
-  const poolN = DATA.filter(d => !EX.week || d.wk === EX.week).length;
-  const n = Math.min(EX.count, poolN);
-  let h = topbar(L("模擬考", "Mock test"));
-  h += `<div class="sec">${L("範圍", "Range")}</div>` + chipsHTML(EX.week);
-  h += `<div class="sec">${L("題數", "Questions")}</div><div class="seg">` + [20, 50, 100, 200].map(c => `<button class="${EX.count === c ? "on" : ""}" data-n="${c}">${c === 200 ? L("全部", "All") : L(c + " 題", c)}</button>`).join("") + `</div>`;
-  h += `<div class="sec">${L("題型", "Type")}</div><div class="seg">` + [["mc", L("選擇題", "Multiple choice")], ["spell", L("拼字", "Spelling")], ["mix", L("混合", "Mixed")]].map(([k, t]) => `<button class="${EX.type === k ? "on" : ""}" data-ty="${k}">${t}</button>`).join("") + `</div>`;
-  if (EX.type !== "mc") h += `<div class="opts" style="margin-top:.75rem"><label><input type="checkbox" id="hint"${hintFirst ? " checked" : ""}>${L("拼字題提示字首和字數", "Show first letter and length in spelling questions")}</label></div>`;
-  h += `<button class="btn pri wide" id="start">${L(`開始考試（${n} 題）`, `Start test (${n} questions)`)}</button>`;
-  h += `<p class="note">${L("交卷前不會顯示對錯，答錯的題目會自動收進錯題本。20 題以上的模擬考會記錄最佳成績。正式考試一場 60 分鐘（1/19 那場 2 小時）、每天最多考 2 次；正式題型與及格標準以語言中心為準。",
-    "You won't see right or wrong until you hand in, and missed questions go to your mistakes list. Mock tests of 20 questions or more record your best score. The real test is 60 minutes (2 hours for the Jan 19 session), at most twice a day. The Language Center sets the official format and passing score.")}</p>`;
+/* ---------- paper-style questions: word bank, multiple choice, spelling ---------- */
+// The real test (115-2 test takers, 2026-11-25): a two-sided paper, each side
+// Part 1 word bank (5 words for 5 blanks) + Part 2 multiple choice (15); 60 to pass.
+const LET = ["A", "B", "C", "D", "E"];
+const CN = ["一", "二", "三", "四", "五", "六"];
+const isAns = v => v != null && String(v).trim() !== "";
+const KN = () => ({ bank: L("選詞填空", "Word bank"), mc: L("選擇題", "Multiple choice"), spell: L("拼字", "Spelling") });
+function sentFill(d, chosen, cls, tap) {   // the sentence with the chosen word (or nothing) in the blank
+  const i = d.s.indexOf("{"), j = d.s.indexOf("}"), f = tap ? tapWords : esc;
+  const html = f(d.s.slice(0, i)) + `<span class="fill ${cls}">${chosen ? esc(chosen) : "&nbsp;"}</span>` + f(d.s.slice(j + 1));
+  return tap ? `<span data-d="${d.id}">${html}</span>` : html;
+}
+function secTitle(kind, si) {
+  const t = kind === "bank" ? L("選詞填空：從下面 5 個字選出最適合的填入空格，每個字只用一次", "Word bank: put the best of these 5 words in each blank. Use each word once.")
+    : kind === "mc" ? L("選擇題：選出最適合填入空格的答案", "Multiple choice: pick the best word for the blank")
+    : L("拼字：依中文提示寫出空格中的單字", "Spelling: write the missing word from the Chinese hint");
+  return L(`${CN[si] || si + 1}、${t}`, `Part ${si + 1}. ${t}`);
+}
+// review: show right and wrong (word-bank practice after "Check answers"); tap: words can be tapped for notes
+function sectionHTML(sec, si, start, ans, review, tap) {
+  let h = `<section id="sec${si}"><h3 class="secttl">${secTitle(sec.kind, si)}</h3>`;
+  if (sec.kind === "bank") {
+    const used = new Set(sec.items.map(it => ans[it.d.id]).filter(Boolean));
+    h += `<div class="bank" lang="en">` + sec.words.map((w, k) => `<span class="${used.has(w) && !review ? "used" : ""}">${LET[k]}. ${esc(w)}</span>`).join("") + `</div>`;
+    sec.items.forEach((it, j) => {
+      const d = it.d, g = ans[d.id] || null, ok = g === d.w, n = start + j;
+      h += `<div class="q" id="q${d.id}"><div class="qs"><span class="num">${n}.</span> ${sentFill(d, g, review ? (ok ? "okc" : "noc") : "open", tap)}</div>` +
+        `<div class="letters" role="group" aria-label="${L(`第 ${n} 題`, `Question ${n}`)}">` + sec.words.map((w, k) => {
+          let c = "";
+          if (review) { if (w === d.w) c = "right-b"; else if (w === g) c = "wrong-b"; } else if (w === g) c = "sel";
+          return `<button type="button" class="${c}" data-id="${d.id}" data-k="${k}" aria-label="${LET[k]}. ${esc(w)}"${review ? " disabled" : ` aria-pressed="${w === g}"`}>${LET[k]}</button>`;
+        }).join("") + `</div>`;
+      if (review) h += `<div class="qfb ${ok ? "ok" : "no"}">${ok ? "✓ " + L("答對", "Correct") : `✗ ${g ? "" : L("沒填。", "Not answered. ")}${L("正確答案：", "Answer: ")}${esc(d.w)}（${esc(d.zh)}）`}</div>` +
+        (d.alt && !ok ? `<div class="alt">⚠ ${L("推測題：", "Guessed answer: ")}${esc(altText(d.alt))}</div>` : "");
+      h += `</div>`;
+    });
+  } else if (sec.kind === "mc") {
+    sec.items.forEach((it, j) => {
+      const d = it.d, g = ans[d.id] || null, n = start + j;
+      h += `<div class="q" id="q${d.id}"><div class="qs"><span class="num">${n}.</span> ${sentHTML(d, "blank", false, tap)}</div>` +
+        `<div class="mcgrid" role="group" aria-label="${L(`第 ${n} 題`, `Question ${n}`)}">` +
+        it.opts.map((o, k) => `<button type="button" class="${o === g ? "sel" : ""}" data-id="${d.id}" data-k="${k}" aria-pressed="${o === g}" lang="en">${LET[k]}. ${esc(o)}</button>`).join("") + `</div></div>`;
+    });
+  } else {
+    sec.items.forEach((it, j) => {
+      const d = it.d, g = ans[d.id] || "", n = start + j;
+      h += `<div class="q" id="q${d.id}"><div class="qs"><span class="num">${n}.</span> ${sentHTML(d, "blank", hintFirst, tap)}</div><div class="hint">${L("中文：", "Chinese: ")}<b>${esc(d.zh)}</b></div>` +
+        `<input class="sp" data-id="${d.id}" type="text" autocapitalize="off" autocorrect="off" spellcheck="false" enterkeyhint="next" aria-label="${L(`第 ${n} 題答案`, `Answer ${n}`)}" placeholder="${L("輸入英文單字", "Type the English word")}" value="${esc(g)}"></div>`;
+    });
+  }
+  return h + `</section>`;
+}
+function bindSection(sec, si, ans, start, onChange, tap) {
+  const root = $("sec" + si); if (!root) return;
+  if (sec.kind === "bank") {
+    root.querySelectorAll(".letters button:not([disabled])").forEach(b => b.onclick = () => {
+      const id = +b.dataset.id, k = b.dataset.k, w = sec.words[+k];
+      if (ans[id] === w) ans[id] = null;   // tap the same letter again to clear it
+      else { sec.items.forEach(it => { if (it.d.id !== id && ans[it.d.id] === w) ans[it.d.id] = null; }); ans[id] = w; }   // each word once
+      root.outerHTML = sectionHTML(sec, si, start, ans, false, tap);
+      bindSection(sec, si, ans, start, onChange, tap); onChange();
+      const nb = document.querySelector(`#sec${si} [data-id="${id}"][data-k="${k}"]`); if (nb) try { nb.focus({ preventScroll: true }); } catch (e) {}
+    });
+  } else if (sec.kind === "mc") {
+    root.querySelectorAll(".mcgrid button").forEach(b => b.onclick = () => {
+      const id = +b.dataset.id, it = sec.items.find(x => x.d.id === id), o = it.opts[+b.dataset.k];
+      ans[id] = ans[id] === o ? null : o;
+      b.parentNode.querySelectorAll("button").forEach(x => { const on = x === b && !!ans[id]; x.classList.toggle("sel", on); x.setAttribute("aria-pressed", on); });
+      onChange();
+    });
+  } else {
+    root.querySelectorAll("input.sp").forEach(inp => {
+      inp.oninput = () => { ans[+inp.dataset.id] = inp.value.trim() ? inp.value : null; onChange(); };
+      inp.onkeydown = e => {   // Enter moves to the next box
+        if (e.key !== "Enter" || e.isComposing) return;
+        e.preventDefault();
+        const all = [...app.querySelectorAll("input.sp")], nx = all[all.indexOf(inp) + 1];
+        if (nx) nx.focus(); else inp.blur();
+      };
+    });
+  }
+}
+
+/* ---------- word-bank practice (like Part 1 of the real test) ---------- */
+function startBank() {
+  B = { deck: shuffle(DATA.filter(d => !S.week || d.wk === S.week).slice()), i: 0, ans: {}, checked: false, right: 0, done: 0, sec: null, miss: [] };
+  makeGroup();
+}
+function makeGroup() {
+  const g = B.deck.slice(B.i, B.i + 5);
+  B.sec = g.length ? { kind: "bank", items: g.map(d => ({ d })), words: shuffle(g.map(d => d.w)) } : null;
+  B.ans = {}; B.checked = false;
+}
+function bankSide() {
+  const groups = Math.ceil(B.deck.length / 5), pct = B.done ? Math.round(B.right / B.done * 100) + "%" : "—";
+  let h = `<aside class="play-side"><div class="ps-box"><div class="ps-lb">${L("這一輪", "This round")}</div>
+    <div class="ps-big">${B.i / 5 + (B.checked ? 1 : 0)} <small>/ ${groups} ${L("組", "sets done")}</small></div><div class="bar"><i style="width:${(B.i / 5 + (B.checked ? 1 : 0)) / groups * 100}%"></i></div>
+    <div class="ps-row"><span>${L("答對", "Correct")}</span><b>${B.right} / ${B.done}</b></div><div class="ps-row"><span>${L("正確率", "Accuracy")}</span><b>${pct}</b></div></div>`;
+  h += `<div class="ps-box"><div class="ps-lb">${L("這一輪答錯的字", "Missed this round")}</div>` + (B.miss.length
+    ? B.miss.slice(-8).reverse().map(id => { const d = DATA[id]; return `<div class="ps-miss" data-d="${id}"><span class="wd" lang="en">${esc(d.w)}</span><span class="z">${esc(d.zh)}</span></div>`; }).join("")
+    : `<div class="ps-none">${L("還沒有答錯的字。對答案後答錯的字會列在這裡。", "Nothing missed yet. Words you miss show up here after you check.")}</div>`) + `</div>`;
+  return h + `<div class="ps-box"><div class="ps-lb">${L("怎麼作答", "How it works")}</div><div class="ps-none">${L("點題目下面的 A–E，把那個字填進空格。每個字只能用一次：把用過的字選給別題，原本那題會清空。再點一次同一個字母可以取消。",
+    "Tap A–E under a sentence to put that word in its blank. Each word goes in one blank only: choose a used word for another sentence and it moves there. Tap the same letter again to clear it.")}</div></div></aside>`;
+}
+function vBank() {
+  const groups = Math.ceil(B.deck.length / 5);
+  let h = topbar(L("選詞填空練習", "Word bank"), L(`答對 ${B.right}/${B.done}`, `Correct ${B.right}/${B.done}`)) + chipsHTML(S.week);
+  if (!B.sec) {
+    const pct = B.done ? Math.round(B.right / B.done * 100) : 0, wl = wrongList().length;
+    h += `<div class="card center"><div class="big">${pct}<small>%</small></div><div>${L(`這一輪答對 ${B.right} / ${B.done}`, `This round: ${B.right} / ${B.done} correct`)}</div>
+      <div class="btns"><button class="btn pri" id="again">${L("再來一輪", "Another round")}</button>${wl ? `<button class="btn" data-go="wrong" data-arg="mc">${L(`練錯題（${wl}）`, `Practice mistakes (${wl})`)}</button>` : ""}<button class="btn" data-go="examSetup">${L("做一次模擬考", "Take a mock test")}</button></div></div>`;
+  } else {
+    const last = B.i + 5 >= B.deck.length;
+    h += `<div class="play"><div class="play-main"><div class="paper-h"><span>${L(`第 ${B.i / 5 + 1} 組／共 ${groups} 組`, `Set ${B.i / 5 + 1} of ${groups}`)}</span><span>${L("跟正式考卷第一大題一樣", "Same as Part 1 of the real test")}</span></div>`;
+    h += sectionHTML(B.sec, 0, 1, B.ans, B.checked, true) + (B.checked ? "" : tipHTML());
+    h += B.checked ? `<button class="btn pri wide" id="nextg">${last ? L("看這一輪的結果", "See this round's result") : L("下一組", "Next set")}</button>`
+      : `<button class="btn pri wide" id="check">${L("對答案", "Check answers")}</button>`;
+    h += `</div>${bankSide()}</div>`;
+  }
   app.innerHTML = h; bindGo();
+  bindChips(w => { S.week = w; startBank(); render(); });
+  const again = $("again"); if (again) again.onclick = () => { startBank(); render(); };
+  const checkLabel = L("對答案", "Check answers");
+  if (B.sec && !B.checked) bindSection(B.sec, 0, B.ans, 1, () => { if (armed === "check") { armed = null; const c = $("check"); if (c) c.textContent = checkLabel; } }, true);
+  const check = $("check");
+  if (check) check.onclick = () => {
+    const left = B.sec.items.filter(it => !B.ans[it.d.id]).length;
+    if (left && armed !== "check") {
+      armed = "check"; check.textContent = L(`還有 ${left} 格沒填，再按一次對答案`, `${left} blank${left > 1 ? "s" : ""} left. Tap again to check`);
+      setTimeout(() => { if (armed === "check") { armed = null; const c = $("check"); if (c) c.textContent = checkLabel; } }, 3000);
+      return;
+    }
+    armed = null;
+    B.sec.items.forEach(it => {   // a blank left empty counts as wrong here: it is a word you don't know yet
+      const ok = B.ans[it.d.id] === it.d.w; B.done++;
+      if (ok) B.right++; else if (!B.miss.includes(it.d.id)) B.miss.push(it.d.id);
+      record(it.d.id, ok);
+    });
+    B.checked = true; render();
+    const nx = $("nextg"); if (nx) try { nx.focus({ preventScroll: true }); } catch (e) {}
+  };
+  const nextg = $("nextg"); if (nextg) nextg.onclick = () => { B.i += 5; makeGroup(); render(); window.scrollTo(0, 0); };
+}
+
+/* ---------- mock test: paper format ---------- */
+const EX = { preset: "real", week: 0, count: 40, type: "formal" };
+// 20 questions a side. formal: 5 word bank + 15 multiple choice per side; bank: four sets of 5 per side.
+function buildPages(items, type) {
+  const pages = [];
+  for (let p = 0; p < items.length; p += 20) {
+    const ch = items.slice(p, p + 20), secs = [];
+    if (type === "formal") {
+      const b = ch.slice(0, 5), m = ch.slice(5);
+      secs.push({ kind: "bank", items: b.map(d => ({ d })), words: shuffle(b.map(d => d.w)) });
+      if (m.length) secs.push({ kind: "mc", items: m.map(d => ({ d, opts: makeOpts(d) })) });
+    } else if (type === "bank") {
+      for (let g = 0; g < ch.length; g += 5) { const b = ch.slice(g, g + 5); secs.push({ kind: "bank", items: b.map(d => ({ d })), words: shuffle(b.map(d => d.w)) }); }
+    } else {
+      secs.push({ kind: type, items: ch.map(d => ({ d, opts: type === "mc" ? makeOpts(d) : null })) });
+    }
+    pages.push(secs);
+  }
+  return pages;
+}
+function vExamSetup() {
+  const real = EX.preset === "real";
+  let h = topbar(L("模擬考", "Mock test"));
+  h += `<div class="seg" style="margin-bottom:.75rem"><button class="${real ? "on" : ""}" data-p="real">${L("仿正式考卷", "Like the real test")}</button><button class="${real ? "" : "on"}" data-p="custom">${L("自訂", "Custom")}</button></div>`;
+  let n = 40;
+  if (real) {
+    h += `<div class="card setup"><h2>${L("比照正式考卷", "Same format as the real test")}</h2><ul>
+      <li>${L("雙面試卷，共 40 題，每次從 200 題隨機抽", "Two sides, 40 questions, drawn at random from all 200")}</li>
+      <li>${L("每面：一、選詞填空 5 題（5 個字填 5 格）；二、選擇題 15 題", "Each side: Part 1, a word bank with 5 blanks (5 words for 5 blanks); Part 2, 15 multiple-choice questions")}</li>
+      <li>${L("<b>60 分及格</b>；正式考試 60 分鐘", "<b>60 to pass.</b> The real test is 60 minutes.")}</li></ul></div>`;
+  } else {
+    const poolN = DATA.filter(d => !EX.week || d.wk === EX.week).length;
+    n = Math.min(EX.count, poolN);
+    h += `<div class="sec">${L("範圍", "Range")}</div>` + chipsHTML(EX.week);
+    h += `<div class="sec">${L("題數", "Questions")}</div><div class="seg">` + [20, 40, 100, 200].map(c => `<button class="${EX.count === c ? "on" : ""}" data-n="${c}">${c === 200 ? L("全部", "All") : L(c + " 題", c)}</button>`).join("") + `</div>`;
+    h += `<div class="sec">${L("題型", "Type")}</div><div class="seg">` + [["formal", L("選詞＋選擇", "Bank + choice")], ["mc", L("選擇題", "Choice")], ["bank", L("選詞填空", "Word bank")], ["spell", L("拼字", "Spelling")]]
+      .map(([k, t]) => `<button class="${EX.type === k ? "on" : ""}" data-ty="${k}">${t}</button>`).join("") + `</div>`;
+    if (EX.type === "spell") h += `<div class="opts" style="margin-top:.75rem"><label><input type="checkbox" id="hint"${hintFirst ? " checked" : ""}>${L("提示字首和字數", "Show first letter and length")}</label></div>`;
+  }
+  h += `<button class="btn pri wide" id="start">${L(`開始考試（${n} 題）`, `Start the test (${n} questions)`)}</button>`;
+  if (best) h += `<p class="small" style="text-align:center">${L(`目前最佳成績 ${best.score} 分（${best.n} 題）`, `Best so far: ${best.score} (${best.n} questions)`)}</p>`;
+  h += `<p class="note">${L("題型和及格分數是 115-2 考生 11/25 應考後回報的，官方公告沒有寫，以語言中心為準。交卷前不會顯示對錯，可以翻面、改答案；答錯的題目會自動收進錯題本，20 題以上的模擬考會記錄最佳成績。正式考試一場 60 分鐘（1/19 那場 2 小時）、每天最多考 2 次。",
+    "The format and passing score come from 115-2 test takers after the Nov 25 session; the official notice doesn't state them, and the Language Center has the final word. You won't see right or wrong until you hand in, and you can turn the page and change answers before that. Missed questions go to your mistakes list, and tests of 20 questions or more record your best score. The real test is 60 minutes (2 hours for the Jan 19 session), at most twice a day.")}</p>`;
+  app.innerHTML = h; bindGo();
+  app.querySelectorAll("[data-p]").forEach(b => b.onclick = () => { EX.preset = b.dataset.p; render(); });
   bindChips(w => { EX.week = w; render(); });
   app.querySelectorAll("[data-n]").forEach(b => b.onclick = () => { EX.count = +b.dataset.n; render(); });
   app.querySelectorAll("[data-ty]").forEach(b => b.onclick = () => { EX.type = b.dataset.ty; render(); });
@@ -2239,61 +2484,117 @@ function vExamSetup() {
   $("start").onclick = startExam;
 }
 function startExam() {
-  const pool = shuffle(DATA.filter(d => !EX.week || d.wk === EX.week).slice());
-  const qs = pool.slice(0, Math.min(EX.count, pool.length)).map(d => {
-    const t = EX.type === "mix" ? (Math.random() < 0.5 ? "mc" : "spell") : EX.type;
-    return { d, t, opts: t === "mc" ? makeOpts(d) : null };
-  });
-  E = { qs, i: 0, ans: [], start: Date.now(), end: null };
-  armed = null; S.view = "exam"; render(); window.scrollTo(0, 0);
+  const real = EX.preset === "real", week = real ? 0 : EX.week, type = real ? "formal" : EX.type;
+  const pool = shuffle(DATA.filter(d => !week || d.wk === week).slice());
+  const n = real ? 40 : Math.min(EX.count, pool.length);
+  E = { pages: buildPages(pool.slice(0, n), type), page: 0, ans: {}, start: Date.now(), end: null, total: n };
+  armed = null; leaveArm = null; S.view = "exam"; render(); window.scrollTo(0, 0);
   if (timerId) clearInterval(timerId);
-  timerId = setInterval(() => { document.querySelectorAll("#timer,[data-timer]").forEach(el => el.textContent = "⏱ " + fmt(Date.now() - E.start)); }, 1000);
+  timerId = setInterval(() => document.querySelectorAll("[data-timer]").forEach(el => el.innerHTML = timerText()), 1000);
+}
+function timerText() {
+  const ms = Date.now() - E.start;
+  return `<span class="${ms > 3600000 ? "over" : ""}">⏱ ${fmt(ms)} / 60:00</span>`;
+}
+function pageStart(pi) { let n = 1; for (let p = 0; p < pi; p++) E.pages[p].forEach(s => n += s.items.length); return n; }
+function answeredN() { return Object.values(E.ans).filter(isAns).length; }
+function sheetHTML() {   // answer sheet in the wide-screen side column: one button per question
+  let n = 0;
+  return `<div class="sheet">` + E.pages.map((pg, pi) => pg.map(sec => sec.items.map(it => {
+    n++; const done = isAns(E.ans[it.d.id]);
+    return `<button type="button" class="${done ? "done" : ""}${pi === E.page ? " cur" : ""}" data-jump="${pi}:${it.d.id}" aria-label="${L(`第 ${n} 題${done ? "，已作答" : ""}`, `Question ${n}${done ? ", answered" : ""}`)}">${n}</button>`;
+  }).join("")).join("")).join("") + `</div>`;
+}
+function bindSheet() {
+  app.querySelectorAll("[data-jump]").forEach(b => b.onclick = () => {
+    const [pi, id] = b.dataset.jump.split(":").map(Number);
+    if (pi !== E.page) { E.page = pi; armed = null; render(); }
+    const q = $("q" + id); if (!q) return;
+    q.scrollIntoView({ block: "center" });
+    const f = q.querySelector("button, input"); if (f) try { f.focus({ preventScroll: true }); } catch (e) {}
+  });
 }
 function vExam() {
-  const q = E.qs[E.i];
-  let h = topbar(L("模擬考", "Mock test"), `<span id="timer">⏱ ${fmt(Date.now() - E.start)}</span>`);
-  h += `<div class="bar play-dup"><i style="width:${E.i / E.qs.length * 100}%"></i></div>`;
-  const side = `<aside class="play-side"><div class="ps-box"><div class="ps-lb">${L("用時", "Time")}</div><div class="ps-big" data-timer>⏱ ${fmt(Date.now() - E.start)}</div></div>
-    <div class="ps-box"><div class="ps-lb">${L("進度", "Progress")}</div><div class="ps-big">${E.i} <small>/ ${E.qs.length} ${L("已作答", "answered")}</small></div>
-    <div class="bar"><i style="width:${E.i / E.qs.length * 100}%"></i></div><div class="ps-none">${L("交卷前不會顯示對錯，提早交卷時沒作答的題目算錯。", "You'll see right or wrong after you hand in. If you hand in early, unanswered questions count as wrong.")}</div></div>
-    ${keysBox(q.t === "mc" ? [["A–D 1–4", L("作答", "Answer")]] : [["Enter", L("送出", "Check")]])}</aside>`;
-  h += `<div class="play"><div class="play-main">` + qCard(q.d, q.t, q.opts, null, L(`第 ${E.i + 1} / ${E.qs.length} 題`, `Question ${E.i + 1} / ${E.qs.length}`), false) + `</div>${side}</div>`;
-  h += `<div class="statrow" style="margin-top:.5rem"><span class="stat">${q.t === "mc" ? L("選擇題", "Multiple choice") : L("拼字題", "Spelling")}${L(`｜已作答 ${E.i}`, ` | ${E.i} answered`)}</span><button class="linkbtn" id="submitAll">${L("提早交卷", "Hand in now")}</button></div>`;
-  app.innerHTML = h; bindGo();
-  bindQ(q.d, q.t, q.opts, (g, ok, note) => {
-    E.ans[E.i] = { given: g, ok, note }; E.i++;
-    if (E.i >= E.qs.length) finishExam(); else { render(); window.scrollTo(0, 0); }
-  }, null);
-  twoTap("submitAll", L("提早交卷", "Hand in now"), L("再按一次確認交卷（未答算錯）", "Tap again to hand in (unanswered count as wrong)"), finishExam);
+  const pg = E.pages[E.page], last = E.page === E.pages.length - 1, done = answeredN();
+  let h = `<header class="top"><button class="back keep" id="quit">‹ ${L("放棄", "Quit")}</button><span class="ttl">${L("模擬考", "Mock test")}</span><span class="tr" data-timer>${timerText()}</span></header>`;
+  h += `<div class="notice err" id="leaveNote" hidden>${L("還沒交卷。再按一次同一個按鈕就會離開，這次的作答不會保留。", "You haven't handed in. Tap the same button again to leave; your answers won't be kept.")}</div>`;
+  h += `<div class="play"><div class="play-main"><div class="paper-h"><span>${L(`第 ${E.page + 1} 面／共 ${E.pages.length} 面`, `Side ${E.page + 1} of ${E.pages.length}`)}</span><span>${L("已作答", "Answered")} <b data-prog>${done}</b> / ${E.total}</span></div>`;
+  let n = pageStart(E.page);
+  const starts = [];
+  pg.forEach((sec, si) => { starts.push(n); h += sectionHTML(sec, si, n, E.ans, false, false); n += sec.items.length; });
+  h += `<div class="navrow">${E.page > 0 ? `<button class="btn" id="prev">‹ ${L("上一面", "Previous side")}</button>` : "<span></span>"}` +
+    (last ? `<button class="btn pri" id="submit">${L("交卷", "Hand in")}</button>` : `<button class="btn pri" id="nextp">${L("翻到下一面", "Next side")} ›</button>`) + `</div></div>`;
+  h += `<aside class="play-side"><div class="ps-box"><div class="ps-lb">${L("用時", "Time")}</div><div class="ps-big" data-timer>${timerText()}</div></div>
+    <div class="ps-box"><div class="ps-lb">${L("答案卡", "Answer sheet")}</div><div class="ps-big"><span data-prog>${done}</span> <small>/ ${E.total} ${L("已作答", "answered")}</small></div>
+    <div class="bar"><i data-progbar style="width:${done / E.total * 100}%"></i></div>${sheetHTML()}
+    <div class="ps-none" style="margin-top:.625rem">${L("點題號可以跳到那一題。交卷前不會顯示對錯。", "Tap a number to jump to that question. You'll see right or wrong after you hand in.")}</div></div></aside></div>`;
+  app.innerHTML = h;
+  const submitLabel = L("交卷", "Hand in");
+  const onChange = () => {
+    const k = answeredN();
+    app.querySelectorAll("[data-prog]").forEach(el => el.textContent = k);
+    app.querySelectorAll("[data-progbar]").forEach(el => el.style.width = k / E.total * 100 + "%");
+    const sh = app.querySelector(".sheet"); if (sh) { sh.outerHTML = sheetHTML(); bindSheet(); }
+    if (armed === "submit") { armed = null; const s = $("submit"); if (s) s.textContent = submitLabel; }
+  };
+  pg.forEach((sec, si) => bindSection(sec, si, E.ans, starts[si], onChange, false));
+  bindSheet();
+  const prev = $("prev"); if (prev) prev.onclick = () => { E.page--; armed = null; render(); window.scrollTo(0, 0); };
+  const nextp = $("nextp"); if (nextp) nextp.onclick = () => { E.page++; armed = null; render(); window.scrollTo(0, 0); };
+  const submit = $("submit");
+  if (submit) submit.onclick = () => {
+    const left = E.total - answeredN();
+    if (left > 0 && armed !== "submit") {
+      armed = "submit"; submit.textContent = L(`還有 ${left} 題沒寫，再按一次交卷`, `${left} unanswered. Tap again to hand in`);
+      setTimeout(() => { if (armed === "submit") { armed = null; const s = $("submit"); if (s) s.textContent = submitLabel; } }, 4000);
+      return;
+    }
+    armed = null; finishExam();
+  };
+  twoTap("quit", `‹ ${L("放棄", "Quit")}`, L("再按一次放棄", "Tap again to quit"), () => { E = null; go("examSetup"); });
 }
 function finishExam() {
   if (timerId) { clearInterval(timerId); timerId = null; }
   E.end = Date.now();
-  E.qs.forEach((q, k) => { const a = E.ans[k]; if (a) record(q.d.id, a.ok); });
-  E.right = E.ans.filter(a => a && a.ok).length;
-  E.score = Math.round(E.right / E.qs.length * 100);
-  E.newBest = false;
-  if (E.qs.length >= 20 && (!best || E.score > best.score)) {
-    best = { score: E.score, n: E.qs.length, date: new Date().toISOString().slice(0, 10) }; store(K_BEST, best); E.newBest = true;
+  const res = []; let n = 0;
+  E.pages.forEach(pg => pg.forEach(sec => sec.items.forEach(it => {
+    const d = it.d, g = E.ans[d.id], has = isAns(g);
+    let ok = false, note = "";
+    n++;
+    if (has) {   // a question left blank counts as wrong in the score but is not written to your records
+      if (sec.kind === "spell") { const r = checkSpell(d, g); ok = r.ok; note = r.note; } else ok = g === d.w;
+      record(d.id, ok);
+    }
+    res.push({ n, d, kind: sec.kind, given: has ? String(g).trim() : null, ok, note });
+  })));
+  // 40 questions are 2.5 points each, so keep one decimal (23 right = 57.5, not 57 or 58)
+  E.res = res; E.right = res.filter(r => r.ok).length; E.score = Math.round(E.right * 1000 / E.total) / 10; E.newBest = false;
+  if (E.total >= 20 && (!best || E.score > best.score)) {
+    best = { score: E.score, n: E.total, date: dayStr() }; store(K_BEST, best); E.newBest = true;
   }
   armed = null; S.view = "result"; render(); window.scrollTo(0, 0);
 }
 function vResult() {
-  const wrong = E.qs.map((q, k) => ({ q, a: E.ans[k] })).filter(x => !x.a || !x.a.ok);
+  const pass = E.right * 100 >= 60 * E.total, kn = KN(), sep = L("｜", " | ");
+  const parts = Object.keys(kn).map(k => { const rs = E.res.filter(r => r.kind === k); return rs.length ? `${kn[k]} ${rs.filter(r => r.ok).length}/${rs.length}` : ""; }).filter(Boolean).join(sep);
+  const wrong = E.res.filter(r => !r.ok);
   let h = topbar(L("考試結果", "Test result"));
   h += `<div class="card center"><div class="big">${E.score}<small>${L(" 分", " points")}</small></div>
-    <div>${L(`答對 ${E.right} / ${E.qs.length}｜用時 ${fmt(E.end - E.start)}`, `${E.right} / ${E.qs.length} correct | time ${fmt(E.end - E.start)}`)}</div>
+    <div class="verdict ${pass ? "pass" : "fail"}">${pass ? L("✓ 及格（60 分以上）", "✓ Pass (60 or more)") : L("✗ 未達 60 分", "✗ Below 60")}</div>
+    <div style="margin-top:.375rem">${L(`答對 ${E.right} / ${E.total}｜用時 ${fmt(E.end - E.start)}`, `${E.right} / ${E.total} correct | time ${fmt(E.end - E.start)}`)}</div>
+    <div class="small">${parts}</div>
     ${E.newBest ? `<div><span class="newbest">🎉 ${L("新的最佳成績", "New best score")}</span></div>` : (best ? `<div class="small" style="margin-top:.375rem">${L(`最佳成績 ${best.score} 分`, `Best score: ${best.score}`)}</div>` : "")}
     <div class="btns"><button class="btn pri" data-go="examSetup">${L("再考一次", "Take another test")}</button>${wrongList().length ? `<button class="btn" data-go="wrong" data-arg="mc">${L("去錯題本", "Go to mistakes")}</button>` : ""}<button class="btn" data-go="home">${L("回首頁", "Back to home")}</button></div></div>`;
   if (wrong.length) {
-    h += `<div class="sec">${L(`這次答錯的題目（${wrong.length}）`, `Missed this time (${wrong.length})`)}</div>` + wrong.map(({ q, a }) =>
-      `<div class="item"><div class="s">${sentHTML(q.d, "show")}</div>
-       <div class="small" style="margin-top:.25rem">${L("正確：", "Answer: ")}<b>${esc(q.d.w)}</b>${L("｜你的答案：", " | Yours: ")}${a ? `<s>${esc(a.given)}</s>` : L("未作答", "not answered")}${L("｜", " | ")}${esc(q.d.zh)}</div>
-       ${a && a.note ? `<div class="small">${esc(a.note)}</div>` : ""}
-       ${q.d.alt ? `<div class="alt">⚠ ${L("推測題：", "Guessed answer: ")}${esc(altText(q.d.alt))}</div>` : ""}</div>`).join("");
+    h += `<div class="sec">${L(`檢討：答錯或沒寫的題目（${wrong.length}）`, `Review: wrong or unanswered (${wrong.length})`)}</div>` + wrong.map(r =>
+      `<div class="item"><div class="small">${L(`第 ${r.n} 題`, `Q${r.n}`)}${sep}${kn[r.kind]}${sep}Week ${r.d.wk}</div><div class="s">${sentHTML(r.d, "show")}</div>
+       <div class="small" style="margin-top:.25rem">${L("正確：", "Answer: ")}<b>${esc(r.d.w)}</b>${L("｜你的答案：", " | Yours: ")}${r.given ? `<s>${esc(r.given)}</s>` : L("未作答", "not answered")}${sep}${esc(r.d.zh)}</div>
+       ${r.note ? `<div class="small">${esc(r.note)}</div>` : ""}
+       ${r.d.alt ? `<div class="alt">⚠ ${L("推測題：", "Guessed answer: ")}${esc(altText(r.d.alt))}</div>` : ""}</div>`).join("");
   } else {
     h += `<p class="empty">${L("全對！太強了 💯", "All correct! Amazing 💯")}</p>`;
   }
+  h += `<p class="note">${L("60 分及格是考生回報的說法，以語言中心公告為準。", "The 60-point pass mark comes from test takers; the Language Center's announcement is what counts.")}</p>`;
   app.innerHTML = h; bindGo();
 }
 
@@ -2496,6 +2797,7 @@ function vRules() {
       <li>最晚要在考試結束前 20 分鐘報到；時間一到立即收卷。</li>
       <li>結果在隔天 12:00 公告（公告原文「隔日上午12:00」）：${a("result", "字彙測驗結果公告")}</li>
       <li>範圍：GEPT Weekly Word Builder 1 的 Week 6–10、16–20；題庫 PDF 在${a("exam", "場次公告")}可下載。</li>
+      <li>題型（官方公告沒寫，以下是 115-2 考生 11/25 應考後的回報）：雙面試卷，每面「一、選詞填空」約 5 題（給 5 個字填進 5 個句子）＋「二、選擇題」約 15 題，正反面題型一樣、題目不同；有多種卷別；試場人員表示 <b>60 分及格</b>。本站的模擬考照這個格式出題。</li>
     </ul>
   </div>
 
@@ -2565,6 +2867,7 @@ function vRules() {
       <li>Check in no later than 20 minutes before the session ends. Papers are collected right at the end time.</li>
       <li>Results are posted at 12:00 the next day (the notice says 隔日上午12:00): ${a("result", "vocabulary test results")}</li>
       <li>Scope: GEPT Weekly Word Builder 1, Weeks 6–10 and 16–20. The question bank PDF can be downloaded from the ${a("exam", "session notice")}.</li>
+      <li>Format (not in the official notice; reported by 115-2 test takers after the Nov 25 session): a two-sided paper. Each side has Part 1, a word bank of about 5 blanks (5 words for 5 sentences), and Part 2, about 15 multiple-choice questions. Both sides have the same format with different questions, and there are several versions of the paper. Staff at the test said <b>60 is a pass</b>. This site's mock test follows that format.</li>
     </ul>
   </div>
 
