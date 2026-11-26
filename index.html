@@ -7,8 +7,8 @@
 <meta name="description" content="勤益科大語言中心 115-2 字彙測驗（英檢輔導A選課資格）練習：仿正式考卷的模擬考（選詞填空＋選擇題）、今日複習、選詞填空、選擇題、錯題本、單字卡、拼字、配對遊戲。非官方網站。">
 <meta name="robots" content="noindex">
 <meta name="theme-color" content="#2f6fdb">
-<link rel="icon" href="favicon.svg?v=20261125a" type="image/svg+xml">
-<link rel="apple-touch-icon" href="apple-touch-icon.png?v=20261125a">
+<link rel="icon" href="favicon.svg?v=20261126a" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png?v=20261126a">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="zh_TW">
 <meta property="og:title" content="勤益 115-2 字彙測驗練習">
@@ -272,6 +272,11 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--acc);outline-offset
 .verdict{font-size:1.125rem;font-weight:800;margin-top:.375rem}
 .verdict.pass{color:var(--ok)}
 .verdict.fail{color:var(--bad)}
+.trs{margin-top:.375rem;font-size:.875rem;line-height:1.6;color:var(--fg)}
+.trs-l{display:inline-block;margin-right:.375rem;padding:0 .4375rem;border-radius:.375rem;background:var(--line);color:var(--mut);font-size:.75rem;font-weight:600;vertical-align:1px}
+.rv-seg{margin-bottom:.5rem}
+.rv-ok{color:var(--ok)}
+.rv-no{color:var(--bad)}
 .setup{min-height:0}
 .setup h2{font-size:1rem;margin:0}
 .setup ul{margin:.5rem 0 0;padding-left:1.2em;font-size:.875rem;line-height:1.75}
@@ -365,6 +370,7 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--acc);outline-offset
   .play .letters button,.play .mcgrid button{min-height:2.875rem;font-size:1.0625rem}
   .play .mcgrid{gap:.5rem;margin-top:.625rem}
   .play .qfb{font-size:.9375rem}
+  .play .trs{font-size:1.0625rem;margin-top:.625rem}
   .play .paper-h{font-size:.875rem}
   .tile{min-height:max(7rem,calc((100vh - 18rem) / 3));font-size:1.25rem;border-radius:1rem}
   .tile[lang="en"]{font-size:1.625rem}
@@ -1704,6 +1710,208 @@ the way that i look|我的長相、外表
 did his homework|寫功課`;
 
 
+// Chinese translation of each whole sentence, shown once the answer is revealed. Format: id|translation (id = RAW line, 0-based).
+const TRANS = `0|Alan 過馬路時被車撞，傷得很重。
+1|這裡的空氣污染很嚴重。
+2|真希望我能中樂透。
+3|這塊布上印著圖案，看起來很漂亮。
+4|他們喜歡沿著岸邊遛狗。
+5|那張全家福照片拍得真好。
+6|這些舊硬幣值多少錢？
+7|你有注意到那個節目的主角是你的高中同學嗎？
+8|小男孩剛在學拍手，他拍手的樣子好可愛。
+9|今天晚餐你可以選擇吃雞肉或魚。
+10|有人敲門，所以我去看看是誰。
+11|用雙手抓住脖子，是表示你噎住了的手勢。
+12|別為這團亂怪我，又不是我弄的。
+13|這座島的人口成長得很慢。
+14|在市區開車時，你應該放慢車速。
+15|我想不起剛讀完的那本書叫什麼書名，但那本書很好看。
+16|我想要這份工作的理由有很多。
+17|如果你不吃午餐，下午就沒有精力工作。
+18|我昨天收到 Nancy 的派對邀請，但我應該沒辦法去。
+19|數學是我在學校最喜歡的科目，而且我的老師很棒。
+20|Molly 拿到了滿分。
+21|Patty 喜歡穿時髦的衣服，週末也很愛去逛街。
+22|他們遲到了，因此挨了罵。
+23|烤箱上的燈熄滅時，就表示溫度夠高，可以把蛋糕放進去了。
+24|Larry 今天下午沒空幫你，但明天應該可以。
+25|我特別喜歡這家餐廳的牛排。
+26|現在我們來討論昨天的考試。
+27|你出過國嗎？
+28|Henry 還是怕黑。
+29|你同意這個決定嗎？
+30|如果你沒有準備，就別以為考試會考得好。
+31|騎腳踏車在市區移動很方便，因為停車很容易。
+32|每天孩子出門上學時，媽媽都會親親他們。
+33|過農曆新年發紅包是一種傳統。
+34|大多數父母都很強調禮貌。
+35|Jerry 總是對我的外表說些負面的話，所以我不喜歡他。
+36|男孩用膠水把動物圖片貼在筆記本裡。
+37|我可以在電影開演前大約 20 分鐘，跟你在電影院碰面。
+38|計畫有了一些突然的變動。
+39|有時候我喜歡坐在河邊。
+40|我家被小偷闖空門之後，我裝了保全系統。
+41|Felicia 上週和男朋友分手了，從那之後一直很難過。
+42|那位跑者雖然知道自己已經輸了，還是跑完全程、衝過終點線，保住了自己的尊嚴。
+43|劫機者帶著槍，逼機長把飛機開到另一個國家。
+44|操作這台機器的人應該一直戴著護目鏡，保護眼睛。
+45|Larry 很擅長運動，參加了我們學校的三支運動校隊。
+46|我的同事整個星期都請病假，所以他很多工作都落到我身上。
+47|Barry 很有魅力，我的朋友都喜歡他。
+48|這位哲學家寫的書我讀過很多本，他的很多想法我都認同。
+49|Oliver 贏了最後一場網球比賽，成為他那個年齡組的冠軍。
+50|Lenny 得知高中最好的朋友現在成了名演員，非常驚訝。
+51|患有憂鬱症的人可以拿到藥物，讓心情好一點。
+52|只要態度好、肯努力，你在這門課就會表現得不錯。
+53|這位網球選手這個週末會在球場上對上他的頭號對手。
+54|銀行搶匪同意，只要警方答應他的要求，就放走一名人質。
+55|Kevin 很會說故事，總是逗得大家哈哈大笑。
+56|小男孩熱愛棒球，這位知名球員是他的偶像。
+57|Maria 完全不吃肉，因為她是素食者。
+58|這家公司的創辦人當初是和朋友在他爸媽的車庫裡創業的。
+59|公司的發言人表示，未來幾週內會選出新的總裁。
+60|Katie 對下週要開始的新工作非常熱衷。
+61|想對抗寂寞，可以找興趣相近的團體加入。
+62|我和繼母相處得很好。
+63|我老闆的脾氣很差，員工上班遲到時他會非常生氣。
+64|隨著疾病開始擴散，勤洗手變得非常重要。
+65|你得在手臂上包紮繃帶，讓傷口止血。
+66|打噴嚏時請摀住嘴巴。
+67|那名男子在那場致命的車禍後身亡。
+68|Laura 對她的新髮型很敏感，所以別說任何不好聽的話。
+69|Leonard 是那個男孩的本名，但大家都叫他的綽號「Sparky」。
+70|我們的手指有很多神經，所以光用摸的就能分辨是什麼東西。
+71|如果你擔心蔬菜上有細菌，就應該煮過再吃。
+72|Tommy 很同情那些在火災中失去房子的人。
+73|如果你感染了病毒就別靠近我，我可不想被傳染。
+74|流鼻水是流感的常見症狀。
+75|Andrew 有個討人厭的習慣，常常三更半夜打電話給我。
+76|Mike 用盡全身的力氣舉起那個很重的重物。
+77|如果你頭痛，就吃一顆阿斯匹靈，再多喝點水。
+78|冰上曲棍球是一項身體碰撞很激烈的運動。
+79|他還不會走路，因為他還只是個嬰兒。
+80|吃了這道菜口氣會很重，因為裡面有很多大蒜。
+81|2000 年之後的頭十年，是社會變化很多的十年。
+82|如果你胃口不大，點份量少一點的就好。
+83|只要照著香蕉麵包的食譜做，應該就會很好吃。
+84|如果有緊急情況，你應該馬上報警。
+85|我得去銀行把一些錢存進我的帳戶。
+86|爸爸每週給年幼的兒子新台幣 100 元當零用錢。
+87|Penny 吃荷包蛋只吃蛋白，因為她不喜歡蛋黃。
+88|農曆新年時，我媽媽會煮一桌全家都愛吃的大餐。
+89|Debbie 如果忘了戴眼鏡，就看不太清楚。
+90|有些人喜歡飯後喝一杯牛奶來幫助消化。
+91|我最近沒感覺到什麼通貨膨脹，東西的價格好像都沒變。
+92|我們應該珍惜人生的每一刻，因為人不會永遠活著。
+93|我們花了一大筆錢買下這間房子。
+94|我打算投資黃金。
+95|我咬的那顆桃子非常多汁，吃完還得擦臉。
+96|吃菠菜這類深綠色葉菜對健康有益。
+97|這台電視我拿到很大的折扣，買得很便宜。
+98|我今天沒辦法跟你見面，因為我已經有約了。
+99|這些植物也許味道不好，但全都可以吃。
+100|老先生過世後，家人在他們的教會為他舉行了葬禮。
+101|那天天氣非常晴朗，一眼就能望到地平線。
+102|Kevin 寫給我的紙條我幾乎看不懂，因為他的字寫得太醜了。
+103|傳說滿月時，這一帶會出現一種奇怪的生物。
+104|你應該幫車子保險，尤其是如果你會在市區開車的話。
+105|我至少需要四個小時才能完成這個專案，而且可能還會更久。
+106|總統支持這項新法律，但在政府內部遭到很多人反對。
+107|兩位商人碰面，針對幾項產品的定價問題進行協商。
+108|Kelly 請一位很會畫畫的朋友幫她畫了一幅肖像。
+109|記得留著收據，以防買了之後需要退貨。
+110|飛機穿過雲層時，機長要靠雷達才看得到前方的狀況。
+111|你知道這個村子裡這些奇怪房子的由來嗎？
+112|如果你想參加班級旅行，需要經過父母同意。
+113|Wilma 對彈鋼琴充滿熱情，所以每天都練好幾個小時。
+114|我得準備考試，但一點動力都沒有。
+115|這些空船為什麼會在沒有任何人的情況下被沖上岸，是個謎。
+116|如果想看非常小的東西，就得用顯微鏡。
+117|要解決這個難題，運用邏輯會有幫助。
+118|Doris 想脫離父母獨立，所以搬出了家裡。
+119|我印象中你下週要請假。
+120|三年的業務經驗是這份工作的必要條件。
+121|Mary 已經在公司做滿一年了，希望能加薪。
+122|警方向搶案的受害者問話，想取得犯人的資訊。
+123|如果村民再不趕快得到食物，很多人會餓死。
+124|這本書原本是用法文寫的，但我讀的是英文譯本。
+125|我很同情工廠裡那些失去工作的人。
+126|公司如果想把新產品賣得更多，就需要打廣告。
+127|那個人有一座大牧場，在那裡繁殖、飼養比賽用的賽馬。
+128|你可以用別針把這個名牌別在外套上。
+129|Tom 打電話來恭喜我在公司得到新的職位。
+130|Jim 上課有打瞌睡的傾向，常常因此惹上麻煩。
+131|一般家庭一個月要用掉多少電？
+132|只要盡了全力，輸了也不丟臉。
+133|什麼事算是罪，每個人的看法都不一樣。
+134|那名罪犯坦承犯行後，被送進了監獄。
+135|雖然名聲不好，那位教練其實人很好。
+136|Abby 害怕面對這個問題。
+137|幸好救護車的反應非常快。
+138|最近一場足球比賽發生了暴力事件，警方沒能阻止。
+139|他們想抓那隻浣熊，但沒抓到。
+140|媽媽看著寶寶爬過地板，露出了微笑。
+141|老師要等所有學生都把桌面清乾淨，才會讓大家下課。
+142|小心別刪掉你電腦裡的這個檔案，因為我等一下會用到。
+143|我朋友 Lisa 看到血會昏倒，所以把你手臂上的傷口遮起來。
+144|敵軍入侵的消息讓鎮上的人陷入恐慌。
+145|我拒絕吃魚翅湯，因為我覺得那樣對待鯊魚很殘忍。
+146|總統擔心人民會抗議新的稅法。
+147|救難人員正在設法找出在山上迷路的登山客在哪裡。
+148|如果你拿錢去賭博，最後可能會全部輸光。
+149|打擾想要獨處的人是很沒禮貌的。
+150|你應該減少製造的垃圾量，並盡量多回收。
+151|為了預防火災，人不在房間時絕對不要讓蠟燭點著。
+152|如果你疏忽課業，在學校就拿不到好成績。
+153|今天天氣這麼熱，甜筒冰淇淋會融化得很快。
+154|士兵們前來解放鎮民，讓他們擺脫邪惡的統治者。
+155|如果這塊肉幾天內不會吃，就應該冷凍起來。
+156|別說我不夠聰明、考不過，這是在侮辱我！
+157|警方擔心炸彈會爆炸，所以叫大家離開大樓。
+158|聖誕節那天，我喜歡和家人交換禮物。
+159|如果你不贊成我的計畫，歡迎另外想一個來取代它。
+160|得知自己考得還不錯，我鬆了一口氣。
+161|我問 Fred 要不要出去吃飯，他只是聳聳肩，說他都可以。
+162|你長得好像我們公司的一個人，像到可以當他的雙胞胎了！
+163|老師要我在讀書報告裡摘要這本書的故事。
+164|每當陽光照到那顆鑽石，就能看到它閃閃發亮。
+165|我們應該警告那些登山客，這一帶有人看到熊出沒。
+166|你可以幫我把這個瓶蓋轉開嗎？
+167|雖然這次漏油是意外，擁有那艘船的公司還是得付一大筆罰款。
+168|教孩子的規矩要前後一致，這很重要。
+169|James 能說三種流利的語言，因為他在歐洲住了很多年。
+170|那些徒步穿越沙漠的人極度渴望找到能喝的水源。
+171|這個地區的土地非常肥沃，所以有很多種植作物的農場。
+172|如果你一直做違法的事，總有一天會被抓去關。
+173|我看得到一艘遠方的船在海上航行。
+174|要解決這個複雜的問題，你的數學得非常好。
+175|市民應該對任何奇怪的活動保持警覺。
+176|我喜歡在湯裡拌入一點橄欖油。
+177|你的衣服太隨便了！去換一套。
+178|Harry 把浴袍扔到椅子上。
+179|我好喜歡這張貓咪打哈欠的照片。
+180|如果褲子太鬆，就應該繫條皮帶。
+181|木頭門廊上的桌子是用螺絲鎖在地板上的，所以不能移動。
+182|那戶有錢人家住在一棟價值好幾百萬美元的豪華房子裡。
+183|Peter 有資格擔任我們公司的這個職位，因為他在別家公司做過同樣的工作，經驗豐富。
+184|虔誠的人常常每天花時間向上帝禱告。
+185|我的新腳踏車比舊的好多了，那台舊的根本是破銅爛鐵。
+186|這些金幣非常貴重，所以要放在安全的地方。
+187|只要沿著這條街走下去，就能輕鬆走到地鐵站。
+188|因為 Jacob 的作業寫得令人滿意，老師給了他不錯的分數。
+189|這個國家有很多政黨，每一個都想贏得選舉。
+190|你進來這裡之前一定要穿上防護衣。
+191|很明顯他不會來了，我們繼續開會吧。
+192|這則建議是說，對網路上認識的人一定要保持懷疑。
+193|這個實用的談話節目每天晚上 9 點播出。
+194|我們得想出一個長期的辦法來解決這個問題。
+195|在我們出發前，你有足夠的時間去銀行。
+196|今年的煙火秀令人難忘。
+197|我覺得這個房間裝潢成這樣實在很荒謬。
+198|對我來說，紅色沙發比藍色那張好得多。
+199|Roberts 教授是個數學天才。
+`;
 /* ---------- data ---------- */
 const DATA = RAW.trim().split("\n").map((line, i) => {
   const [wk, s, zh, alt] = line.split("|");
@@ -1711,6 +1919,8 @@ const DATA = RAW.trim().split("\n").map((line, i) => {
   const bm = zh.match(/（([A-Za-z\- ]+)）/);
   return { id: i, wk: +wk, s, w, zh, alt: alt || "", base: bm ? bm[1] : w };
 });
+const TRM = new Map(TRANS.trim().split("\n").map(l => { const k = l.indexOf("|"); return [+l.slice(0, k), l.slice(k + 1)]; }));
+DATA.forEach(d => d.tr = TRM.get(d.id) || "");
 const WEEKS = [6, 7, 8, 9, 10, 16, 17, 18, 19, 20];
 const K_KNOWN = "ncut-1152-vocab-known", K_STATS = "ncut-1152-vocab-stats",
       K_BEST = "ncut-1152-vocab-best", K_HINT = "ncut-1152-vocab-hint", K_TIP = "ncut-1152-vocab-tip";
@@ -1830,6 +2040,8 @@ function chipsHTML(sel) { return `<div class="chips" id="chips">` + [0, ...WEEKS
 function bindChips(cb) { const el = $("chips"); if (el) el.querySelectorAll(".chip").forEach(b => b.onclick = () => cb(+b.dataset.w)); }
 function bindGo() { app.querySelectorAll("[data-go]").forEach(b => b.onclick = () => go(b.dataset.go, b.dataset.arg)); }
 
+// Whole-sentence translation: only shown once the answer is on screen, never before.
+function trHTML(d) { return d.tr ? `<div class="trs"><span class="trs-l">${L("整句翻譯", "Translation")}</span>${esc(d.tr)}</div>` : ""; }
 function qCard(d, type, opts, ans, progress, feedback) {
   const show = !!ans && feedback;
   let h = `<div class="card"><div class="meta"><span>Week ${d.wk}</span><span>${progress}</span></div>`;
@@ -1849,6 +2061,7 @@ function qCard(d, type, opts, ans, progress, feedback) {
     if (!show) h += `<div class="kbd">${L("按 <kbd>Enter</kbd> 送出", "Press <kbd>Enter</kbd> to check")}</div>`;
   }
   if (show) {
+    h += trHTML(d);
     h += ans.ok ? `<div class="fb ok">✓ ${L("答對了", "Correct")}</div>`
       : `<div class="fb no">✗ ${L("正確答案：", "Answer: ")}<b>${esc(d.w)}</b>${ans.note ? `<br><span>${esc(ans.note)}</span>` : ""}</div>`;
     if (d.alt) h += `<div class="alt">⚠ ${L("推測題：", "Guessed answer: ")}${esc(altText(d.alt))}</div>`;
@@ -2320,7 +2533,7 @@ function sectionHTML(sec, si, start, ans, review, tap) {
           if (review) { if (w === d.w) c = "right-b"; else if (w === g) c = "wrong-b"; } else if (w === g) c = "sel";
           return `<button type="button" class="${c}" data-id="${d.id}" data-k="${k}" aria-label="${LET[k]}. ${esc(w)}"${review ? " disabled" : ` aria-pressed="${w === g}"`}>${LET[k]}</button>`;
         }).join("") + `</div>`;
-      if (review) h += `<div class="qfb ${ok ? "ok" : "no"}">${ok ? "✓ " + L("答對", "Correct") : `✗ ${g ? "" : L("沒填。", "Not answered. ")}${L("正確答案：", "Answer: ")}${esc(d.w)}（${esc(d.zh)}）`}</div>` +
+      if (review) h += `<div class="qfb ${ok ? "ok" : "no"}">${ok ? "✓ " + L("答對", "Correct") : `✗ ${g ? "" : L("沒填。", "Not answered. ")}${L("正確答案：", "Answer: ")}${esc(d.w)}（${esc(d.zh)}）`}</div>` + trHTML(d) +
         (d.alt && !ok ? `<div class="alt">⚠ ${L("推測題：", "Guessed answer: ")}${esc(altText(d.alt))}</div>` : "");
       h += `</div>`;
     });
@@ -2585,17 +2798,21 @@ function vResult() {
     <div class="small">${parts}</div>
     ${E.newBest ? `<div><span class="newbest">🎉 ${L("新的最佳成績", "New best score")}</span></div>` : (best ? `<div class="small" style="margin-top:.375rem">${L(`最佳成績 ${best.score} 分`, `Best score: ${best.score}`)}</div>` : "")}
     <div class="btns"><button class="btn pri" data-go="examSetup">${L("再考一次", "Take another test")}</button>${wrongList().length ? `<button class="btn" data-go="wrong" data-arg="mc">${L("去錯題本", "Go to mistakes")}</button>` : ""}<button class="btn" data-go="home">${L("回首頁", "Back to home")}</button></div></div>`;
-  if (wrong.length) {
-    h += `<div class="sec">${L(`檢討：答錯或沒寫的題目（${wrong.length}）`, `Review: wrong or unanswered (${wrong.length})`)}</div>` + wrong.map(r =>
-      `<div class="item"><div class="small">${L(`第 ${r.n} 題`, `Q${r.n}`)}${sep}${kn[r.kind]}${sep}Week ${r.d.wk}</div><div class="s">${sentHTML(r.d, "show")}</div>
-       <div class="small" style="margin-top:.25rem">${L("正確：", "Answer: ")}<b>${esc(r.d.w)}</b>${L("｜你的答案：", " | Yours: ")}${r.given ? `<s>${esc(r.given)}</s>` : L("未作答", "not answered")}${sep}${esc(r.d.zh)}</div>
+  // Review: wrong and unanswered by default, or every question; each with its whole-sentence translation.
+  const list = E.showAll ? E.res : wrong;
+  h += `<div class="sec">${L("檢討", "Review")}</div><div class="seg rv-seg"><button class="${E.showAll ? "" : "on"}" data-rv="0">${L(`答錯或沒寫（${wrong.length}）`, `Wrong or blank (${wrong.length})`)}</button><button class="${E.showAll ? "on" : ""}" data-rv="1">${L(`全部題目（${E.total}）`, `All questions (${E.total})`)}</button></div>`;
+  if (list.length) {
+    h += list.map(r =>
+      `<div class="item"><div class="small"><b class="${r.ok ? "rv-ok" : "rv-no"}">${r.ok ? "✓" : "✗"}</b> ${L(`第 ${r.n} 題`, `Q${r.n}`)}${sep}${kn[r.kind]}${sep}Week ${r.d.wk}</div><div class="s">${sentHTML(r.d, "show")}</div>${trHTML(r.d)}
+       <div class="small" style="margin-top:.25rem">${L("正確：", "Answer: ")}<b>${esc(r.d.w)}</b>${L("｜你的答案：", " | Yours: ")}${r.ok ? esc(r.given) : r.given ? `<s>${esc(r.given)}</s>` : L("未作答", "not answered")}${sep}${esc(r.d.zh)}</div>
        ${r.note ? `<div class="small">${esc(r.note)}</div>` : ""}
        ${r.d.alt ? `<div class="alt">⚠ ${L("推測題：", "Guessed answer: ")}${esc(altText(r.d.alt))}</div>` : ""}</div>`).join("");
   } else {
     h += `<p class="empty">${L("全對！太強了 💯", "All correct! Amazing 💯")}</p>`;
   }
-  h += `<p class="note">${L("60 分及格是考生回報的說法，以語言中心公告為準。", "The 60-point pass mark comes from test takers; the Language Center's announcement is what counts.")}</p>`;
+  h += `<p class="note">${L("60 分及格是考生回報的說法，以語言中心公告為準。整句翻譯是本站自己翻的，不是官方資料。", "The 60-point pass mark comes from test takers; the Language Center's announcement is what counts. The sentence translations are this site's own, not official.")}</p>`;
   app.innerHTML = h; bindGo();
+  app.querySelectorAll("[data-rv]").forEach(b => b.onclick = () => { E.showAll = b.dataset.rv === "1"; render(); });
 }
 
 /* ---------- flashcards ---------- */
@@ -2611,7 +2828,7 @@ function vCard() {
     h += `<div class="play"><div class="play-main"><div class="card"><div class="meta"><span>Week ${d.wk}</span><span>${C.pos + 1} / ${C.deck.length}</span></div>
       <div class="sent">${sentHTML(d, C.rev ? "show" : "blank", true)}</div>${tipHTML()}
       <div class="hint">${L("中文：", "Chinese: ")}<b>${esc(d.zh)}</b></div>
-      ${C.rev ? `<div class="ans">${L("答案：", "Answer: ")}<span class="hl">${esc(d.w)}</span></div>${d.alt ? `<div class="alt">⚠ ${L("推測題：", "Guessed answer: ")}${esc(altText(d.alt))}</div>` : ""}${sayBtn(d)}` : ""}
+      ${C.rev ? `<div class="ans">${L("答案：", "Answer: ")}<span class="hl">${esc(d.w)}</span></div>${trHTML(d)}${d.alt ? `<div class="alt">⚠ ${L("推測題：", "Guessed answer: ")}${esc(altText(d.alt))}</div>` : ""}${sayBtn(d)}` : ""}
       <div class="row">${C.rev ? `<button class="again" id="bA">${L("還不熟", "Not yet")}</button><button class="know" id="bK">${L("會了", "Got it")}</button>` : `<button class="reveal" id="bR">${L("看答案", "Show answer")}</button>`}</div>
       <div class="kbd">${C.rev ? L("鍵盤：<kbd>←</kbd> 還不熟、<kbd>→</kbd> 會了", "Keyboard: <kbd>←</kbd> not yet, <kbd>→</kbd> got it") : L("鍵盤：按 <kbd>空白鍵</kbd> 看答案", "Keyboard: press <kbd>Space</kbd> to show the answer")}</div></div></div>`;
   }

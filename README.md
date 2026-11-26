@@ -12,6 +12,7 @@
 - 選詞填空練習（同第一大題）：題目洗牌後每 5 題一組，按「對答案」看結果；空著沒填的格子算答錯
 - 選擇題練習（同第二大題）、拼字練習（正式考試不考拼字，只當加強記憶）、錯題本、單字卡、單字表（可搜尋）
 - 配對遊戲：6 組英文配中文，計時，配錯加 1 秒，每個範圍各記最快紀錄。中文裡的英文括號（例如「敲（knock）」）會先拿掉，免得直接看到答案
+- 整句翻譯：作答後（選擇題、拼字、錯題本、今日複習）、單字卡翻面後、選詞填空按「對答案」後，以及模擬考交卷後的檢討，每句都會顯示整句的中文翻譯；作答前和模擬考作答中都不會出現。考試檢討可以切換「答錯或沒寫」和「全部題目」
 - 聽發音：作答後、單字卡翻面後有「🔊 聽整句」；拼字練習可勾「聽寫：先念出整句」，每題先念出句子再拼（用瀏覽器內建語音，沒有語音的瀏覽器不會顯示這些按鈕）
 - 匯出／匯入紀錄：首頁最下面。匯出會下載一個 JSON 檔，裡面是這個網站所有 `ncut-` 開頭的設定和紀錄；匯入會先顯示檔案日期和題數，按「匯入」才會取代目前的紀錄
 - 點字查意思：練習、單字卡、單字表、考試結果裡的句子，每個英文字都能點，跳出中文、詞性、詞形變化、用法說明、這句裡的片語，以及這個字在題庫哪一週考過；可以念出發音，也有 Yahoo 字典連結。模擬考作答中不能點；還沒作答的題目，說明裡會提到答案的那幾行會自動拿掉
@@ -71,6 +72,7 @@ python -m http.server 8930 --bind 127.0.0.1 --directory D:/Claude/Claude-work/nc
 | `NOTE` | `考點字\|詞性\|說明` | 200 個考點字的用法說明（中文意思沿用 `RAW`） |
 | `DICT` | `字\|原形\|詞性\|中文\|詞形\|說明` | 句子裡其他所有英文字，全部小寫；原形和字一樣就留空。`詞形` 寫「過去式」「複數」等，頁面會顯示成「crossed 是 cross 的過去式」 |
 | `PHR` | `片語\|中文` | 片語要和句子裡的寫法一字不差（小寫），點到片語裡的字時才會出現 |
+| `TRANS` | `題號\|整句翻譯` | 200 句的整句中文翻譯，題號就是 `RAW` 的 0 起算順序（在 `RAW` 這幾個字串之後、`/* ---------- data ---------- */` 前面）。人名保留英文，方便對照原句；原檔錯字照句意翻。這些翻譯是本站自己翻的，不是官方資料 |
 
 詞性代號：`n v adj adv prep conj pron art aux num name place prop abbr typo`。所有格 `'s`（例如 `boy's`）會自動去查 `boy`。
 
@@ -81,6 +83,14 @@ DATA.flatMap(d => d.s.replace(/[{}]/g, "").match(WORD_RE)).filter(w => !wordInfo
 ```
 
 結果是空陣列 `[]` 就代表全部都有說明。
+
+換題庫時 `TRANS` 也要整份重寫。檢查每一句都有翻譯：
+
+```js
+DATA.filter(d => !d.tr).map(d => d.id)
+```
+
+結果是空陣列 `[]` 就代表 200 句都有翻譯。
 
 ## 正式考試題型與模擬考
 
@@ -135,7 +145,7 @@ DATA.flatMap(d => d.s.replace(/[{}]/g, "").match(WORD_RE)).filter(w => !wordInfo
 
 ## 每學期更新清單
 
-1. 換 `RAW` 題庫，改 localStorage key 版本號，補齊 `NOTE`、`DICT`、`PHR`（見「單字說明資料」）。
+1. 換 `RAW` 題庫，改 localStorage key 版本號，補齊 `NOTE`、`DICT`、`PHR`、`TRANS`（見「單字說明資料」）。
 2. 改 `vRules()` 上方的 `SESSIONS`（場次，中英文都要）和 `CHECKED`（查核日期），重新對照語言中心公告；`vRules()` 的中文版和英文版內容都要更新。
 3. 標題、說明文字、`og.png` 裡的「115-2」。
 
@@ -143,10 +153,10 @@ DATA.flatMap(d => d.s.replace(/[{}]/g, "").match(WORD_RE)).filter(w => !wordInfo
 
 GitHub Pages：repo `kungmengchien0814/ncut-english`（main 分支根目錄），網址 `https://kungmengchien.uk/ncut-english/`（由使用者站台的自訂網域自動帶出，經過 Cloudflare；**不要**在這個 repo 加 CNAME）。若改用別的網址，要一起改 `index.html` 的 `og:url`、`og:image` 和 `404.html` 的路徑。
 
-每次推送前把 `index.html` 兩個圖示連結的 `?v=` 換成新版本（例如 `20261125a`），推送成功後用它等部署完成：
+每次推送前把 `index.html` 兩個圖示連結的 `?v=` 換成新版本（例如 `20261126a`），推送成功後用它等部署完成：
 
 ```bash
-bash D:/Claude/Claude-work/scripts/wait-for-portfolio-deploy.sh 20261125a 300 https://kungmengchien.uk/ncut-english/
+bash D:/Claude/Claude-work/scripts/wait-for-portfolio-deploy.sh 20261126a 300 https://kungmengchien.uk/ncut-english/
 ```
 
 Cloudflare 會快取 HTML 約 10 分鐘、圖片和其他檔案約 4 小時，所以換了圖要換檔名或加新的 `?v=`。
